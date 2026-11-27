@@ -1,0 +1,459 @@
+/* ==========================================================================
+   FORK & SHARE — Shared Stylesheet
+   Common foundation for all pages in the Recipe Sharing Hub.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Colour Palette & Design Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Agreed Project Colour Palette */
+  --cream: #F5EBDD;
+  --forest-green: #354C37;
+  --sage-green: #87966D;
+  --warm-peach: #DDAA79;
+  --dark-brown: #493A30;
+
+  /* Common Typography & Layout Tokens */
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --container-width: 1120px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --border-subtle: rgba(73, 58, 48, 0.18);
+  --transition-fast: 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Reset, Fonts & Page Background
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--cream);
+  color: var(--dark-brown);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  font-family: var(--font-heading);
+  color: var(--forest-green);
+  line-height: 1.25;
+}
+
+p {
+  margin-top: 0;
+}
+
+/* --------------------------------------------------------------------------
+   3. Keyboard Focus Styles (:focus-visible)
+   Ensures clear, accessible keyboard navigation across all interactive items.
+   -------------------------------------------------------------------------- */
+:focus-visible {
+  outline: 3px solid var(--forest-green);
+  outline-offset: 2px;
+}
+
+/* High-contrast focus ring when inside dark forest-green containers */
+.site-footer :focus-visible,
+.btn-primary :focus-visible {
+  outline: 3px solid var(--warm-peach);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Common Layout & Spacing Utilities
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* Main page wrapper grows to keep the Community Footer at the bottom */
+.site-main {
+  flex: 1;
+  padding-block: 2rem;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--warm-peach);
+}
+
+/* Reusable content surface card */
+.card {
+  background-color: var(--cream);
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+}
+
+/* Simple responsive grids for page sections */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* Screen-reader only helper text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   5. Common Links & Buttons
+   -------------------------------------------------------------------------- */
+a {
+  color: var(--forest-green);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--dark-brown);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--forest-green);
+  color: var(--cream);
+  border-color: var(--forest-green);
+}
+
+.btn-primary:hover {
+  background-color: var(--dark-brown);
+  border-color: var(--dark-brown);
+  color: var(--cream);
+}
+
+.btn-secondary {
+  background-color: var(--warm-peach);
+  color: var(--dark-brown);
+  border-color: var(--warm-peach);
+}
+
+.btn-secondary:hover {
+  background-color: var(--sage-green);
+  border-color: var(--sage-green);
+  color: var(--cream);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--forest-green);
+  border-color: var(--forest-green);
+}
+
+.btn-outline:hover {
+  background-color: var(--forest-green);
+  color: var(--cream);
+}
+
+/* --------------------------------------------------------------------------
+   6. Design 1: Brand Header
+   Cream background (#F5EBDD) with Forest Green (#354C37) text-based branding.
+   -------------------------------------------------------------------------- */
+.site-header {
+  background-color: var(--cream);
+  color: var(--forest-green);
+  border-bottom: 2px solid var(--sage-green);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+/* Simple text-based brand logo */
+.brand-logo {
+  display: inline-flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--forest-green);
+}
+
+.brand-logo:hover {
+  color: var(--forest-green);
+}
+
+.brand-name {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--forest-green);
+  line-height: 1.1;
+}
+
+.brand-tagline {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sage-green);
+  margin-top: 0.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. Design 2: Responsive Primary Navigation
+   Desktop: horizontal navigation bar.
+   Mobile: collapsible hamburger menu controlled by js/shared.js.
+   -------------------------------------------------------------------------- */
+.site-nav {
+  background-color: var(--cream);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Hamburger button (hidden on desktop, shown on mobile) */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: 2px solid var(--forest-green);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.nav-toggle:hover {
+  background-color: var(--warm-peach);
+}
+
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  background-color: var(--forest-green);
+  border-radius: 2px;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+/* Animate hamburger lines into an X when menu is open */
+.nav-toggle.is-open .hamburger-line:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.nav-toggle.is-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open .hamburger-line:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--forest-green);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.nav-link:hover {
+  background-color: var(--warm-peach);
+  color: var(--dark-brown);
+}
+
+/* Active page link highlight */
+.nav-link.is-active,
+.nav-link[aria-current="page"] {
+  background-color: var(--forest-green);
+  color: var(--cream);
+}
+
+/* --------------------------------------------------------------------------
+   8. Design 3: Community Footer
+   Forest Green (#354C37) background with Cream (#F5EBDD) text.
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--forest-green);
+  color: var(--cream);
+  padding-block: 1.75rem;
+  border-top: 4px solid var(--warm-peach);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.footer-brand {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-links li + li::before {
+  content: "|";
+  color: var(--sage-green);
+  margin-right: 0.75rem;
+}
+
+.footer-link {
+  color: var(--cream);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: var(--warm-peach);
+  text-decoration: underline;
+}
+
+.footer-copy {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--cream);
+}
+
+/* --------------------------------------------------------------------------
+   9. Mobile Responsiveness
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .brand-name {
+    font-size: 1.4rem;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    border-top: 0;
+  }
+
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+    padding: 0.75rem 0 1rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  /* Toggled by js/shared.js when hamburger button is clicked */
+  .nav-list.is-open {
+    display: flex;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
