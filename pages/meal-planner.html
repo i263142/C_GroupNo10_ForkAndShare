@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meal Planner | FORK &amp; SHARE</title>
+  <!-- Shared Design System Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- Page-Specific Styles for Meal Planner -->
+  <link rel="stylesheet" href="../css/meal-planner.css">
+</head>
+<body>
+  <!-- Design 1: Brand Header + Design 2: Responsive Primary Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-logo" href="../index.html">
+        <span class="brand-name">FORK &amp; SHARE</span>
+        <span class="brand-tagline">Recipe Sharing Hub</span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <div class="container">
+        <ul id="primary-nav" class="nav-list" data-nav-menu>
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="explore.html">Explore</a></li>
+          <li><a class="nav-link" href="categories.html">Categories</a></li>
+          <li><a class="nav-link is-active" href="meal-planner.html" aria-current="page">Meal Planner</a></li>
+          <li><a class="nav-link" href="share-recipe.html">Share a Recipe</a></li>
+          <li><a class="nav-link" href="community.html">Community</a></li>
+          <li><a class="nav-link" href="profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Meal Planner Workspace -->
+  <main class="site-main">
+    <div class="container">
+      <!-- Page Header & Week / Day Controls -->
+      <section class="section planner-header" aria-labelledby="planner-heading">
+        <div class="planner-title-row">
+          <div>
+            <h1 id="planner-heading" class="section-title planner-heading">PLAN YOUR MEAL</h1>
+            <p class="planner-subtitle">
+              Assign Breakfast, Lunch, and Dinner recipes for each day of your week. Changes save automatically and sync with your Weekly Meal Schedule and Shopping List.
+            </p>
+          </div>
+
+          <!-- Week Selector Control: SELECT WEEK: [ < ] Week 1 [ > ] -->
+          <div class="week-selector-card card" aria-label="Week Selection">
+            <label class="week-selector-label" for="week-select">SELECT WEEK:</label>
+            <div class="week-selector-controls">
+              <button
+                type="button"
+                class="btn btn-outline week-nav-btn"
+                id="prev-week-btn"
+                aria-label="Previous week"
+              >
+                &lt;
+              </button>
+
+              <select id="week-select" class="week-select" aria-label="Choose planning week">
+                <option value="week-1">Week 1</option>
+                <option value="week-2">Week 2</option>
+                <option value="week-3">Week 3</option>
+                <option value="week-4">Week 4</option>
+              </select>
+
+              <button
+                type="button"
+                class="btn btn-outline week-nav-btn"
+                id="next-week-btn"
+                aria-label="Next week"
+              >
+                &gt;
+              </button>
+            </div>
+            <p class="week-summary-text" id="week-summary-text">0 of 21 meals planned</p>
+          </div>
+        </div>
+
+        <!-- Day Selector Tabs for the Selected Week -->
+        <div class="day-bar card" aria-label="Day of the week selector">
+          <div class="day-bar-header">
+            <span class="day-bar-title" id="active-day-heading">Planning Day: Monday</span>
+            <button
+              type="button"
+              class="btn btn-outline btn-sm"
+              id="clear-day-btn"
+            >
+              Clear Day
+            </button>
+          </div>
+          <div class="day-tabs" id="day-tabs" role="tablist" aria-label="Days of the week">
+            <!-- Populated dynamically by js/meal-planner.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Status & Sync Feedback Banner -->
+      <div
+        id="planner-status"
+        class="planner-status"
+        role="status"
+        aria-live="polite"
+        hidden
+      ></div>
+
+      <!-- Three Core Meal Slots: BREAKFAST, LUNCH, DINNER -->
+      <section class="section" aria-labelledby="meal-slots-heading">
+        <h2 id="meal-slots-heading" class="sr-only">Daily Meal Slots</h2>
+
+        <div class="meal-slots-grid" id="meal-slots-container">
+          <!-- Breakfast Slot -->
+          <article class="card meal-slot" data-meal-slot="breakfast" aria-labelledby="slot-heading-breakfast">
+            <header class="meal-slot-header">
+              <h3 id="slot-heading-breakfast" class="meal-slot-title">BREAKFAST</h3>
+              <span class="slot-badge slot-badge--empty" data-slot-badge="breakfast">Unassigned</span>
+            </header>
+
+            <div class="meal-slot-body" data-slot-body="breakfast">
+              <!-- Populated dynamically by js/meal-planner.js -->
+            </div>
+          </article>
+
+          <!-- Lunch Slot -->
+          <article class="card meal-slot" data-meal-slot="lunch" aria-labelledby="slot-heading-lunch">
+            <header class="meal-slot-header">
+              <h3 id="slot-heading-lunch" class="meal-slot-title">LUNCH</h3>
+              <span class="slot-badge slot-badge--empty" data-slot-badge="lunch">Unassigned</span>
+            </header>
+
+            <div class="meal-slot-body" data-slot-body="lunch">
+              <!-- Populated dynamically by js/meal-planner.js -->
+            </div>
+          </article>
+
+          <!-- Dinner Slot -->
+          <article class="card meal-slot" data-meal-slot="dinner" aria-labelledby="slot-heading-dinner">
+            <header class="meal-slot-header">
+              <h3 id="slot-heading-dinner" class="meal-slot-title">DINNER</h3>
+              <span class="slot-badge slot-badge--empty" data-slot-badge="dinner">Unassigned</span>
+            </header>
+
+            <div class="meal-slot-body" data-slot-body="dinner">
+              <!-- Populated dynamically by js/meal-planner.js -->
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Integration Bar: Weekly Meal Schedule & Shopping List -->
+      <section class="section integration-bar card" aria-labelledby="integration-heading">
+        <div class="integration-info">
+          <h2 id="integration-heading" class="integration-title">Sync Your Meal Plan</h2>
+          <p class="integration-copy" id="integration-copy">
+            Generate a consolidated ingredient checklist from your planned meals or inspect your full 7-day layout.
+          </p>
+        </div>
+
+        <div class="integration-actions">
+          <a class="btn btn-outline" href="weekly-schedule.html">
+            View Weekly Meal Schedule
+          </a>
+          <button type="button" class="btn btn-primary" id="generate-shopping-list-btn">
+            Generate Shopping List
+          </button>
+          <a class="btn btn-secondary" href="shopping-list.html">
+            View Shopping List
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Accessible Recipe Selection & Custom Meal Modal -->
+  <div
+    id="recipe-modal"
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="recipe-modal-title"
+    hidden
+  >
+    <div class="modal-dialog card">
+      <div class="modal-header">
+        <div>
+          <h2 id="recipe-modal-title" class="modal-title">Add Recipe to Breakfast</h2>
+          <p class="modal-subtitle" id="recipe-modal-subtitle">
+            Choose a recipe from our hub or enter a custom meal below.
+          </p>
+        </div>
+        <button
+          type="button"
+          class="modal-close-btn"
+          id="close-modal-btn"
+          aria-label="Close recipe selector"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Mode Switcher: Browse Recipes vs Add Custom Meal -->
+      <div class="modal-mode-tabs" role="tablist" aria-label="Recipe assignment mode">
+        <button
+          type="button"
+          class="mode-tab is-active"
+          id="tab-browse-recipes"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-browse-recipes"
+        >
+          Browse Recipes
+        </button>
+        <button
+          type="button"
+          class="mode-tab"
+          id="tab-custom-meal"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-custom-meal"
+        >
+          Custom Meal
+        </button>
+      </div>
+
+      <!-- Panel 1: Browse & Filter Recipe Dataset -->
+      <div id="panel-browse-recipes" role="tabpanel" aria-labelledby="tab-browse-recipes">
+        <div class="modal-filters">
+          <div class="filter-group filter-group--search">
+            <label class="filter-label" for="recipe-search-input">Search recipes or ingredients</label>
+            <input
+              type="search"
+              id="recipe-search-input"
+              class="form-input"
+              placeholder="e.g., oats, salmon, chickpea, avocado..."
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label" for="meal-filter-select">Meal focus</label>
+            <select id="meal-filter-select" class="form-input">
+              <option value="recommended">Recommended for slot</option>
+              <option value="all">All meal types</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label" for="dietary-filter-select">Dietary / Speed</label>
+            <select id="dietary-filter-select" class="form-input">
+              <option value="all">All recipes</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="High-Protein">High-Protein</option>
+              <option value="Quick">Quick (&le; 20 min)</option>
+              <option value="Dairy-Free">Dairy-Free</option>
+            </select>
+          </div>
+
+          <div class="filter-group filter-group--servings">
+            <label class="filter-label" for="modal-servings-input">Servings (1–12)</label>
+            <input
+              type="number"
+              id="modal-servings-input"
+              class="form-input"
+              min="1"
+              max="12"
+              value="2"
+            >
+          </div>
+        </div>
+
+        <p
+          id="modal-validation-error"
+          class="form-error"
+          role="alert"
+          hidden
+        ></p>
+
+        <div id="recipe-picker-list" class="recipe-picker-list">
+          <!-- Populated dynamically by js/meal-planner.js -->
+        </div>
+      </div>
+
+      <!-- Panel 2: Add Custom Meal Form -->
+      <div id="panel-custom-meal" role="tabpanel" aria-labelledby="tab-custom-meal" hidden>
+        <form id="custom-meal-form" class="custom-meal-form" novalidate>
+          <div class="custom-form-grid">
+            <div class="filter-group custom-form-full">
+              <label class="filter-label" for="custom-meal-title">Meal Name *</label>
+              <input
+                type="text"
+                id="custom-meal-title"
+                class="form-input"
+                placeholder="e.g., Spiced Lentil &amp; Spinach Bowl"
+                maxlength="80"
+                required
+              >
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label" for="custom-meal-servings">Servings (1–12) *</label>
+              <input
+                type="number"
+                id="custom-meal-servings"
+                class="form-input"
+                min="1"
+                max="12"
+                value="2"
+                required
+              >
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label" for="custom-meal-time">Total Time (minutes) *</label>
+              <input
+                type="number"
+                id="custom-meal-time"
+                class="form-input"
+                min="1"
+                max="240"
+                value="25"
+                required
+              >
+            </div>
+
+            <div class="filter-group custom-form-full">
+              <label class="filter-label" for="custom-meal-ingredients">
+                Key Ingredients (comma-separated) *
+              </label>
+              <textarea
+                id="custom-meal-ingredients"
+                class="form-input form-textarea"
+                rows="3"
+                placeholder="e.g., Red lentils, Baby spinach, Garlic, Olive oil, Cumin"
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <p
+            id="custom-meal-error"
+            class="form-error"
+            role="alert"
+            hidden
+          ></p>
+
+          <div class="custom-form-actions">
+            <button type="button" class="btn btn-outline" id="cancel-custom-meal-btn">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Assign Custom Meal
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design 3: Community Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">FORK &amp; SHARE</span>
+
+      <ul class="footer-links" aria-label="Footer Navigation">
+        <li><a class="footer-link" href="../index.html#about">About</a></li>
+        <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
+        <li><a class="footer-link" href="community.html">Community</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
+    </div>
+  </footer>
+
+  <!-- Shared Navigation Script & Meal Planner Logic -->
+  <script src="../js/shared.js" defer></script>
+  <script src="../js/meal-planner.js" defer></script>
+</body>
+</html>
