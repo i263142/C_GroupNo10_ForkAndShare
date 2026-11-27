@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Recipes | FORK &amp; SHARE</title>
+  <!-- Shared Design System Stylesheet -->
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- Page-Specific Styles for My Recipes -->
+  <link rel="stylesheet" href="../css/my-recipes.css">
+</head>
+<body>
+  <!-- Design 1: Brand Header + Design 2: Responsive Primary Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-logo" href="../index.html">
+        <span class="brand-name">FORK &amp; SHARE</span>
+        <span class="brand-tagline">Recipe Sharing Hub</span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <div class="container">
+        <ul id="primary-nav" class="nav-list" data-nav-menu>
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="explore.html">Explore</a></li>
+          <li><a class="nav-link" href="categories.html">Categories</a></li>
+          <li><a class="nav-link" href="meal-planner.html">Meal Planner</a></li>
+          <li><a class="nav-link" href="share-recipe.html">Share a Recipe</a></li>
+          <li><a class="nav-link" href="community.html">Community</a></li>
+          <li><a class="nav-link is-active" href="profile.html" aria-current="page">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="site-main" id="my-recipes-page" data-search-query="" data-category-filter="All">
+    <div class="container">
+      <!-- Page Heading & Summary -->
+      <section class="section my-recipes-section" aria-labelledby="my-recipes-heading">
+        <div class="my-recipes-header">
+          <div>
+            <h1 id="my-recipes-heading" class="section-title my-recipes-title">My Recipes</h1>
+            <p class="my-recipes-subtitle">
+              Manage your personal collection of shared and saved recipes, edit details anytime, or add a new dish.
+            </p>
+          </div>
+          <p class="my-recipes-count" id="my-recipes-count" aria-live="polite"></p>
+        </div>
+
+        <!--
+          Optional In-Body Search & Category Filter Controls:
+          Automatically synchronized with URL query params, custom events
+          ("forkAndShare:filterChange"), and window.ForkAndShareMyRecipes
+          so the shared global header can drive filtering cleanly.
+        -->
+        <div class="my-recipes-toolbar card" role="region" aria-label="Filter my recipes">
+          <div class="my-recipes-search-wrap">
+            <label class="sr-only" for="my-recipes-search">Search your recipes</label>
+            <svg
+              class="my-recipes-search-icon"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="search"
+              id="my-recipes-search"
+              class="my-recipes-search-input"
+              placeholder="Search your recipes by name, ingredient, or category..."
+              autocomplete="off"
+            >
+          </div>
+
+          <div
+            class="my-recipes-categories"
+            id="my-recipes-categories"
+            role="group"
+            aria-label="Filter by recipe category"
+          >
+            <!-- Category filter chips rendered dynamically by js/my-recipes.js -->
+          </div>
+        </div>
+
+        <!-- Responsive Recipe Card Grid (3 cols desktop, 2 tablet, 1 mobile) -->
+        <div class="my-recipes-grid" id="my-recipes-grid">
+          <!-- Pinned First Card: Create New -->
+          <a
+            href="share-recipe.html"
+            class="recipe-card recipe-card--create"
+            id="create-new-recipe-card"
+            aria-label="Create New — Add a new recipe"
+          >
+            <span class="create-card__icon" aria-hidden="true">
+              <svg
+                width="36"
+                height="36"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.25"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </span>
+            <span class="create-card__label">Create New</span>
+            <span class="create-card__hint">Add a new recipe</span>
+          </a>
+
+          <!-- User Recipe Cards & Empty State rendered here by js/my-recipes.js -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Design 3: Community Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">FORK &amp; SHARE</span>
+
+      <ul class="footer-links" aria-label="Footer Navigation">
+        <li><a class="footer-link" href="../index.html#about">About</a></li>
+        <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
+        <li><a class="footer-link" href="community.html">Community</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
+    </div>
+  </footer>
+
+  <!-- Shared Navigation Script & My Recipes Page Logic -->
+  <script src="../js/shared.js" defer></script>
+  <script src="../js/my-recipes.js" defer></script>
+</body>
+</html>
