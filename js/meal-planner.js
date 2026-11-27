@@ -5,7 +5,7 @@
  * 1. Manage a multi-week, 7-day, 3-slot (Breakfast, Lunch, Dinner) meal plan.
  * 2. Populate the recipe selector dynamically from a structured JS dataset.
  * 3. Support searching, filtering, servings scaling, and custom meal entry.
- * 4. Render accessible plate preview SVGs that update with each assigned meal.
+ * 4. Render accessible meal images from ../images/ with safe fallback handling.
  * 5. Persist plans & sync shopping list ingredients via localStorage so
  *    weekly-schedule.html and shopping-list.html stay in sync.
  */
@@ -21,6 +21,10 @@
     SHOPPING_LIST: "forkAndShare_shoppingList",
     RECIPE_CATALOG: "forkAndShare_recipes"
   };
+
+  var FALLBACK_IMAGE = "../images/meal-placeholder.jpg";
+  var FALLBACK_IMAGE_ALT =
+    "Empty stoneware plate with fork, knife, and fresh sage sprig ready for a planned meal";
 
   var WEEKS = [
     { id: "week-1", label: "Week 1" },
@@ -49,8 +53,9 @@
 
   /* ------------------------------------------------------------------------
      2. Realistic Recipe Dataset
-     Every ingredient includes { name, quantity, unit, category } so
-     shopping-list.html can group and total items automatically.
+     Every recipe maps to an existing meal image in ../images/ and includes
+     { name, quantity, unit, category } ingredients so shopping-list.html
+     can group and total items automatically.
      ------------------------------------------------------------------------ */
   var RECIPES = [
     {
@@ -61,7 +66,8 @@
       cookMinutes: 10,
       baseServings: 2,
       dietaryTags: ["Vegetarian", "Quick"],
-      plateStyle: "oatbowl",
+      image: "../images/oat-berry-bowl.jpg",
+      imageAlt: "Warm Berry and Honey Oat Bowl topped with blueberries, banana slices, and walnuts",
       description: "Creamy rolled oats simmered with milk, topped with blueberries, sliced banana, toasted walnuts, and wildflower honey.",
       ingredients: [
         { name: "Rolled oats", quantity: 1, unit: "cup", category: "Bakery & Grains" },
@@ -73,24 +79,6 @@
       ]
     },
     {
-      id: "avocado-herb-toast",
-      title: "Sourdough Avocado & Soft-Egg Toast",
-      mealType: "breakfast",
-      prepMinutes: 8,
-      cookMinutes: 6,
-      baseServings: 2,
-      dietaryTags: ["Vegetarian", "High-Protein", "Quick"],
-      plateStyle: "toast",
-      description: "Toasted country sourdough layered with mashed lemon avocado, soft-boiled eggs, cherry tomatoes, and chili flakes.",
-      ingredients: [
-        { name: "Sourdough bread slices", quantity: 4, unit: "slices", category: "Bakery & Grains" },
-        { name: "Ripe avocados", quantity: 2, unit: "whole", category: "Produce" },
-        { name: "Large eggs", quantity: 4, unit: "whole", category: "Dairy & Eggs" },
-        { name: "Cherry tomatoes", quantity: 1, unit: "cup", category: "Produce" },
-        { name: "Lemon juice", quantity: 1, unit: "tbsp", category: "Produce" }
-      ]
-    },
-    {
       id: "spinach-feta-omelette",
       title: "Spinach, Feta & Dill Folded Omelette",
       mealType: "breakfast",
@@ -98,7 +86,8 @@
       cookMinutes: 8,
       baseServings: 2,
       dietaryTags: ["Vegetarian", "High-Protein", "Quick"],
-      plateStyle: "omelette",
+      image: "../images/spinach-feta-omelette.jpg",
+      imageAlt: "Golden folded omelette filled with baby spinach, crumbled feta cheese, and fresh dill",
       description: "Fluffy three-egg omelettes folded around sautéed baby spinach, crumbled feta cheese, and fresh dill.",
       ingredients: [
         { name: "Large eggs", quantity: 6, unit: "whole", category: "Dairy & Eggs" },
@@ -109,42 +98,6 @@
       ]
     },
     {
-      id: "cinnamon-chia-parfait",
-      title: "Greek Yogurt & Spiced Pear Parfait",
-      mealType: "breakfast",
-      prepMinutes: 10,
-      cookMinutes: 0,
-      baseServings: 2,
-      dietaryTags: ["Vegetarian", "High-Protein", "Quick"],
-      plateStyle: "oatbowl",
-      description: "Layered plain Greek yogurt with diced pears, cinnamon granola, chia seeds, and maple drizzle.",
-      ingredients: [
-        { name: "Plain Greek yogurt", quantity: 2, unit: "cups", category: "Dairy & Eggs" },
-        { name: "Ripe pears", quantity: 2, unit: "whole", category: "Produce" },
-        { name: "Cinnamon granola", quantity: 1, unit: "cup", category: "Bakery & Grains" },
-        { name: "Chia seeds", quantity: 2, unit: "tbsp", category: "Pantry" }
-      ]
-    },
-    {
-      id: "mediterranean-chickpea-bowl",
-      title: "Mediterranean Chickpea & Quinoa Bowl",
-      mealType: "lunch",
-      prepMinutes: 12,
-      cookMinutes: 15,
-      baseServings: 2,
-      dietaryTags: ["Vegetarian", "Dairy-Free", "High-Protein"],
-      plateStyle: "bowl",
-      description: "Fluffy tri-color quinoa topped with roasted chickpeas, crisp cucumber, Kalamata olives, and lemon-tahini dressing.",
-      ingredients: [
-        { name: "Dry quinoa", quantity: 1, unit: "cup", category: "Bakery & Grains" },
-        { name: "Canned chickpeas", quantity: 1, unit: "can", category: "Pantry" },
-        { name: "English cucumber", quantity: 1, unit: "whole", category: "Produce" },
-        { name: "Cherry tomatoes", quantity: 1, unit: "cup", category: "Produce" },
-        { name: "Tahini", quantity: 3, unit: "tbsp", category: "Pantry" },
-        { name: "Lemon juice", quantity: 2, unit: "tbsp", category: "Produce" }
-      ]
-    },
-    {
       id: "herb-chicken-flatbread",
       title: "Grilled Herb Chicken & Pesto Flatbread",
       mealType: "lunch",
@@ -152,7 +105,8 @@
       cookMinutes: 12,
       baseServings: 2,
       dietaryTags: ["High-Protein"],
-      plateStyle: "flatbread",
+      image: "../images/herb-chicken-flatbread.jpg",
+      imageAlt: "Whole-wheat flatbread topped with basil pesto, grilled herb chicken, arugula, and parmesan",
       description: "Warm whole-wheat flatbread spread with basil pesto, sliced lemon-herb chicken breast, arugula, and shaved parmesan.",
       ingredients: [
         { name: "Whole-wheat flatbreads", quantity: 2, unit: "pieces", category: "Bakery & Grains" },
@@ -163,44 +117,6 @@
       ]
     },
     {
-      id: "roasted-tomato-basil-soup",
-      title: "Roasted Tomato Basil Soup & Garlic Croutons",
-      mealType: "lunch",
-      prepMinutes: 10,
-      cookMinutes: 25,
-      baseServings: 4,
-      dietaryTags: ["Vegetarian", "Dairy-Free"],
-      plateStyle: "soup",
-      description: "Velvety oven-roasted plum tomato soup blended with caramelized onion, fresh basil, and crisp sourdough croutons.",
-      ingredients: [
-        { name: "Plum tomatoes", quantity: 8, unit: "whole", category: "Produce" },
-        { name: "Yellow onion", quantity: 1, unit: "whole", category: "Produce" },
-        { name: "Garlic cloves", quantity: 4, unit: "cloves", category: "Produce" },
-        { name: "Fresh basil leaves", quantity: 1, unit: "cup", category: "Produce" },
-        { name: "Vegetable broth", quantity: 3, unit: "cups", category: "Pantry" },
-        { name: "Sourdough bread slices", quantity: 4, unit: "slices", category: "Bakery & Grains" }
-      ]
-    },
-    {
-      id: "sesame-tofu-noodle-salad",
-      title: "Sesame Ginger Tofu & Soba Noodle Salad",
-      mealType: "lunch",
-      prepMinutes: 12,
-      cookMinutes: 8,
-      baseServings: 2,
-      dietaryTags: ["Vegetarian", "Dairy-Free", "High-Protein", "Quick"],
-      plateStyle: "bowl",
-      description: "Chilled buckwheat soba noodles tossed with seared sesame tofu, shredded carrots, edamame, and ginger soy dressing.",
-      ingredients: [
-        { name: "Soba noodles", quantity: 180, unit: "g", category: "Bakery & Grains" },
-        { name: "Firm tofu", quantity: 250, unit: "g", category: "Proteins" },
-        { name: "Shelled edamame", quantity: 1, unit: "cup", category: "Produce" },
-        { name: "Shredded carrots", quantity: 1, unit: "cup", category: "Produce" },
-        { name: "Soy sauce", quantity: 2, unit: "tbsp", category: "Pantry" },
-        { name: "Toasted sesame oil", quantity: 1, unit: "tbsp", category: "Pantry" }
-      ]
-    },
-    {
       id: "lemon-herb-salmon",
       title: "Pan-Seared Lemon Herb Salmon & Asparagus",
       mealType: "dinner",
@@ -208,7 +124,8 @@
       cookMinutes: 15,
       baseServings: 2,
       dietaryTags: ["Dairy-Free", "High-Protein"],
-      plateStyle: "salmon",
+      image: "../images/lemon-herb-salmon.jpg",
+      imageAlt: "Pan-seared lemon herb salmon fillet served with roasted asparagus spears and baby potatoes",
       description: "Crispy-skin salmon fillets basted with garlic, thyme, and lemon alongside tender roasted asparagus and baby potatoes.",
       ingredients: [
         { name: "Salmon fillets", quantity: 2, unit: "fillets", category: "Proteins" },
@@ -227,7 +144,8 @@
       cookMinutes: 25,
       baseServings: 4,
       dietaryTags: ["Vegetarian", "Dairy-Free", "High-Protein"],
-      plateStyle: "curry",
+      image: "../images/coconut-red-lentil-curry.jpg",
+      imageAlt: "Warm bowl of coconut red lentil and spinach curry served alongside steamed basmati rice",
       description: "Fragrant red lentils simmered in coconut milk with ginger, turmeric, and tomatoes, served over steamed basmati rice.",
       ingredients: [
         { name: "Red lentils", quantity: 1.5, unit: "cups", category: "Pantry" },
@@ -236,43 +154,6 @@
         { name: "Baby spinach", quantity: 3, unit: "cups", category: "Produce" },
         { name: "Diced tomatoes", quantity: 1, unit: "can", category: "Pantry" },
         { name: "Fresh ginger", quantity: 2, unit: "tbsp", category: "Produce" }
-      ]
-    },
-    {
-      id: "mushroom-thyme-pasta",
-      title: "Garlic Mushroom & Thyme Whole-Grain Pasta",
-      mealType: "dinner",
-      prepMinutes: 10,
-      cookMinutes: 18,
-      baseServings: 2,
-      dietaryTags: ["Vegetarian"],
-      plateStyle: "pasta",
-      description: "Al dente whole-grain penne tossed with golden cremini mushrooms, roasted garlic, fresh thyme, and parmesan.",
-      ingredients: [
-        { name: "Whole-grain penne", quantity: 220, unit: "g", category: "Bakery & Grains" },
-        { name: "Cremini mushrooms", quantity: 250, unit: "g", category: "Produce" },
-        { name: "Garlic cloves", quantity: 4, unit: "cloves", category: "Produce" },
-        { name: "Fresh thyme", quantity: 1, unit: "tbsp", category: "Produce" },
-        { name: "Grated parmesan", quantity: 0.5, unit: "cup", category: "Dairy & Eggs" },
-        { name: "Olive oil", quantity: 2, unit: "tbsp", category: "Pantry" }
-      ]
-    },
-    {
-      id: "stuffed-bell-peppers",
-      title: "Spiced Black Bean & Corn Stuffed Peppers",
-      mealType: "dinner",
-      prepMinutes: 15,
-      cookMinutes: 30,
-      baseServings: 4,
-      dietaryTags: ["Vegetarian", "High-Protein"],
-      plateStyle: "peppers",
-      description: "Sweet bell peppers baked with seasoned black beans, sweet corn, brown rice, cilantro, and melted cheddar.",
-      ingredients: [
-        { name: "Bell peppers", quantity: 4, unit: "whole", category: "Produce" },
-        { name: "Canned black beans", quantity: 1, unit: "can", category: "Pantry" },
-        { name: "Sweet corn kernels", quantity: 1, unit: "cup", category: "Produce" },
-        { name: "Cooked brown rice", quantity: 2, unit: "cups", category: "Bakery & Grains" },
-        { name: "Shredded cheddar", quantity: 1, unit: "cup", category: "Dairy & Eggs" }
       ]
     }
   ];
@@ -320,6 +201,34 @@
     };
   }
 
+  function enrichMealWithImage(meal) {
+    if (!meal || typeof meal !== "object") {
+      return meal;
+    }
+
+    var matchedRecipe = RECIPES.find(function (r) {
+      return r.id === meal.recipeId;
+    });
+
+    if (matchedRecipe) {
+      if (!meal.image || meal.image.slice(-4) === ".png") {
+        meal.image = matchedRecipe.image;
+      }
+      if (!meal.imageAlt) {
+        meal.imageAlt = matchedRecipe.imageAlt;
+      }
+    } else {
+      if (!meal.image) {
+        meal.image = FALLBACK_IMAGE;
+      }
+      if (!meal.imageAlt) {
+        meal.imageAlt = "Planned meal: " + (meal.title || "Recipe");
+      }
+    }
+
+    return meal;
+  }
+
   function loadMealPlans() {
     var fallback = createDefaultMealPlans();
 
@@ -350,6 +259,12 @@
                 lunch: null,
                 dinner: null
               };
+            } else {
+              MEAL_SLOTS.forEach(function (slotKey) {
+                if (parsed.weeks[week.id].days[day.id][slotKey]) {
+                  enrichMealWithImage(parsed.weeks[week.id].days[day.id][slotKey]);
+                }
+              });
             }
           });
         }
@@ -425,7 +340,8 @@
       baseServings: recipe.baseServings,
       servings: safeServings,
       dietaryTags: recipe.dietaryTags.slice(),
-      plateStyle: recipe.plateStyle,
+      image: recipe.image || FALLBACK_IMAGE,
+      imageAlt: recipe.imageAlt || ("Meal photo of " + recipe.title),
       description: recipe.description,
       baseIngredients: recipe.ingredients.map(function (ing) {
         return {
@@ -530,196 +446,53 @@
   }
 
   /* ------------------------------------------------------------------------
-     6. SVG Plate / Meal Preview Graphic Generator
-     Produces clean, theme-aligned inline SVG illustrations with ARIA labels.
+     6. Meal Image Renderer & Broken-Image Fallback Handler
      ------------------------------------------------------------------------ */
-  function createPlateGraphic(slotKey, meal) {
+  function createMealImageElement(src, altText, className, isLazy) {
+    var img = document.createElement("img");
+    img.className = className;
+    img.alt = altText || FALLBACK_IMAGE_ALT;
+    if (isLazy) {
+      img.loading = "lazy";
+    }
+
+    // Attach fallback handler before setting src so broken local paths recover once
+    img.addEventListener("error", function () {
+      if (img.dataset.fallbackApplied === "true") {
+        return;
+      }
+      img.dataset.fallbackApplied = "true";
+      img.src = FALLBACK_IMAGE;
+      img.alt = FALLBACK_IMAGE_ALT;
+    });
+
+    img.src = src || FALLBACK_IMAGE;
+    return img;
+  }
+
+  function createMealImageFigure(slotKey, meal) {
     var wrapper = document.createElement("figure");
     wrapper.className = "plate-preview";
 
-    var svgNS = "http://www.w3.org/2000/svg";
-    var svg = document.createElementNS(svgNS, "svg");
-    svg.setAttribute("viewBox", "0 0 160 160");
-    svg.setAttribute("class", "plate-svg");
-    svg.setAttribute("role", "img");
+    var frame = document.createElement("div");
+    frame.className = "meal-image-wrap";
 
-    var labelText = meal
-      ? "Visual plate preview of " + meal.title
-      : "Empty " + SLOT_LABELS[slotKey].toLowerCase() + " plate ready for a recipe";
-    svg.setAttribute("aria-label", labelText);
+    var imgSrc = meal && meal.image ? meal.image : FALLBACK_IMAGE;
+    var imgAlt = meal
+      ? meal.imageAlt || ("Prepared dish for " + SLOT_LABELS[slotKey] + ": " + meal.title)
+      : "Empty ceramic plate ready for a " + SLOT_LABELS[slotKey].toLowerCase() + " recipe";
 
-    // Outer table mat accent + ceramic plate base
-    var outerPlate = document.createElementNS(svgNS, "circle");
-    outerPlate.setAttribute("cx", "80");
-    outerPlate.setAttribute("cy", "80");
-    outerPlate.setAttribute("r", "64");
-    outerPlate.setAttribute("fill", "#F5EBDD");
-    outerPlate.setAttribute("stroke", meal ? "#354C37" : "#87966D");
-    outerPlate.setAttribute("stroke-width", meal ? "4" : "2.5");
-    if (!meal) {
-      outerPlate.setAttribute("stroke-dasharray", "6 4");
-    }
-    svg.appendChild(outerPlate);
-
-    var innerRim = document.createElementNS(svgNS, "circle");
-    innerRim.setAttribute("cx", "80");
-    innerRim.setAttribute("cy", "80");
-    innerRim.setAttribute("r", "48");
-    innerRim.setAttribute("fill", "#FFFFFF");
-    innerRim.setAttribute("stroke", "#DDAA79");
-    innerRim.setAttribute("stroke-width", "2");
-    svg.appendChild(innerRim);
-
-    if (!meal) {
-      // Empty plate: simple fork & knife silhouettes
-      var fork = document.createElementNS(svgNS, "path");
-      fork.setAttribute("d", "M64 52 v24 m-4 -24 v14 m8 -14 v14 m-4 10 v30");
-      fork.setAttribute("stroke", "#87966D");
-      fork.setAttribute("stroke-width", "3");
-      fork.setAttribute("stroke-linecap", "round");
-      fork.setAttribute("fill", "none");
-      svg.appendChild(fork);
-
-      var knife = document.createElementNS(svgNS, "path");
-      knife.setAttribute("d", "M96 52 c6 8 6 20 0 26 v28");
-      knife.setAttribute("stroke", "#87966D");
-      knife.setAttribute("stroke-width", "3");
-      knife.setAttribute("stroke-linecap", "round");
-      knife.setAttribute("fill", "none");
-      svg.appendChild(knife);
-    } else {
-      renderDishIllustration(svgNS, svg, meal.plateStyle || slotKey);
-    }
-
-    wrapper.appendChild(svg);
+    frame.appendChild(createMealImageElement(imgSrc, imgAlt, "meal-slot-img", false));
+    wrapper.appendChild(frame);
 
     var caption = document.createElement("figcaption");
     caption.className = "plate-caption";
     caption.textContent = meal
-      ? SLOT_LABELS[slotKey] + " plate preview"
-      : "Plate waiting for a " + SLOT_LABELS[slotKey].toLowerCase() + " recipe";
+      ? SLOT_LABELS[slotKey] + " selection"
+      : "Empty " + SLOT_LABELS[slotKey].toLowerCase() + " plate";
     wrapper.appendChild(caption);
 
     return wrapper;
-  }
-
-  function renderDishIllustration(svgNS, svg, styleKey) {
-    function addCircle(cx, cy, r, fill, stroke) {
-      var c = document.createElementNS(svgNS, "circle");
-      c.setAttribute("cx", String(cx));
-      c.setAttribute("cy", String(cy));
-      c.setAttribute("r", String(r));
-      c.setAttribute("fill", fill);
-      if (stroke) {
-        c.setAttribute("stroke", stroke);
-        c.setAttribute("stroke-width", "2");
-      }
-      svg.appendChild(c);
-    }
-
-    function addEllipse(cx, cy, rx, ry, fill, rotate) {
-      var e = document.createElementNS(svgNS, "ellipse");
-      e.setAttribute("cx", String(cx));
-      e.setAttribute("cy", String(cy));
-      e.setAttribute("rx", String(rx));
-      e.setAttribute("ry", String(ry));
-      e.setAttribute("fill", fill);
-      if (rotate) {
-        e.setAttribute("transform", "rotate(" + rotate + " " + cx + " " + cy + ")");
-      }
-      svg.appendChild(e);
-    }
-
-    function addRect(x, y, w, h, rx, fill, stroke) {
-      var rect = document.createElementNS(svgNS, "rect");
-      rect.setAttribute("x", String(x));
-      rect.setAttribute("y", String(y));
-      rect.setAttribute("width", String(w));
-      rect.setAttribute("height", String(h));
-      rect.setAttribute("rx", String(rx));
-      rect.setAttribute("fill", fill);
-      if (stroke) {
-        rect.setAttribute("stroke", stroke);
-        rect.setAttribute("stroke-width", "2");
-      }
-      svg.appendChild(rect);
-    }
-
-    switch (styleKey) {
-      case "oatbowl":
-      case "breakfast":
-        addCircle(80, 80, 36, "#F5EBDD", "#87966D");
-        addCircle(68, 70, 7, "#354C37");
-        addCircle(88, 66, 6, "#493A30");
-        addCircle(78, 86, 7, "#354C37");
-        addEllipse(92, 86, 10, 5, "#DDAA79", "-20");
-        addEllipse(62, 86, 9, 5, "#DDAA79", "25");
-        break;
-
-      case "toast":
-        addRect(52, 54, 56, 52, 8, "#DDAA79", "#493A30");
-        addEllipse(80, 80, 20, 16, "#87966D");
-        addCircle(78, 78, 10, "#FFFFFF");
-        addCircle(78, 78, 5, "#DDAA79");
-        break;
-
-      case "omelette":
-        addEllipse(80, 82, 32, 22, "#DDAA79", "-12");
-        addCircle(64, 68, 7, "#354C37");
-        addCircle(92, 66, 6, "#87966D");
-        addCircle(84, 92, 6, "#354C37");
-        break;
-
-      case "flatbread":
-        addEllipse(80, 80, 36, 26, "#DDAA79", "10");
-        addCircle(68, 76, 8, "#354C37");
-        addCircle(88, 82, 9, "#87966D");
-        addCircle(80, 70, 5, "#493A30");
-        break;
-
-      case "soup":
-        addCircle(80, 80, 35, "#DDAA79", "#493A30");
-        addCircle(80, 80, 29, "#C96A4B");
-        addEllipse(80, 80, 8, 4, "#354C37", "-25");
-        addRect(68, 64, 9, 9, 2, "#F5EBDD", "#493A30");
-        addRect(84, 88, 9, 9, 2, "#F5EBDD", "#493A30");
-        break;
-
-      case "salmon":
-      case "dinner":
-        addRect(52, 62, 52, 24, 10, "#DDAA79", "#493A30");
-        addEllipse(68, 98, 18, 6, "#354C37", "-8");
-        addEllipse(94, 96, 14, 6, "#87966D", "12");
-        addCircle(104, 66, 7, "#F5EBDD", "#DDAA79");
-        break;
-
-      case "pasta":
-        addCircle(80, 82, 32, "#F5EBDD", "#DDAA79");
-        addEllipse(74, 76, 16, 7, "#DDAA79", "20");
-        addEllipse(86, 86, 16, 7, "#DDAA79", "-22");
-        addCircle(72, 90, 5, "#493A30");
-        addCircle(90, 72, 5, "#493A30");
-        addCircle(80, 80, 4, "#354C37");
-        break;
-
-      case "peppers":
-        addCircle(66, 78, 16, "#354C37", "#493A30");
-        addCircle(94, 80, 16, "#DDAA79", "#493A30");
-        addCircle(66, 78, 8, "#493A30");
-        addCircle(94, 80, 8, "#87966D");
-        break;
-
-      case "bowl":
-      case "curry":
-      case "lunch":
-      default:
-        addCircle(80, 80, 35, "#87966D", "#354C37");
-        addCircle(68, 72, 11, "#DDAA79");
-        addCircle(92, 74, 10, "#F5EBDD");
-        addCircle(78, 94, 11, "#354C37");
-        addCircle(80, 80, 5, "#493A30");
-        break;
-    }
   }
 
   /* ------------------------------------------------------------------------
@@ -864,7 +637,7 @@
         badgeEl.className = "slot-badge slot-badge--empty";
         badgeEl.textContent = "Unassigned";
 
-        bodyEl.appendChild(createPlateGraphic(slotKey, null));
+        bodyEl.appendChild(createMealImageFigure(slotKey, null));
 
         var emptyCopy = document.createElement("p");
         emptyCopy.className = "empty-slot-copy";
@@ -891,7 +664,7 @@
       badgeEl.className = "slot-badge slot-badge--assigned";
       badgeEl.textContent = "Planned";
 
-      bodyEl.appendChild(createPlateGraphic(slotKey, meal));
+      bodyEl.appendChild(createMealImageFigure(slotKey, meal));
 
       var detailsWrap = document.createElement("div");
 
@@ -1159,6 +932,18 @@
 
       var top = document.createElement("div");
 
+      var thumbWrap = document.createElement("div");
+      thumbWrap.className = "recipe-option-thumb-wrap";
+      thumbWrap.appendChild(
+        createMealImageElement(
+          recipe.image,
+          recipe.imageAlt || ("Meal photo of " + recipe.title),
+          "recipe-option-thumb",
+          true
+        )
+      );
+      top.appendChild(thumbWrap);
+
       var header = document.createElement("div");
       header.className = "recipe-option-header";
 
@@ -1315,7 +1100,8 @@
       baseServings: servings,
       servings: servings,
       dietaryTags: ["Custom"],
-      plateStyle: slotKey,
+      image: FALLBACK_IMAGE,
+      imageAlt: "Custom planned meal plate for " + title,
       description: "Custom planned meal added for " + SLOT_LABELS[slotKey] + ".",
       baseIngredients: ingredients,
       ingredients: ingredients,
