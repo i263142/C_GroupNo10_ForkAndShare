@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Page title shown in the browser tab -->
+  <title>Recipe Categories | FORK &amp; SHARE</title>
+  <meta name="description" content="Browse all recipe categories on FORK &amp; SHARE — from breakfast and main courses to desserts, snacks, soups and drinks. Find something delicious for every craving.">
+
+  <!-- 1. Shared stylesheet (goes up one level from pages/ to the project root) -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- 2. Page-specific stylesheet for Recipe Categories only -->
+  <link rel="stylesheet" href="../css/recipe-categories.css">
+</head>
+<body>
+
+  <!-- =====================================================================
+       SHARED DESIGN 1 + 2: Brand Header & Responsive Primary Navigation
+       Copied from the shared design guide template (pages/ version).
+       "Categories" link is marked as the active page.
+       ===================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <!-- Brand logo — clicking it goes back to the home page -->
+      <a class="brand-logo" href="../index.html">
+        <span class="brand-name">FORK &amp; SHARE</span>
+        <span class="brand-tagline">Recipe Sharing Hub</span>
+      </a>
+
+      <!-- Mobile hamburger button — controlled by js/shared.js -->
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Primary navigation — data-nav-menu attribute is required by shared.js -->
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <div class="container">
+        <ul id="primary-nav" class="nav-list" data-nav-menu>
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="explore.html">Explore</a></li>
+          <!-- "Categories" is the current page — is-active and aria-current mark it -->
+          <li><a class="nav-link is-active" href="recipe-categories.html" aria-current="page">Categories</a></li>
+          <li><a class="nav-link" href="meal-planner.html">Meal Planner</a></li>
+          <li><a class="nav-link" href="share-recipe.html">Share a Recipe</a></li>
+          <li><a class="nav-link" href="community.html">Community</a></li>
+          <li><a class="nav-link" href="profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- =====================================================================
+       MAIN PAGE CONTENT
+       ===================================================================== -->
+  <main class="site-main">
+    <div class="container">
+
+      <!-- ------------------------------------------------------------------
+           SECTION A: Page Heading
+           Centred heading and subtitle as shown in the prototype.
+           ------------------------------------------------------------------ -->
+      <section class="section categories-hero">
+        <h1 class="categories-heading">Recipe Categories</h1>
+        <p class="categories-subtitle">Find something delicious for every craving.</p>
+      </section>
+
+
+      <!-- ------------------------------------------------------------------
+           SECTION B: Search Bar and Filters
+           Search input + two dropdowns, side by side on desktop.
+           ------------------------------------------------------------------ -->
+      <section class="section categories-controls" aria-label="Search and filter recipes">
+
+        <!-- Search bar -->
+        <div class="control-group">
+          <label for="category-search" class="sr-only">Search recipes</label>
+          <div class="search-wrapper">
+            <!-- Search icon (inline SVG — no external library needed) -->
+            <svg class="search-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="search"
+              id="category-search"
+              class="search-input"
+              placeholder="Search recipes..."
+              aria-label="Search recipe categories"
+            >
+          </div>
+        </div>
+
+        <!-- Cuisine filter dropdown -->
+        <div class="control-group">
+          <label for="cuisine-filter" class="filter-label">Cuisine</label>
+          <select id="cuisine-filter" class="filter-select" aria-label="Filter by cuisine">
+            <option value="all">All</option>
+            <option value="italian">Italian</option>
+            <option value="asian">Asian</option>
+            <option value="mexican">Mexican</option>
+            <option value="american">American</option>
+            <option value="mediterranean">Mediterranean</option>
+            <option value="indian">Indian</option>
+            <option value="pakistani">Pakistani</option>
+          </select>
+        </div>
+
+        <!-- Diet filter dropdown -->
+        <div class="control-group">
+          <label for="diet-filter" class="filter-label">Diet</label>
+          <select id="diet-filter" class="filter-select" aria-label="Filter by diet">
+            <option value="all">All</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="gluten-free">Gluten-Free</option>
+            <option value="dairy-free">Dairy-Free</option>
+            <option value="keto">Keto</option>
+            <option value="high-protein">High Protein</option>
+          </select>
+        </div>
+
+      </section>
+
+
+      <!-- ------------------------------------------------------------------
+           SECTION C: Category Cards Grid
+           Six cards, 3 per row on desktop, 2 per row on mobile.
+           Cards are generated by recipe-categories.js from the data array.
+           The id="categories-grid" is what the JavaScript targets.
+           ------------------------------------------------------------------ -->
+      <section class="section" aria-label="Recipe category cards">
+
+        <!-- The card grid — JavaScript fills this in -->
+        <div id="categories-grid" class="categories-grid">
+          <!-- Cards are injected here by recipe-categories.js -->
+        </div>
+
+        <!-- Empty state message — shown by JS when no cards match the filters -->
+        <div id="no-results" class="no-results" hidden aria-live="polite">
+          <span class="no-results-icon" aria-hidden="true">&#127869;</span>
+          <p class="no-results-title">No categories found</p>
+          <p class="no-results-text">Try a different search term or reset your filters.</p>
+          <button type="button" id="reset-filters" class="btn btn-secondary">Reset Filters</button>
+        </div>
+
+      </section>
+
+    </div><!-- /.container -->
+  </main>
+
+
+  <!-- =====================================================================
+       SHARED DESIGN 3: Community Footer
+       Copied from the shared design guide template (pages/ version).
+       ===================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">FORK &amp; SHARE</span>
+
+      <ul class="footer-links" aria-label="Footer Navigation">
+        <!-- Do not create separate About or Contact pages (per shared guide) -->
+        <li><a class="footer-link" href="../index.html#about">About</a></li>
+        <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
+        <li><a class="footer-link" href="community.html">Community</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
+    </div>
+  </footer>
+
+
+  <!-- =====================================================================
+       SCRIPTS
+       shared.js must come first (handles hamburger nav on all pages).
+       recipe-categories.js comes after (handles this page only).
+       defer means both scripts run after the HTML is fully loaded.
+       ===================================================================== -->
+  <script src="../js/shared.js" defer></script>
+  <script src="../js/recipe-categories.js" defer></script>
+
+</body>
+</html>
