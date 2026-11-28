@@ -1,0 +1,609 @@
+/* ==========================================================================
+   Community Reviews & Cooking Tips — Page-Specific Stylesheet
+   File: css/community.css
+   
+   This file styles ONLY the Community Reviews & Cooking Tips page.
+   It does NOT override or replace css/style.css.
+   It uses the same CSS colour variables defined in style.css:
+     --cream, --forest-green, --sage-green, --warm-peach, --dark-brown
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Page Hero (Heading & Subtitle)
+   Centred layout matching the prototype.
+   -------------------------------------------------------------------------- */
+.community-hero {
+  text-align: center;
+  padding-block: 2rem 1rem;
+}
+
+.community-heading {
+  font-size: 2.4rem;
+  font-family: var(--font-heading);
+  color: var(--forest-green);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+
+.community-subtitle {
+  font-size: 1.1rem;
+  color: var(--sage-green);
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Main Two-Column Desktop Layout
+   Left: Rating Summary + Write a Review Form
+   Right: Recent Community Reviews + Cooking Tips / FAQs
+   -------------------------------------------------------------------------- */
+.community-layout {
+  display: grid;
+  grid-template-columns: 1.12fr 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.community-left,
+.community-right {
+  min-width: 0;
+}
+
+.review-input-row {
+  display: grid;
+  grid-template-columns: 185px 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Rating Summary Box
+   -------------------------------------------------------------------------- */
+.rating-summary {
+  background-color: #fff;
+  text-align: center;
+  padding: 1.35rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.rating-summary__title {
+  font-size: 1.05rem;
+  font-family: var(--font-heading);
+  color: var(--forest-green);
+  margin: 0;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--warm-peach);
+  width: 100%;
+}
+
+.rating-summary__score {
+  font-family: var(--font-heading);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--forest-green);
+  margin: 0.25rem 0 0;
+  line-height: 1.1;
+}
+
+.rating-summary__stars {
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  color: var(--warm-peach);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.rating-summary__count {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--sage-green);
+  margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Write a Review Form (States 2 & 3)
+   -------------------------------------------------------------------------- */
+.review-form-card {
+  background-color: #fff;
+  padding: 1.35rem 1.4rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Subtle active highlight when user is writing a review (State 2) */
+.review-form-card.is-writing {
+  border-color: var(--forest-green);
+  box-shadow: 0 6px 20px rgba(53, 76, 55, 0.12);
+}
+
+.review-form-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--forest-green);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--warm-peach);
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark-brown);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid var(--sage-green);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--dark-brown);
+  background-color: var(--cream);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.form-select {
+  padding-right: 2rem;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23354C37' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--forest-green);
+  background-color: #fff;
+}
+
+/* State 3 — Invalid Review field highlight (matches pink/red prototype highlight) */
+.form-input.is-invalid,
+.form-select.is-invalid,
+.form-textarea.is-invalid {
+  border-color: #b42318;
+  background-color: #fdecec;
+}
+
+.field-error {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b42318;
+}
+
+.field-error[hidden] {
+  display: none;
+}
+
+.form-feedback {
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.85rem;
+}
+
+.form-feedback[hidden] {
+  display: none;
+}
+
+.form-feedback--error {
+  background-color: #fdecec;
+  border: 1px solid #b42318;
+  color: #8c1d13;
+}
+
+.review-submit-btn {
+  align-self: flex-start;
+  min-width: 130px;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Recent Community Reviews (States 1 & 4)
+   -------------------------------------------------------------------------- */
+.reviews-section {
+  margin-bottom: 2rem;
+}
+
+.reviews-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--warm-peach);
+}
+
+.reviews-section__title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  color: var(--forest-green);
+  margin: 0;
+}
+
+.reviews-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-text-action {
+  background: transparent;
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--forest-green);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-text-action:hover {
+  background-color: var(--warm-peach);
+  border-color: var(--warm-peach);
+  color: var(--dark-brown);
+}
+
+.btn-text-action[hidden] {
+  display: none;
+}
+
+/* State 4: Published Banner */
+.published-banner {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background-color: #e6efe6;
+  border: 1.5px solid var(--forest-green);
+  border-radius: var(--radius-sm);
+  color: var(--forest-green);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.published-banner[hidden] {
+  display: none;
+}
+
+.published-banner__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--forest-green);
+  color: var(--cream);
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* State 1: No Reviews Card */
+.no-reviews-card {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.35rem;
+}
+
+.no-reviews-card[hidden] {
+  display: none;
+}
+
+.no-reviews-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--forest-green);
+  margin: 0 0 0.3rem;
+}
+
+.no-reviews-card__message {
+  color: var(--sage-green);
+  font-weight: 600;
+  margin: 0 0 0.85rem;
+}
+
+.no-reviews-card__thumb {
+  width: 96px;
+  height: 76px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--sage-green);
+  flex-shrink: 0;
+}
+
+.no-reviews-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Review Cards Grid (2 cards side-by-side on desktop) */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.reviews-grid[hidden] {
+  display: none;
+}
+
+.review-card {
+  background-color: #fff;
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(53, 76, 55, 0.1);
+}
+
+.review-card--new {
+  border-color: var(--forest-green);
+  background-color: #fbf8f3;
+}
+
+.review-card__top {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.review-card__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid var(--warm-peach);
+  flex-shrink: 0;
+  background-color: var(--cream);
+}
+
+.review-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.review-card__meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.review-card__author {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--forest-green);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.review-card__stars {
+  font-size: 0.85rem;
+  color: var(--warm-peach);
+  letter-spacing: 0.05em;
+  margin-top: 0.1rem;
+}
+
+.review-card__comment {
+  font-size: 0.94rem;
+  color: var(--dark-brown);
+  margin: 0;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+.review-card__date {
+  font-size: 0.78rem;
+  color: var(--sage-green);
+  font-weight: 600;
+  margin-top: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Cooking Tips / FAQs Accordion
+   -------------------------------------------------------------------------- */
+.faq-section {
+  margin-bottom: 0;
+}
+
+.faq-section__title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  color: var(--forest-green);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--warm-peach);
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.faq-item {
+  background-color: #fff;
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color var(--transition-fast);
+}
+
+.faq-item.is-open {
+  border-color: var(--forest-green);
+}
+
+.faq-item__heading {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  background-color: #fff;
+  border: 0;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--forest-green);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.faq-trigger:hover {
+  background-color: var(--cream);
+}
+
+.faq-trigger[aria-expanded="true"] {
+  background-color: var(--cream);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.faq-trigger__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--warm-peach);
+  color: var(--dark-brown);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.faq-panel {
+  padding: 0.85rem 1rem 1rem;
+  background-color: #fff;
+  font-size: 0.94rem;
+  color: var(--dark-brown);
+  line-height: 1.55;
+}
+
+.faq-panel[hidden] {
+  display: none;
+}
+
+.faq-panel p {
+  margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Responsive Rules (Tablet & Mobile)
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .community-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .community-heading {
+    font-size: 1.9rem;
+  }
+
+  .review-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .rating-summary {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: left;
+    padding: 1rem 1.25rem;
+  }
+
+  .rating-summary__title {
+    flex-basis: 100%;
+    margin-bottom: 0.25rem;
+  }
+
+  .rating-summary__score {
+    font-size: 1.65rem;
+    margin: 0;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-submit-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .no-reviews-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .no-reviews-card__thumb {
+    width: 100%;
+    height: 130px;
+  }
+}
