@@ -1,266 +1,562 @@
-﻿<!DOCTYPE html>c
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weekly Meal Schedule | FORK &amp; SHARE</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/weekly-schedule.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Meal Schedule · FORK &amp; SHARE</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/weekly-schedule.css" />
   <style>
-    .schedule-top-bar {
+    .ws-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3.5rem;
+    }
+    .ws-hero {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
-    .week-banner-title {
-      font-weight: 700;
-      font-size: 1.75rem;
-      color: var(--forest-green);
+    .ws-title {
+      margin: 0 0 0.25rem;
+      font-size: 1.85rem;
+      color: var(--forest-green, #1b4332);
+    }
+    .ws-subtitle {
       margin: 0;
+      color: #4b5563;
     }
-    .day-heading-bold {
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: var(--forest-green);
-      border-bottom: 2px solid var(--warm-peach);
-      padding-bottom: 0.35rem;
-      margin-bottom: 0.85rem;
+    .ws-week-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
     }
-    .meal-row-item {
-      margin-bottom: 0.95rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border-subtle);
+    .ws-week-btn {
+      border: 1.5px solid #2d6a4f;
+      background: #ffffff;
+      color: #1b4332;
+      padding: 0.55rem 1.15rem;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
-    .meal-row-item:last-child {
-      border-bottom: 0;
-      margin-bottom: 0;
-      padding-bottom: 0;
+    .ws-week-btn.is-active {
+      background: #2d6a4f;
+      color: #ffffff;
     }
-    .meal-slot-tag {
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--sage-green);
-      display: block;
+    .ws-week-banner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 14px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
     }
-    .meal-dish-name {
-      font-weight: 700;
-      color: var(--dark-brown);
-      display: block;
-      margin: 0.15rem 0 0.4rem;
+    .ws-week-heading {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #14532d;
     }
-    .meal-photo {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
+    .ws-week-theme {
+      margin: 0.2rem 0 0;
+      font-size: 0.92rem;
+      color: #374151;
+    }
+    .ws-reset-btn {
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      color: #1f2937;
+      padding: 0.45rem 0.9rem;
       border-radius: 8px;
-      border: 1px solid var(--sage-green);
-      display: block;
+      font-size: 0.88rem;
+      cursor: pointer;
     }
-    .photo-credit-note {
-      margin-top: 1.25rem;
-      font-size: 0.875rem;
-      color: var(--dark-brown);
+    .ws-day-card {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1.35rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    }
+    .ws-day-title {
+      margin: 0 0 1rem;
+      font-size: 1.2rem;
+      color: #111827;
+      border-bottom: 1px solid #f3f4f6;
+      padding-bottom: 0.5rem;
+    }
+    .ws-meals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .ws-slot-label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #2d6a4f;
+      margin-bottom: 0.45rem;
+    }
+    .ws-dish-card {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 0.65rem;
+      cursor: pointer;
+      background: #fafafa;
+      transition: all 0.18s ease;
+    }
+    .ws-dish-card.is-selected {
+      border-color: #2d6a4f;
+      background: #ecfdf5;
+      box-shadow: 0 0 0 2px rgba(45, 106, 79, 0.15);
+    }
+    .ws-dish-img {
+      width: 74px;
+      height: 74px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #e5e7eb;
+    }
+    .ws-dish-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .ws-dish-name {
+      margin: 0 0 0.2rem;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #111827;
+    }
+    .ws-dish-meta {
+      margin: 0 0 0.35rem;
+      font-size: 0.82rem;
+      color: #4b5563;
+    }
+    .ws-dish-badge {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: #e5e7eb;
+      color: #374151;
+    }
+    .ws-dish-card.is-selected .ws-dish-badge {
+      background: #2d6a4f;
+      color: #ffffff;
+    }
+    .ws-summary-box {
+      margin-top: 1.75rem;
+      background: #f9fafb;
+      border: 1px solid #d1d5db;
+      border-radius: 14px;
+      padding: 1.1rem 1.25rem;
+    }
+    .ws-summary-title {
+      margin: 0 0 0.45rem;
+      font-size: 1.05rem;
+      color: #111827;
+    }
+    .ws-summary-text {
+      margin: 0;
+      font-size: 0.92rem;
+      color: #374151;
     }
   </style>
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand-logo" href="../index.html">
-        <span class="brand-name">FORK &amp; SHARE</span>
-        <span class="brand-tagline">Recipe Sharing Hub</span>
-      </a>
-      <button type="button" class="nav-toggle" data-nav-toggle aria-controls="primary-nav" aria-expanded="false" aria-label="Open navigation menu">
-        <span class="hamburger-line" aria-hidden="true"></span>
-        <span class="hamburger-line" aria-hidden="true"></span>
-        <span class="hamburger-line" aria-hidden="true"></span>
-      </button>
+      <a class="brand" href="../index.html">FORK &amp; SHARE</a>
+      <nav class="main-nav">
+        <a href="meal-planner.html">Meal Planner</a>
+        <a class="active" href="weekly-schedule.html">Weekly Schedule</a>
+        <a href="../index.html">Home</a>
+      </nav>
     </div>
-    <nav class="site-nav" aria-label="Primary Navigation">
-      <div class="container">
-        <ul id="primary-nav" class="nav-list" data-nav-menu>
-          <li><a class="nav-link" href="../index.html">Home</a></li>
-          <li><a class="nav-link" href="explore.html">Explore</a></li>
-          <li><a class="nav-link" href="categories.html">Categories</a></li>
-          <li><a class="nav-link is-active" href="weekly-schedule.html" aria-current="page">Meal Planner</a></li>
-          <li><a class="nav-link" href="share-recipe.html">Share a Recipe</a></li>
-          <li><a class="nav-link" href="community.html">Community</a></li>
-          <li><a class="nav-link" href="profile.html">Profile</a></li>
-        </ul>
-      </div>
-    </nav>
   </header>
 
-  <main class="site-main">
-    <div class="container">
-      <section class="section">
-        <div class="schedule-top-bar">
-          <div>
-            <span class="meal-slot-tag">WEEK 1 SCHEDULE</span>
-            <h1 class="week-banner-title">Weekly Meal Schedule</h1>
-          </div>
-          <div>
-            <a href="meal-planner.html" class="btn btn-outline">+ Add Meal</a>
-            <a href="shopping-list.html" class="btn btn-primary">View Shopping List</a>
-          </div>
-        </div>
-
-        <div id="weekly-schedule-container" class="grid grid-3">
-          <article class="card">
-            <h2 class="day-heading-bold">MONDAY</h2>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">BREAKFAST</span>
-              <span class="meal-dish-name">Oatmeal with Banana &amp; Berries</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&w=600&q=80" alt="Oatmeal with Banana &amp; Berries">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">LUNCH</span>
-              <span class="meal-dish-name">Herb Grilled Chicken Rice Bowl</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Herb Grilled Chicken Rice Bowl">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">DINNER</span>
-              <span class="meal-dish-name">Classic Basil Tomato Pasta</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80" alt="Classic Basil Tomato Pasta">
-            </div>
-          </article>
-
-          <article class="card">
-            <h2 class="day-heading-bold">TUESDAY</h2>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">BREAKFAST</span>
-              <span class="meal-dish-name">Scrambled Eggs on Sourdough Toast</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" alt="Scrambled Eggs on Sourdough Toast">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">LUNCH</span>
-              <span class="meal-dish-name">Spiced Vegetable Biryani</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Spiced Vegetable Biryani">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">DINNER</span>
-              <span class="meal-dish-name">Hearty Chicken &amp; Sweetcorn Soup</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="Hearty Chicken &amp; Sweetcorn Soup">
-            </div>
-          </article>
-
-          <article class="card">
-            <h2 class="day-heading-bold">WEDNESDAY</h2>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">BREAKFAST</span>
-              <span class="meal-dish-name">Fluffy Blueberry Pancakes</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80" alt="Fluffy Blueberry Pancakes">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">LUNCH</span>
-              <span class="meal-dish-name">Mediterranean Grilled Chicken Salad</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Mediterranean Grilled Chicken Salad">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">DINNER</span>
-              <span class="meal-dish-name">Grilled Paneer &amp; Veggie Skewers</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="Grilled Paneer &amp; Veggie Skewers">
-            </div>
-          </article>
-
-          <article class="card">
-            <h2 class="day-heading-bold">THURSDAY</h2>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">BREAKFAST</span>
-              <span class="meal-dish-name">Spinach &amp; Cheese Omelette</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=600&q=80" alt="Spinach &amp; Cheese Omelette">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">LUNCH</span>
-              <span class="meal-dish-name">Creamy Garlic Mushroom Pasta</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=600&q=80" alt="Creamy Garlic Mushroom Pasta">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">DINNER</span>
-              <span class="meal-dish-name">Stir-Fried Garlic Herb Rice</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80" alt="Stir-Fried Garlic Herb Rice">
-            </div>
-          </article>
-
-          <article class="card">
-            <h2 class="day-heading-bold">FRIDAY</h2>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">BREAKFAST</span>
-              <span class="meal-dish-name">Granola &amp; Yogurt Parfait</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Granola &amp; Yogurt Parfait">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">LUNCH</span>
-              <span class="meal-dish-name">Crispy Chicken Tikka Wrap</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80" alt="Crispy Chicken Tikka Wrap">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">DINNER</span>
-              <span class="meal-dish-name">Sesame Vegetable Hakka Noodles</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Sesame Vegetable Hakka Noodles">
-            </div>
-          </article>
-
-          <article class="card">
-            <h2 class="day-heading-bold">SATURDAY</h2>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">BREAKFAST</span>
-              <span class="meal-dish-name">Fresh Tropical Fruit Bowl</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=600&q=80" alt="Fresh Tropical Fruit Bowl">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">LUNCH</span>
-              <span class="meal-dish-name">Roasted Veggie &amp; Hummus Sandwich</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" alt="Roasted Veggie &amp; Hummus Sandwich">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">DINNER</span>
-              <span class="meal-dish-name">Lemon Herb Grilled Chicken</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&q=80" alt="Lemon Herb Grilled Chicken">
-            </div>
-          </article>
-
-          <article class="card">
-            <h2 class="day-heading-bold">SUNDAY</h2>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">BREAKFAST</span>
-              <span class="meal-dish-name">Avocado &amp; Boiled Egg Toast</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?auto=format&fit=crop&w=600&q=80" alt="Avocado &amp; Boiled Egg Toast">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">LUNCH</span>
-              <span class="meal-dish-name">Aromatic Chicken Pulao</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80" alt="Aromatic Chicken Pulao">
-            </div>
-            <div class="meal-row-item">
-              <span class="meal-slot-tag">DINNER</span>
-              <span class="meal-dish-name">Baked Cheese Macaroni</span>
-              <img class="meal-photo" src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80" alt="Baked Cheese Macaroni">
-            </div>
-          </article>
-        </div>
-
-        <p class="photo-credit-note">Food images sourced from Unsplash for FORK &amp; SHARE.</p>
-      </section>
+  <main class="ws-shell">
+    <div class="ws-hero">
+      <div>
+        <h1 class="ws-title">4-Week Meal Schedule</h1>
+        <p class="ws-subtitle">Switch between Weeks 1–4 and tap any meal option for Monday–Sunday to save your selection.</p>
+      </div>
     </div>
+
+    <div class="ws-week-bar" id="weekSwitcher" role="tablist" aria-label="4-Week Selector"></div>
+
+    <div class="ws-week-banner">
+      <div>
+        <h2 class="ws-week-heading" id="weekHeading">Week 1</h2>
+        <p class="ws-week-theme" id="weekTheme"></p>
+      </div>
+      <button type="button" class="ws-reset-btn" id="resetWeekBtn">Reset Current Week</button>
+    </div>
+
+    <div id="scheduleContainer"></div>
+
+    <section class="ws-summary-box" aria-live="polite">
+      <h3 class="ws-summary-title">Saved Selection Summary</h3>
+      <p class="ws-summary-text" id="selectionSummary">Loading selected meals...</p>
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <span class="footer-brand">FORK &amp; SHARE</span>
-      <ul class="footer-links" aria-label="Footer Navigation">
-        <li><a class="footer-link" href="../index.html#about">About</a></li>
-        <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
-        <li><a class="footer-link" href="community.html">Community</a></li>
-      </ul>
-      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
-    </div>
-  </footer>
+  <script>
+    (function () {
+      var STORAGE_KEY = "forkAndShare_weeklyScheduleSelections_v1";
+      var DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      var SLOTS = ["Breakfast", "Lunch", "Dinner"];
 
-  <script src="../js/shared.js" defer></script>
+      var PHOTOS = [
+        "https://images.unsplash.com/photo-1517673402472-a5e62c8ef190?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1550507992-eb63ffee0847?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1546039907-7fa05f864c02?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1559737558-2f5a35f4523b?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1590412200988-a436970781fa?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1625944525533-473f1a3d54e7?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80"
+      ];
+
+      var WEEK_THEMES = {
+        1: "Fresh Greens, Wholesome Grains & Balanced Home Bowls",
+        2: "High-Protein Plates, Mediterranean Flavors & Crisp Salads",
+        3: "Warm Comfort Bowls, Savory Herbs & Light Evening Meals",
+        4: "Vibrant Global Bites, Nourishing Grains & Weekend Specials"
+      };
+
+      var DISH_BANK = {
+        Breakfast: [
+          "Berry Chia Overnight Oats", "Avocado Sourdough Toast", "Spinach Feta Egg Scramble",
+          "Banana Walnut Smoothie Bowl", "Greek Yogurt Honey Granola", "Cinnamon Apple Oatmeal",
+          "Veggie Omelet & Whole Rye", "Mango Coconut Chia Pudding", "Ricotta Berry Pancakes",
+          "Smoked Salmon Bagel Plate", "Shakshuka Skillet Toast", "Peach Almond French Toast",
+          "Blueberry Buckwheat Waffles", "Cottage Cheese Berry Bowl"
+        ],
+        Lunch: [
+          "Lemon Herb Chicken Quinoa Bowl", "Chickpea Mediterranean Salad", "Grilled Turkey Hummus Wrap",
+          "Tofu Veggie Rice Bowl", "Caprese Pesto Chicken Pasta", "Roasted Pumpkin Harvest Salad",
+          "Teriyaki Salmon Brown Rice", "Falafel Tahini Grain Bowl", "Chipotle Chicken Burrito Bowl",
+          "Roasted Beet Goat Cheese Salad", "Avocado Tuna Lettuce Wraps", "Minestrone Soup & Pesto Toast",
+          "Herb Chicken Caesar Bowl", "Quinoa Black Bean Fiesta Bowl"
+        ],
+        Dinner: [
+          "Baked Salmon & Roasted Asparagus", "Lentil & Spinach Stew", "Garlic Herb Chicken & Broccoli",
+          "Stuffed Bell Peppers", "Pan-Seared Cod & Sweet Potato", "Mushroom Wild Rice Pilaf",
+          "Herb Roasted Chicken Thighs", "Zucchini Noodle Marinara", "Garlic Butter Shrimp & Greens",
+          "Spiced Chickpea Curry & Rice", "Grilled Steak & Herb Potatoes", "Eggplant Parmesan Bake",
+          "Lemon Thyme Roast Chicken", "Mediterranean Veggie Skillet"
+        ]
+      };
+
+      function fallbackSvg(label) {
+        var safe = String(label || "Meal").slice(0, 16).replace(/[^a-zA-Z0-9 ]/g, "");
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><rect width="160" height="160" rx="16" fill="#d8f3dc"/><circle cx="80" cy="64" r="28" fill="#74c69d"/><text x="80" y="122" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#1b4332">' + safe + '</text></svg>';
+        return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+      }
+
+      function buildWeeks() {
+        var imgCursor = 0;
+        var weeks = [];
+        for (var w = 1; w <= 4; w++) {
+          var daysObj = {};
+          for (var dIdx = 0; dIdx < DAYS.length; dIdx++) {
+            var day = DAYS[dIdx];
+            daysObj[day] = {};
+            for (var sIdx = 0; sIdx < SLOTS.length; sIdx++) {
+              var slot = SLOTS[sIdx];
+              var bank = DISH_BANK[slot];
+              var idxA = (w * 5 + dIdx * 2 + sIdx) % bank.length;
+              var idxB = (idxA + 1) % bank.length;
+              var imgA = PHOTOS[imgCursor++ % PHOTOS.length];
+              var imgB = PHOTOS[imgCursor++ % PHOTOS.length];
+              daysObj[day][slot] = [
+                {
+                  id: "w" + w + "-" + day.slice(0, 3).toLowerCase() + "-" + slot[0].toLowerCase() + "1",
+                  name: bank[idxA],
+                  kcal: (340 + ((w + dIdx + sIdx) * 35)) + " kcal",
+                  img: imgA
+                },
+                {
+                  id: "w" + w + "-" + day.slice(0, 3).toLowerCase() + "-" + slot[0].toLowerCase() + "2",
+                  name: bank[idxB],
+                  kcal: (360 + ((w * 2 + dIdx + sIdx) * 30)) + " kcal",
+                  img: imgB
+                }
+              ];
+            }
+          }
+          weeks.push({
+            id: w,
+            label: "Week " + w,
+            theme: WEEK_THEMES[w],
+            days: daysObj
+          });
+        }
+        return weeks;
+      }
+
+      var WEEKS = buildWeeks();
+      var activeWeekId = 1;
+
+      function loadSelections() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveSelections(data) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        } catch (e) {}
+      }
+
+      var selections = loadSelections();
+
+      function slotKey(weekId, day, slot) {
+        return "w" + weekId + ":" + day + ":" + slot;
+      }
+
+      function renderSwitcher() {
+        var bar = document.getElementById("weekSwitcher");
+        bar.innerHTML = "";
+        for (var i = 0; i < WEEKS.length; i++) {
+          (function (week) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "ws-week-btn" + (week.id === activeWeekId ? " is-active" : "");
+            btn.textContent = week.label;
+            btn.setAttribute("role", "tab");
+            btn.setAttribute("aria-selected", String(week.id === activeWeekId));
+            btn.addEventListener("click", function () {
+              activeWeekId = week.id;
+              renderAll();
+            });
+            bar.appendChild(btn);
+          })(WEEKS[i]);
+        }
+      }
+
+      function renderSchedule() {
+        var week = null;
+        for (var i = 0; i < WEEKS.length; i++) {
+          if (WEEKS[i].id === activeWeekId) {
+            week = WEEKS[i];
+            break;
+          }
+        }
+        if (!week) week = WEEKS[0];
+
+        document.getElementById("weekHeading").textContent = week.label;
+        document.getElementById("weekTheme").textContent = week.theme;
+
+        var container = document.getElementById("scheduleContainer");
+        container.innerHTML = "";
+
+        for (var d = 0; d < DAYS.length; d++) {
+          var day = DAYS[d];
+          var dayCard = document.createElement("section");
+          dayCard.className = "ws-day-card";
+
+          var h3 = document.createElement("h3");
+          h3.className = "ws-day-title";
+          h3.textContent = day;
+          dayCard.appendChild(h3);
+
+          var grid = document.createElement("div");
+          grid.className = "ws-meals-grid";
+
+          for (var s = 0; s < SLOTS.length; s++) {
+            var slot = SLOTS[s];
+            var col = document.createElement("div");
+
+            var label = document.createElement("div");
+            label.className = "ws-slot-label";
+            label.textContent = slot;
+            col.appendChild(label);
+
+            var key = slotKey(week.id, day, slot);
+            var options = week.days[day][slot];
+            var chosenId = selections[key] || options[0].id;
+            if (!selections[key]) {
+              selections[key] = chosenId;
+            }
+
+            for (var o = 0; o < options.length; o++) {
+              (function (dish, currentKey) {
+                var isSelected = selections[currentKey] === dish.id;
+                var card = document.createElement("div");
+                card.className = "ws-dish-card" + (isSelected ? " is-selected" : "");
+                card.setAttribute("role", "button");
+                card.setAttribute("tabindex", "0");
+
+                var img = document.createElement("img");
+                img.className = "ws-dish-img";
+                img.src = dish.img;
+                img.alt = dish.name;
+                img.loading = "lazy";
+                img.addEventListener("error", function () {
+                  img.src = fallbackSvg(dish.name);
+                });
+
+                var info = document.createElement("div");
+                info.className = "ws-dish-info";
+
+                var nameEl = document.createElement("p");
+                nameEl.className = "ws-dish-name";
+                nameEl.textContent = dish.name;
+
+                var metaEl = document.createElement("p");
+                metaEl.className = "ws-dish-meta";
+                metaEl.textContent = dish.kcal;
+
+                var badge = document.createElement("span");
+                badge.className = "ws-dish-badge";
+                badge.textContent = isSelected ? "Selected" : "Tap to select";
+
+                info.appendChild(nameEl);
+                info.appendChild(metaEl);
+                info.appendChild(badge);
+                card.appendChild(img);
+                card.appendChild(info);
+
+                var selectDish = function () {
+                  selections[currentKey] = dish.id;
+                  saveSelections(selections);
+                  renderSchedule();
+                  renderSummary();
+                };
+
+                card.addEventListener("click", selectDish);
+                card.addEventListener("keydown", function (e) {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    selectDish();
+                  }
+                });
+
+                col.appendChild(card);
+              })(options[o], key);
+            }
+
+            grid.appendChild(col);
+          }
+
+          dayCard.appendChild(grid);
+          container.appendChild(dayCard);
+        }
+
+        saveSelections(selections);
+      }
+
+      function renderSummary() {
+        var week = null;
+        for (var i = 0; i < WEEKS.length; i++) {
+          if (WEEKS[i].id === activeWeekId) {
+            week = WEEKS[i];
+            break;
+          }
+        }
+        if (!week) week = WEEKS[0];
+
+        var names = [];
+        for (var d = 0; d < DAYS.length; d++) {
+          var day = DAYS[d];
+          for (var s = 0; s < SLOTS.length; s++) {
+            var slot = SLOTS[s];
+            var opts = week.days[day][slot];
+            var pickedId = selections[slotKey(week.id, day, slot)];
+            var found = opts[0];
+            for (var k = 0; k < opts.length; k++) {
+              if (opts[k].id === pickedId) {
+                found = opts[k];
+                break;
+              }
+            }
+            names.push(day + " " + slot + ": " + found.name);
+          }
+        }
+        document.getElementById("selectionSummary").textContent =
+          week.label + " (" + names.length + " meals active) — " + names.slice(0, 6).join(" · ") + " · ...";
+      }
+
+      document.getElementById("resetWeekBtn").addEventListener("click", function () {
+        var week = null;
+        for (var i = 0; i < WEEKS.length; i++) {
+          if (WEEKS[i].id === activeWeekId) {
+            week = WEEKS[i];
+            break;
+          }
+        }
+        if (!week) week = WEEKS[0];
+
+        for (var d = 0; d < DAYS.length; d++) {
+          var day = DAYS[d];
+          for (var s = 0; s < SLOTS.length; s++) {
+            var slot = SLOTS[s];
+            selections[slotKey(week.id, day, slot)] = week.days[day][slot][0].id;
+          }
+        }
+        saveSelections(selections);
+        renderSchedule();
+        renderSummary();
+      });
+
+      function renderAll() {
+        renderSwitcher();
+        renderSchedule();
+        renderSummary();
+      }
+
+      renderAll();
+    })();
+  </script>
 </body>
 </html>
