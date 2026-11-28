@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Recipes | FORK &amp; SHARE</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/explore.css">
+</head>
+<body>
+  <!-- Design 1: Brand Header + Design 2: Responsive Primary Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-logo" href="../index.html">
+        <span class="brand-name">FORK &amp; SHARE</span>
+        <span class="brand-tagline">Recipe Sharing Hub</span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <div class="container">
+        <ul id="primary-nav" class="nav-list" data-nav-menu>
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link is-active" href="explore.html" aria-current="page">Explore</a></li>
+          <li><a class="nav-link" href="categories.html">Categories</a></li>
+          <li><a class="nav-link" href="meal-planner.html">Meal Planner</a></li>
+          <li><a class="nav-link" href="share-recipe.html">Share a Recipe</a></li>
+          <li><a class="nav-link" href="community.html">Community</a></li>
+          <li><a class="nav-link" href="profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <div class="container">
+      <!-- Page Intro & Search Bar -->
+      <section class="section explore-hero" aria-labelledby="explore-heading">
+        <div class="explore-hero-header">
+          <div>
+            <p class="explore-eyebrow">Community Recipe Library</p>
+            <h1 id="explore-heading" class="explore-title">Explore Recipes</h1>
+            <p class="explore-description">
+              Browse home-tested dishes by ingredient, cooking time, difficulty, or category.
+              Save your favourites to revisit anytime.
+            </p>
+          </div>
+          <div class="explore-hero-meta" aria-label="Library overview">
+            <div class="meta-stat">
+              <span class="meta-stat-value" id="total-recipes-count">12</span>
+              <span class="meta-stat-label">Tested Recipes</span>
+            </div>
+            <div class="meta-stat">
+              <span class="meta-stat-value" id="saved-recipes-count">0</span>
+              <span class="meta-stat-label">Saved by You</span>
+            </div>
+          </div>
+        </div>
+
+        <form id="explore-search-form" class="explore-search-form" role="search" novalidate>
+          <label class="sr-only" for="explore-search-input">Search recipes, ingredients, or cooks</label>
+          <div class="search-input-wrap">
+            <input
+              id="explore-search-input"
+              class="explore-search-input"
+              type="search"
+              name="q"
+              placeholder="Search pasta, sourdough, chickpeas, lemon, chef name..."
+              autocomplete="off"
+            >
+            <button
+              type="button"
+              id="clear-search-btn"
+              class="clear-search-btn"
+              aria-label="Clear search text"
+              hidden
+            >
+              Clear
+            </button>
+          </div>
+          <button type="submit" class="btn btn-primary explore-search-btn">Search Recipes</button>
+        </form>
+
+        <div class="quick-tags" aria-label="Popular search keywords">
+          <span class="quick-tags-label">Try searching:</span>
+          <button type="button" class="tag-chip" data-quick-query="pasta">Pasta</button>
+          <button type="button" class="tag-chip" data-quick-query="vegetarian">Vegetarian</button>
+          <button type="button" class="tag-chip" data-quick-query="30-min">Under 30 Mins</button>
+          <button type="button" class="tag-chip" data-quick-query="baking">Baking</button>
+          <button type="button" class="tag-chip" data-quick-query="chickpeas">Chickpeas</button>
+          <button type="button" class="tag-chip" data-quick-query="lemon">Lemon</button>
+        </div>
+      </section>
+
+      <!-- Recipe Filters & Sorting -->
+      <section class="section" aria-labelledby="filters-heading">
+        <div class="card filter-panel">
+          <div class="filter-panel-top">
+            <h2 id="filters-heading" class="filter-panel-title">Filter &amp; Sort</h2>
+            <button type="button" id="reset-filters-btn" class="btn btn-outline btn-sm" hidden>
+              Reset All Filters
+            </button>
+          </div>
+
+          <div class="filter-bar" role="group" aria-label="Filter recipes by category">
+            <button type="button" class="filter-btn is-selected" data-category="all" aria-pressed="true">
+              All Recipes
+            </button>
+            <button type="button" class="filter-btn" data-category="breakfast" aria-pressed="false">
+              Breakfast &amp; Brunch
+            </button>
+            <button type="button" class="filter-btn" data-category="quick" aria-pressed="false">
+              Quick Weeknight
+            </button>
+            <button type="button" class="filter-btn" data-category="vegetarian" aria-pressed="false">
+              Plant-Based
+            </button>
+            <button type="button" class="filter-btn" data-category="comfort" aria-pressed="false">
+              Comfort Classics
+            </button>
+            <button type="button" class="filter-btn" data-category="soups" aria-pressed="false">
+              Soups &amp; Salads
+            </button>
+            <button type="button" class="filter-btn" data-category="dessert" aria-pressed="false">
+              Baked Goods
+            </button>
+          </div>
+
+          <div class="filter-controls-row">
+            <div class="control-group">
+              <label class="control-label" for="time-filter">Cook Time</label>
+              <select id="time-filter" class="control-select">
+                <option value="all">Any time</option>
+                <option value="20">20 mins or less</option>
+                <option value="30">30 mins or less</option>
+                <option value="45">45 mins or less</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="difficulty-filter">Difficulty</label>
+              <select id="difficulty-filter" class="control-select">
+                <option value="all">All levels</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+              </select>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label" for="sort-select">Sort By</label>
+              <select id="sort-select" class="control-select">
+                <option value="featured">Featured Order</option>
+                <option value="time-asc">Quickest First</option>
+                <option value="time-desc">Longest First</option>
+                <option value="title-asc">Title (A–Z)</option>
+              </select>
+            </div>
+
+            <div class="control-group control-group-toggle">
+              <span class="control-label" id="saved-filter-label">Bookmarks</span>
+              <button
+                type="button"
+                id="saved-only-btn"
+                class="saved-toggle-btn"
+                aria-labelledby="saved-filter-label"
+                aria-pressed="false"
+              >
+                Saved Only
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recipe Results Grid -->
+      <section class="section" aria-labelledby="results-heading">
+        <div class="results-header">
+          <h2 id="results-heading" class="section-title">Recipe Collection</h2>
+          <p id="results-status" class="results-status" aria-live="polite">
+            Loading recipes...
+          </p>
+        </div>
+
+        <div id="explore-recipe-grid" class="grid grid-3 recipe-grid"></div>
+
+        <div id="empty-state" class="card empty-state" hidden>
+          <h3 class="empty-state-title">No matching recipes found</h3>
+          <p class="empty-state-text">
+            Try clearing a search keyword, choosing another category, or expanding your cook time filter.
+          </p>
+          <button type="button" id="empty-reset-btn" class="btn btn-primary">
+            Show All Recipes
+          </button>
+        </div>
+
+        <noscript>
+          <div class="card">
+            <p>JavaScript is required to search and filter the interactive recipe library.</p>
+          </div>
+        </noscript>
+      </section>
+    </div>
+  </main>
+
+  <!-- Recipe Quick View Modal -->
+  <div
+    id="recipe-modal"
+    class="recipe-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-recipe-title"
+    hidden
+  >
+    <div class="recipe-modal-backdrop" data-modal-close></div>
+    <div class="recipe-modal-dialog" role="document">
+      <div class="recipe-modal-header">
+        <div>
+          <p id="modal-recipe-category" class="recipe-category-label"></p>
+          <h2 id="modal-recipe-title" class="recipe-modal-title"></h2>
+        </div>
+        <button
+          type="button"
+          id="modal-close-btn"
+          class="modal-close-btn"
+          data-modal-close
+          aria-label="Close recipe preview"
+        >
+          &times;
+        </button>
+      </div>
+
+      <div class="recipe-modal-body">
+        <div id="modal-recipe-banner" class="recipe-modal-banner" aria-hidden="true"></div>
+
+        <p id="modal-recipe-meta" class="modal-meta-line"></p>
+        <p id="modal-recipe-summary" class="modal-summary"></p>
+
+        <div class="modal-columns">
+          <div class="modal-column">
+            <h3 class="modal-subheading">Ingredients</h3>
+            <ul id="modal-ingredients-list" class="modal-list"></ul>
+          </div>
+          <div class="modal-column">
+            <h3 class="modal-subheading">Method</h3>
+            <ol id="modal-steps-list" class="modal-list modal-steps"></ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="recipe-modal-footer">
+        <span id="modal-recipe-author" class="recipe-author"></span>
+        <div class="modal-footer-actions">
+          <button type="button" id="modal-save-btn" class="save-btn" aria-pressed="false">
+            Save
+          </button>
+          <a id="modal-full-link" class="btn btn-primary btn-sm" href="recipe-details.html">
+            Full Recipe Page &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Design 3: Community Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">FORK &amp; SHARE</span>
+
+      <ul class="footer-links" aria-label="Footer Navigation">
+        <!-- Do not create separate About or Contact pages -->
+        <li><a class="footer-link" href="../index.html#about">About</a></li>
+        <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
+        <li><a class="footer-link" href="community.html">Community</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
+    </div>
+  </footer>
+
+  <script src="../js/shared.js" defer></script>
+  <script src="../js/explore.js" defer></script>
+</body>
+</html>

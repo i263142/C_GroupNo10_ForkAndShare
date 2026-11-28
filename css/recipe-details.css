@@ -1,0 +1,425 @@
+/* ==========================================================================
+   FORK & SHARE — Recipe Details Page Stylesheet
+   Extends css/style.css using shared design tokens without modifying shared files.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Breadcrumb Navigation
+   -------------------------------------------------------------------------- */
+.breadcrumb {
+  margin-bottom: 1.25rem;
+}
+
+.breadcrumb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark-brown);
+}
+
+.breadcrumb-list li + li::before {
+  content: "/";
+  margin-right: 0.45rem;
+  color: var(--sage-green);
+}
+
+.breadcrumb-list a {
+  text-decoration: none;
+}
+
+.breadcrumb-list a:hover {
+  text-decoration: underline;
+}
+
+.recipe-detail-view[hidden],
+.not-found-card[hidden] {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. Recipe Hero Overview Card
+   -------------------------------------------------------------------------- */
+.recipe-hero-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  align-items: stretch;
+  gap: 2rem;
+  padding: 1.75rem;
+  box-shadow: 0 8px 24px var(--border-subtle);
+}
+
+.recipe-media-frame {
+  position: relative;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.banner-sage {
+  background-color: var(--sage-green);
+}
+
+.banner-peach {
+  background-color: var(--warm-peach);
+}
+
+.banner-forest {
+  background-color: var(--forest-green);
+}
+
+.recipe-detail-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.recipe-time-badge {
+  position: absolute;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--cream);
+  border: 1.5px solid var(--forest-green);
+  color: var(--forest-green);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.recipe-hero-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recipe-eyebrow {
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 0.65rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--warm-peach);
+  color: var(--dark-brown);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.recipe-detail-title {
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  margin-bottom: 0.65rem;
+}
+
+.recipe-detail-description {
+  font-size: 1.02rem;
+  margin-bottom: 0.75rem;
+  max-width: 56ch;
+}
+
+.recipe-detail-author {
+  margin-bottom: 1.25rem;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--forest-green);
+}
+
+/* --------------------------------------------------------------------------
+   3. Meta Stats (Prep Time, Cook Time, Servings, Difficulty)
+   -------------------------------------------------------------------------- */
+.recipe-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0 0 1.35rem;
+}
+
+.meta-box {
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-sm);
+  background-color: var(--cream);
+  text-align: center;
+}
+
+.meta-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sage-green);
+}
+
+.meta-value {
+  margin: 0.2rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--forest-green);
+}
+
+/* --------------------------------------------------------------------------
+   4. Action Buttons & Save State
+   -------------------------------------------------------------------------- */
+.recipe-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.save-detail-btn.is-saved,
+.save-detail-btn[aria-pressed="true"] {
+  background-color: var(--warm-peach);
+  border-color: var(--warm-peach);
+  color: var(--dark-brown);
+}
+
+.save-detail-btn.is-saved:hover,
+.save-detail-btn[aria-pressed="true"]:hover {
+  background-color: var(--sage-green);
+  border-color: var(--sage-green);
+  color: var(--cream);
+}
+
+.save-status-msg {
+  min-height: 1.25rem;
+  margin: 0.6rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--forest-green);
+}
+
+/* --------------------------------------------------------------------------
+   5. Ingredients & Step-by-Step Instructions
+   -------------------------------------------------------------------------- */
+.recipe-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr);
+  align-items: start;
+  gap: 1.5rem;
+}
+
+.recipe-section-card {
+  padding: 1.5rem;
+}
+
+.section-heading-wrap {
+  margin-bottom: 1rem;
+}
+
+.section-heading-wrap .section-title {
+  margin-bottom: 0.35rem;
+}
+
+.section-helper-note {
+  margin-bottom: 0;
+  font-size: 0.88rem;
+  color: var(--sage-green);
+  font-weight: 600;
+}
+
+.ingredients-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ingredient-item + .ingredient-item {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.ingredient-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  padding-block: 0.65rem;
+  cursor: pointer;
+}
+
+.ingredient-checkbox {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.22rem;
+  accent-color: var(--forest-green);
+  cursor: pointer;
+}
+
+.ingredient-text {
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.ingredient-checkbox:checked + .ingredient-text {
+  text-decoration: line-through;
+  opacity: 0.62;
+}
+
+.steps-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: recipe-step;
+}
+
+.step-item {
+  counter-increment: recipe-step;
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.9rem;
+  align-items: start;
+  padding-block: 0.85rem;
+}
+
+.step-item + .step-item {
+  border-top: 1px solid var(--border-subtle);
+}
+
+.step-item::before {
+  content: counter(recipe-step);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background-color: var(--forest-green);
+  color: var(--cream);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.step-text {
+  margin: 0.2rem 0 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. Related Keywords Card
+   -------------------------------------------------------------------------- */
+.recipe-tags-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 1.5rem;
+}
+
+.tags-heading {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.recipe-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-link {
+  display: inline-block;
+  padding: 0.28rem 0.8rem;
+  border: 1px solid var(--sage-green);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--forest-green);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.tag-link:hover {
+  background-color: var(--warm-peach);
+  border-color: var(--warm-peach);
+  color: var(--dark-brown);
+}
+
+/* --------------------------------------------------------------------------
+   7. Friendly Missing / Invalid Recipe State
+   -------------------------------------------------------------------------- */
+.not-found-card {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  border-style: dashed;
+  border-width: 2px;
+}
+
+.not-found-eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--warm-peach);
+  color: var(--dark-brown);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.not-found-title {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  margin-bottom: 0.65rem;
+}
+
+.not-found-text {
+  max-width: 50ch;
+  margin-inline: auto;
+  margin-bottom: 1.5rem;
+}
+
+.not-found-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. Responsive Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .recipe-hero-card,
+  .recipe-content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-hero-card {
+    padding: 1.35rem;
+  }
+
+  .recipe-media-frame {
+    min-height: 210px;
+  }
+}
+
+@media (max-width: 600px) {
+  .recipe-hero-card,
+  .recipe-section-card {
+    padding: 1.15rem;
+  }
+
+  .recipe-meta-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recipe-actions .btn,
+  .not-found-actions .btn {
+    width: 100%;
+  }
+}

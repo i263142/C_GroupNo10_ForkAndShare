@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Details | FORK &amp; SHARE</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/recipe-details.css">
+</head>
+<body>
+  <!-- Design 1: Brand Header + Design 2: Responsive Primary Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-logo" href="../index.html">
+        <span class="brand-name">FORK &amp; SHARE</span>
+        <span class="brand-tagline">Recipe Sharing Hub</span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <div class="container">
+        <ul id="primary-nav" class="nav-list" data-nav-menu>
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="explore.html">Explore</a></li>
+          <li><a class="nav-link" href="categories.html">Categories</a></li>
+          <li><a class="nav-link" href="meal-planner.html">Meal Planner</a></li>
+          <li><a class="nav-link" href="share-recipe.html">Share a Recipe</a></li>
+          <li><a class="nav-link" href="community.html">Community</a></li>
+          <li><a class="nav-link" href="profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="explore.html">Explore Recipes</a></li>
+          <li aria-current="page"><span id="breadcrumb-current">Recipe Details</span></li>
+        </ol>
+      </nav>
+
+      <!-- Valid Recipe Details View -->
+      <article id="recipe-detail-view" class="recipe-detail-view" hidden>
+        <section class="section card recipe-hero-card" aria-labelledby="recipe-title">
+          <figure id="recipe-media" class="recipe-media-frame banner-sage">
+            <span id="recipe-time-badge" class="recipe-time-badge"></span>
+          </figure>
+
+          <div class="recipe-hero-info">
+            <p id="recipe-category" class="recipe-eyebrow"></p>
+            <h1 id="recipe-title" class="recipe-detail-title"></h1>
+            <p id="recipe-description" class="recipe-detail-description"></p>
+            <p id="recipe-author" class="recipe-detail-author"></p>
+
+            <dl class="recipe-meta-grid" aria-label="Recipe timing and servings">
+              <div class="meta-box">
+                <dt class="meta-label">Prep Time</dt>
+                <dd id="recipe-prep-time" class="meta-value"></dd>
+              </div>
+              <div class="meta-box">
+                <dt class="meta-label">Cook Time</dt>
+                <dd id="recipe-cook-time" class="meta-value"></dd>
+              </div>
+              <div class="meta-box">
+                <dt class="meta-label">Servings</dt>
+                <dd id="recipe-servings" class="meta-value"></dd>
+              </div>
+              <div class="meta-box">
+                <dt class="meta-label">Difficulty</dt>
+                <dd id="recipe-difficulty" class="meta-value"></dd>
+              </div>
+            </dl>
+
+            <div class="recipe-actions">
+              <button
+                type="button"
+                id="save-recipe-btn"
+                class="btn btn-primary save-detail-btn"
+                aria-pressed="false"
+              >
+                Save Recipe
+              </button>
+              <a class="btn btn-outline" href="explore.html">&larr; Back to Explore Recipes</a>
+            </div>
+            <p id="save-status-msg" class="save-status-msg" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="section recipe-content-grid" aria-label="Ingredients and instructions">
+          <section class="card recipe-section-card" aria-labelledby="ingredients-heading">
+            <div class="section-heading-wrap">
+              <h2 id="ingredients-heading" class="section-title">Ingredients</h2>
+              <p class="section-helper-note">Check off ingredients as you prep.</p>
+            </div>
+            <ul id="recipe-ingredients-list" class="ingredients-list"></ul>
+          </section>
+
+          <section class="card recipe-section-card" aria-labelledby="steps-heading">
+            <div class="section-heading-wrap">
+              <h2 id="steps-heading" class="section-title">Cooking Instructions</h2>
+              <p id="steps-count-note" class="section-helper-note"></p>
+            </div>
+            <ol id="recipe-steps-list" class="steps-list"></ol>
+          </section>
+        </section>
+
+        <section class="section card recipe-tags-card" aria-labelledby="tags-heading">
+          <h2 id="tags-heading" class="tags-heading">Related Keywords</h2>
+          <div id="recipe-tags-list" class="recipe-tags-list"></div>
+        </section>
+      </article>
+
+      <!-- Missing or Invalid Recipe ID View -->
+      <section
+        id="recipe-not-found"
+        class="section card not-found-card"
+        aria-labelledby="not-found-heading"
+        hidden
+      >
+        <p class="not-found-eyebrow">Recipe Unavailable</p>
+        <h1 id="not-found-heading" class="not-found-title">We couldn&rsquo;t find that recipe</h1>
+        <p class="not-found-text">
+          The recipe link may be missing a recipe ID, or the recipe may no longer be in our library.
+          Browse our tested community dishes to pick something delicious to cook.
+        </p>
+        <div class="not-found-actions">
+          <a class="btn btn-primary" href="explore.html">Explore Recipes</a>
+          <a class="btn btn-outline" href="../index.html">Back to Home</a>
+        </div>
+      </section>
+
+      <noscript>
+        <section class="section card not-found-card">
+          <h1 class="not-found-title">JavaScript Required</h1>
+          <p class="not-found-text">
+            Please enable JavaScript to load recipe ingredients, instructions, and bookmarking.
+          </p>
+          <a class="btn btn-primary" href="explore.html">Explore Recipes</a>
+        </section>
+      </noscript>
+    </div>
+  </main>
+
+  <!-- Design 3: Community Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">FORK &amp; SHARE</span>
+
+      <ul class="footer-links" aria-label="Footer Navigation">
+        <!-- Do not create separate About or Contact pages -->
+        <li><a class="footer-link" href="../index.html#about">About</a></li>
+        <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
+        <li><a class="footer-link" href="community.html">Community</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
+    </div>
+  </footer>
+
+  <script src="../js/shared.js" defer></script>
+  <script src="../js/recipe-details.js" defer></script>
+</body>
+</html>
