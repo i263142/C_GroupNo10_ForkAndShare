@@ -1,0 +1,1643 @@
+/**
+ * FORK & SHARE — Weekly Meal Schedule Logic (pages/weekly-schedule.html)
+ *
+ * Responsibilities:
+ * 1. Render the Monday-to-Sunday x Breakfast/Lunch/Dinner schedule grid from data.
+ * 2. Pre-seed Week 1 with the realistic prototype menu on first visit while
+ *    preserving user edits and explicit clears in localStorage.
+ * 3. Place an accessible <img> element immediately after every food item's name
+ *    with a clean fallback to ../images/meal-placeholder.jpg if needed.
+ * 4. Support adding, updating, and removing meals via an accessible modal.
+ * 5. Sync weekly meal plans and shopping list items with meal-planner.html and
+ *    shopping-list.html via shared localStorage keys.
+ */
+
+(function () {
+  "use strict";
+
+  /* ------------------------------------------------------------------------
+     1. Shared Storage Keys & Schedule Constants
+     ------------------------------------------------------------------------ */
+  var STORAGE_KEYS = {
+    MEAL_PLANS: "forkAndShare_mealPlans",
+    SHOPPING_LIST: "forkAndShare_shoppingList",
+    RECIPE_CATALOG: "forkAndShare_recipes",
+    SCHEDULE_SEED_STATE: "forkAndShare_scheduleSeedState"
+  };
+
+  var FALLBACK_IMAGE = "../images/meal-placeholder.jpg";
+
+  var WEEKS = [
+    { id: "week-1", label: "Week 1" },
+    { id: "week-2", label: "Week 2" },
+    { id: "week-3", label: "Week 3" },
+    { id: "week-4", label: "Week 4" }
+  ];
+
+  var DAYS = [
+    { id: "monday", label: "Monday", shortLabel: "Mon" },
+    { id: "tuesday", label: "Tuesday", shortLabel: "Tue" },
+    { id: "wednesday", label: "Wednesday", shortLabel: "Wed" },
+    { id: "thursday", label: "Thursday", shortLabel: "Thu" },
+    { id: "friday", label: "Friday", shortLabel: "Fri" },
+    { id: "saturday", label: "Saturday", shortLabel: "Sat" },
+    { id: "sunday", label: "Sunday", shortLabel: "Sun" }
+  ];
+
+  var MEAL_SLOTS = ["breakfast", "lunch", "dinner"];
+
+  var SLOT_LABELS = {
+    breakfast: "BREAKFAST",
+    lunch: "LUNCH",
+    dinner: "DINNER"
+  };
+
+  var SLOT_TITLES = {
+    breakfast: "Breakfast",
+    lunch: "Lunch",
+    dinner: "Dinner"
+  };
+
+  /* ------------------------------------------------------------------------
+     2. Realistic Meal & Recipe Catalog (Matching Prototype + Meal Planner)
+     ------------------------------------------------------------------------ */
+  var MEAL_CATALOG = [
+    /* Prototype Breakfasts */
+    {
+      id: "oatmeal-with-banana",
+      title: "Oatmeal with Banana",
+      mealType: "breakfast",
+      prepMinutes: 5,
+      cookMinutes: 10,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "Quick"],
+      image: "../images/oat-berry-bowl.jpg",
+      imageAlt: "Warm Oatmeal with Banana slices, berries, and toasted walnuts in a stoneware bowl",
+      description: "Creamy rolled oats simmered with milk and topped with ripe banana slices and honey.",
+      ingredients: [
+        { name: "Rolled oats", quantity: 1, unit: "cup", category: "Bakery & Grains" },
+        { name: "Milk", quantity: 2, unit: "cups", category: "Dairy & Eggs" },
+        { name: "Ripe banana", quantity: 2, unit: "whole", category: "Produce" },
+        { name: "Honey", quantity: 2, unit: "tbsp", category: "Pantry" }
+      ]
+    },
+    {
+      id: "toasts-with-eggs",
+      title: "Toasts with Eggs",
+      mealType: "breakfast",
+      prepMinutes: 5,
+      cookMinutes: 8,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "High-Protein", "Quick"],
+      image: "../images/toasts-with-eggs.jpg",
+      imageAlt: "Golden toasted whole-grain bread served with softly cooked eggs and herbs",
+      description: "Crisp whole-wheat toast topped with warm pan-cooked eggs, cracked pepper, and butter.",
+      ingredients: [
+        { name: "Whole-grain bread", quantity: 4, unit: "slices", category: "Bakery & Grains" },
+        { name: "Large eggs", quantity: 4, unit: "whole", category: "Dairy & Eggs" },
+        { name: "Butter", quantity: 1, unit: "tbsp", category: "Dairy & Eggs" }
+      ]
+    },
+    {
+      id: "pancakes",
+      title: "Pancakes",
+      mealType: "breakfast",
+      prepMinutes: 10,
+      cookMinutes: 12,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian"],
+      image: "../images/pancakes.jpg",
+      imageAlt: "Stack of fluffy golden pancakes drizzled with warm maple syrup",
+      description: "Light, fluffy buttermilk pancakes stacked warm with a drizzle of maple syrup.",
+      ingredients: [
+        { name: "All-purpose flour", quantity: 1.5, unit: "cups", category: "Bakery & Grains" },
+        { name: "Milk", quantity: 1.25, unit: "cups", category: "Dairy & Eggs" },
+        { name: "Large eggs", quantity: 2, unit: "whole", category: "Dairy & Eggs" },
+        { name: "Baking powder", quantity: 2, unit: "tsp", category: "Pantry" }
+      ]
+    },
+    {
+      id: "cheese-omelette",
+      title: "Cheese Omelette",
+      mealType: "breakfast",
+      prepMinutes: 5,
+      cookMinutes: 7,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "High-Protein", "Quick"],
+      image: "../images/spinach-feta-omelette.jpg",
+      imageAlt: "Golden folded Cheese Omelette filled with melted cheese and fresh herbs",
+      description: "Fluffy beaten eggs folded around melted cheddar and feta cheese with fresh herbs.",
+      ingredients: [
+        { name: "Large eggs", quantity: 4, unit: "whole", category: "Dairy & Eggs" },
+        { name: "Shredded cheese", quantity: 0.75, unit: "cup", category: "Dairy & Eggs" },
+        { name: "Butter", quantity: 1, unit: "tbsp", category: "Dairy & Eggs" }
+      ]
+    },
+    {
+      id: "cereal-with-milk",
+      title: "Cereal with Milk",
+      mealType: "breakfast",
+      prepMinutes: 3,
+      cookMinutes: 0,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "Quick"],
+      image: "../images/cereal-with-milk.jpg",
+      imageAlt: "Crunchy whole-grain cereal flakes in a bowl with cold fresh milk",
+      description: "Toasted whole-grain cereal flakes served with chilled milk and seasonal fruit.",
+      ingredients: [
+        { name: "Whole-grain cereal", quantity: 2, unit: "cups", category: "Bakery & Grains" },
+        { name: "Milk", quantity: 2, unit: "cups", category: "Dairy & Eggs" }
+      ]
+    },
+    {
+      id: "fruit-bowl",
+      title: "Fruit Bowl",
+      mealType: "breakfast",
+      prepMinutes: 8,
+      cookMinutes: 0,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "Dairy-Free", "Quick"],
+      image: "../images/fruit-bowl.jpg",
+      imageAlt: "Fresh Fruit Bowl with sliced strawberries, banana, apple, and blueberries",
+      description: "Vibrant medley of sliced apples, bananas, berries, and citrus tossed with mint.",
+      ingredients: [
+        { name: "Fresh berries", quantity: 1, unit: "cup", category: "Produce" },
+        { name: "Ripe banana", quantity: 1, unit: "whole", category: "Produce" },
+        { name: "Crisp apple", quantity: 1, unit: "whole", category: "Produce" }
+      ]
+    },
+    {
+      id: "boiled-eggs",
+      title: "Boiled Eggs",
+      mealType: "breakfast",
+      prepMinutes: 2,
+      cookMinutes: 10,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "Dairy-Free", "High-Protein", "Quick"],
+      image: "../images/boiled-eggs.jpg",
+      imageAlt: "Halved Boiled Eggs seasoned with sea salt and black pepper on a ceramic plate",
+      description: "Tender medium-boiled eggs finished with flaky salt and freshly cracked black pepper.",
+      ingredients: [
+        { name: "Large eggs", quantity: 4, unit: "whole", category: "Dairy & Eggs" },
+        { name: "Black pepper", quantity: 0.5, unit: "tsp", category: "Pantry" }
+      ]
+    },
+
+    /* Prototype Lunches */
+    {
+      id: "chicken-rice",
+      title: "Chicken Rice",
+      mealType: "lunch",
+      prepMinutes: 10,
+      cookMinutes: 25,
+      baseServings: 2,
+      dietaryTags: ["High-Protein", "Dairy-Free"],
+      image: "../images/chicken-rice.jpg",
+      imageAlt: "Savory Chicken Rice bowl with seasoned chicken breast and steamed long-grain rice",
+      description: "Tender pan-seared chicken served over fragrant garlic-herb steamed rice.",
+      ingredients: [
+        { name: "Chicken breast", quantity: 350, unit: "g", category: "Proteins" },
+        { name: "Basmati rice", quantity: 1.5, unit: "cups", category: "Bakery & Grains" },
+        { name: "Garlic cloves", quantity: 2, unit: "cloves", category: "Produce" },
+        { name: "Olive oil", quantity: 1, unit: "tbsp", category: "Pantry" }
+      ]
+    },
+    {
+      id: "vegetable-biryani",
+      title: "Vegetable Biryani",
+      mealType: "lunch",
+      prepMinutes: 15,
+      cookMinutes: 30,
+      baseServings: 3,
+      dietaryTags: ["Vegetarian", "Dairy-Free"],
+      image: "../images/vegetable-biryani.jpg",
+      imageAlt: "Spiced Vegetable Biryani layered with basmati rice, carrots, peas, and fresh herbs",
+      description: "Aromatic basmati rice layered with spiced potatoes, carrots, peas, and caramelized onions.",
+      ingredients: [
+        { name: "Basmati rice", quantity: 2, unit: "cups", category: "Bakery & Grains" },
+        { name: "Potatoes", quantity: 2, unit: "whole", category: "Produce" },
+        { name: "Mixed vegetables", quantity: 2, unit: "cups", category: "Produce" },
+        { name: "Onions", quantity: 2, unit: "whole", category: "Produce" }
+      ]
+    },
+    {
+      id: "grilled-chicken-salad",
+      title: "Grilled Chicken Salad",
+      mealType: "lunch",
+      prepMinutes: 10,
+      cookMinutes: 12,
+      baseServings: 2,
+      dietaryTags: ["High-Protein", "Dairy-Free"],
+      image: "../images/grilled-chicken-salad.jpg",
+      imageAlt: "Grilled Chicken Salad with crisp greens, cherry tomatoes, cucumber, and sliced chicken",
+      description: "Char-grilled chicken breast sliced over crisp garden greens, cucumbers, and tomatoes.",
+      ingredients: [
+        { name: "Chicken breast", quantity: 300, unit: "g", category: "Proteins" },
+        { name: "Mixed salad greens", quantity: 3, unit: "cups", category: "Produce" },
+        { name: "Tomatoes", quantity: 2, unit: "whole", category: "Produce" },
+        { name: "Olive oil", quantity: 2, unit: "tbsp", category: "Pantry" }
+      ]
+    },
+    {
+      id: "creamy-pasta",
+      title: "Creamy Pasta",
+      mealType: "lunch",
+      prepMinutes: 8,
+      cookMinutes: 16,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian"],
+      image: "../images/creamy-pasta.jpg",
+      imageAlt: "Bowl of Creamy Pasta tossed with garlic parmesan sauce and fresh parsley",
+      description: "Al dente penne tossed in a silky garlic parmesan cream sauce with cracked pepper.",
+      ingredients: [
+        { name: "Pasta", quantity: 250, unit: "g", category: "Bakery & Grains" },
+        { name: "Cream", quantity: 0.75, unit: "cup", category: "Dairy & Eggs" },
+        { name: "Shaved parmesan", quantity: 0.5, unit: "cup", category: "Dairy & Eggs" },
+        { name: "Garlic cloves", quantity: 2, unit: "cloves", category: "Produce" }
+      ]
+    },
+    {
+      id: "chicken-wrap",
+      title: "Chicken Wrap",
+      mealType: "lunch",
+      prepMinutes: 8,
+      cookMinutes: 10,
+      baseServings: 2,
+      dietaryTags: ["High-Protein", "Quick"],
+      image: "../images/herb-chicken-flatbread.jpg",
+      imageAlt: "Herb Chicken Wrap rolled with grilled chicken, crisp greens, and light dressing",
+      description: "Warm flatbread wrap filled with herb-roasted chicken strips, greens, and tangy sauce.",
+      ingredients: [
+        { name: "Whole-wheat flatbreads", quantity: 2, unit: "pieces", category: "Bakery & Grains" },
+        { name: "Chicken breast", quantity: 250, unit: "g", category: "Proteins" },
+        { name: "Baby arugula", quantity: 1.5, unit: "cups", category: "Produce" }
+      ]
+    },
+    {
+      id: "vegetable-sandwich",
+      title: "Vegetable Sandwich",
+      mealType: "lunch",
+      prepMinutes: 10,
+      cookMinutes: 4,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "Quick"],
+      image: "../images/vegetable-sandwich.jpg",
+      imageAlt: "Toasted Vegetable Sandwich layered with sliced tomatoes, cucumber, lettuce, and cheese",
+      description: "Toasted bread stacked with crisp cucumber, juicy tomato slices, greens, and cheese.",
+      ingredients: [
+        { name: "Whole-grain bread", quantity: 4, unit: "slices", category: "Bakery & Grains" },
+        { name: "Tomatoes", quantity: 2, unit: "whole", category: "Produce" },
+        { name: "Cucumber", quantity: 1, unit: "whole", category: "Produce" },
+        { name: "Cheese slices", quantity: 2, unit: "slices", category: "Dairy & Eggs" }
+      ]
+    },
+    {
+      id: "chicken-pulao",
+      title: "Chicken Pulao",
+      mealType: "lunch",
+      prepMinutes: 15,
+      cookMinutes: 30,
+      baseServings: 3,
+      dietaryTags: ["High-Protein", "Dairy-Free"],
+      image: "../images/chicken-pulao.jpg",
+      imageAlt: "Fragrant Chicken Pulao cooked with whole spices and golden basmati rice",
+      description: "Traditional one-pot basmati rice simmered in spiced chicken broth with tender chicken.",
+      ingredients: [
+        { name: "Chicken pieces", quantity: 500, unit: "g", category: "Proteins" },
+        { name: "Basmati rice", quantity: 2, unit: "cups", category: "Bakery & Grains" },
+        { name: "Onions", quantity: 2, unit: "whole", category: "Produce" },
+        { name: "Garlic cloves", quantity: 4, unit: "cloves", category: "Produce" }
+      ]
+    },
+
+    /* Prototype Dinners */
+    {
+      id: "tomato-pasta",
+      title: "Tomato Pasta",
+      mealType: "dinner",
+      prepMinutes: 8,
+      cookMinutes: 18,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "Dairy-Free"],
+      image: "../images/tomato-pasta.jpg",
+      imageAlt: "Bowl of Tomato Pasta coated in rich herb tomato sauce and basil leaves",
+      description: "Classic spaghetti simmered in a rich roasted tomato, garlic, and fresh basil sauce.",
+      ingredients: [
+        { name: "Pasta", quantity: 250, unit: "g", category: "Bakery & Grains" },
+        { name: "Tomatoes", quantity: 4, unit: "whole", category: "Produce" },
+        { name: "Garlic cloves", quantity: 3, unit: "cloves", category: "Produce" },
+        { name: "Olive oil", quantity: 2, unit: "tbsp", category: "Pantry" }
+      ]
+    },
+    {
+      id: "chicken-soup",
+      title: "Chicken Soup",
+      mealType: "dinner",
+      prepMinutes: 10,
+      cookMinutes: 25,
+      baseServings: 2,
+      dietaryTags: ["High-Protein", "Dairy-Free"],
+      image: "../images/chicken-soup.jpg",
+      imageAlt: "Warm bowl of homemade Chicken Soup with shredded chicken, carrots, and herbs",
+      description: "Comforting golden broth simmered with shredded chicken, diced carrots, and black pepper.",
+      ingredients: [
+        { name: "Chicken breast", quantity: 300, unit: "g", category: "Proteins" },
+        { name: "Carrots", quantity: 2, unit: "whole", category: "Produce" },
+        { name: "Garlic cloves", quantity: 2, unit: "cloves", category: "Produce" }
+      ]
+    },
+    {
+      id: "rice",
+      title: "Rice",
+      mealType: "dinner",
+      prepMinutes: 5,
+      cookMinutes: 18,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "Dairy-Free"],
+      image: "../images/rice.jpg",
+      imageAlt: "Fluffy steamed white basmati Rice garnished with subtle herbs in a ceramic bowl",
+      description: "Light, fluffy steamed basmati rice seasoned gently with butter or olive oil and herbs.",
+      ingredients: [
+        { name: "Basmati rice", quantity: 1.5, unit: "cups", category: "Bakery & Grains" },
+        { name: "Olive oil", quantity: 1, unit: "tbsp", category: "Pantry" }
+      ]
+    },
+    {
+      id: "noodles",
+      title: "Noodles",
+      mealType: "dinner",
+      prepMinutes: 10,
+      cookMinutes: 12,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "Dairy-Free", "Quick"],
+      image: "../images/noodles.jpg",
+      imageAlt: "Savory stir-fried Noodles with crisp vegetables and sesame garnish",
+      description: "Quick wok-tossed noodles with crisp vegetables, garlic, and savory soy glaze.",
+      ingredients: [
+        { name: "Noodles", quantity: 250, unit: "g", category: "Bakery & Grains" },
+        { name: "Mixed vegetables", quantity: 1.5, unit: "cups", category: "Produce" },
+        { name: "Garlic cloves", quantity: 2, unit: "cloves", category: "Produce" }
+      ]
+    },
+    {
+      id: "grilled-chicken",
+      title: "Grilled Chicken",
+      mealType: "dinner",
+      prepMinutes: 10,
+      cookMinutes: 15,
+      baseServings: 2,
+      dietaryTags: ["High-Protein", "Dairy-Free"],
+      image: "../images/grilled-chicken.jpg",
+      imageAlt: "Juicy Grilled Chicken breast fillets with herb seasoning and roasted vegetables",
+      description: "Herb-marinated chicken fillets seared on the grill until golden and juicy.",
+      ingredients: [
+        { name: "Chicken breast", quantity: 400, unit: "g", category: "Proteins" },
+        { name: "Fresh lemon", quantity: 1, unit: "whole", category: "Produce" },
+        { name: "Olive oil", quantity: 2, unit: "tbsp", category: "Pantry" }
+      ]
+    },
+    {
+      id: "macaroni",
+      title: "Macaroni",
+      mealType: "dinner",
+      prepMinutes: 8,
+      cookMinutes: 16,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian"],
+      image: "../images/macaroni.jpg",
+      imageAlt: "Warm bowl of classic Macaroni pasta baked with savory sauce and melted cheese",
+      description: "Tender elbow macaroni tossed in a comforting spiced tomato and cheese sauce.",
+      ingredients: [
+        { name: "Macaroni pasta", quantity: 250, unit: "g", category: "Bakery & Grains" },
+        { name: "Shredded cheese", quantity: 0.75, unit: "cup", category: "Dairy & Eggs" },
+        { name: "Tomatoes", quantity: 2, unit: "whole", category: "Produce" }
+      ]
+    },
+
+    /* Shared Meal Planner Catalog Dishes */
+    {
+      id: "oat-berry-bowl",
+      title: "Warm Berry & Honey Oat Bowl",
+      mealType: "breakfast",
+      prepMinutes: 5,
+      cookMinutes: 10,
+      baseServings: 2,
+      dietaryTags: ["Vegetarian", "Quick"],
+      image: "../images/oat-berry-bowl.jpg",
+      imageAlt: "Warm Berry and Honey Oat Bowl topped with blueberries, banana slices, and walnuts",
+      description: "Creamy rolled oats simmered with milk, topped with blueberries, banana, and walnuts.",
+      ingredients: [
+        { name: "Rolled oats", quantity: 1, unit: "cup", category: "Bakery & Grains" },
+        { name: "Whole or oat milk", quantity: 2, unit: "cups", category: "Dairy & Eggs" },
+        { name: "Fresh blueberries", quantity: 0.75, unit: "cup", category: "Produce" },
+        { name: "Ripe banana", quantity: 1, unit: "whole", category: "Produce" }
+      ]
+    },
+    {
+      id: "lemon-herb-salmon",
+      title: "Pan-Seared Lemon Herb Salmon & Asparagus",
+      mealType: "dinner",
+      prepMinutes: 10,
+      cookMinutes: 15,
+      baseServings: 2,
+      dietaryTags: ["Dairy-Free", "High-Protein"],
+      image: "../images/lemon-herb-salmon.jpg",
+      imageAlt: "Pan-seared lemon herb salmon fillet served with roasted asparagus spears and baby potatoes",
+      description: "Crispy-skin salmon fillets basted with garlic, thyme, and lemon alongside roasted asparagus.",
+      ingredients: [
+        { name: "Salmon fillets", quantity: 2, unit: "fillets", category: "Proteins" },
+        { name: "Asparagus spears", quantity: 1, unit: "bunch", category: "Produce" },
+        { name: "Baby potatoes", quantity: 400, unit: "g", category: "Produce" }
+      ]
+    },
+    {
+      id: "coconut-red-lentil-curry",
+      title: "Coconut Red Lentil & Spinach Curry",
+      mealType: "dinner",
+      prepMinutes: 10,
+      cookMinutes: 25,
+      baseServings: 4,
+      dietaryTags: ["Vegetarian", "Dairy-Free", "High-Protein"],
+      image: "../images/coconut-red-lentil-curry.jpg",
+      imageAlt: "Warm bowl of coconut red lentil and spinach curry served alongside steamed basmati rice",
+      description: "Fragrant red lentils simmered in coconut milk with ginger, turmeric, and spinach.",
+      ingredients: [
+        { name: "Red lentils", quantity: 1.5, unit: "cups", category: "Pantry" },
+        { name: "Coconut milk", quantity: 1, unit: "can", category: "Pantry" },
+        { name: "Basmati rice", quantity: 1.5, unit: "cups", category: "Bakery & Grains" },
+        { name: "Baby spinach", quantity: 3, unit: "cups", category: "Produce" }
+      ]
+    }
+  ];
+
+  /* Exact Monday-to-Sunday prototype menu mapping */
+  var PROTOTYPE_WEEK_SCHEDULE = {
+    monday: { breakfast: "oatmeal-with-banana", lunch: "chicken-rice", dinner: "tomato-pasta" },
+    tuesday: { breakfast: "toasts-with-eggs", lunch: "vegetable-biryani", dinner: "chicken-soup" },
+    wednesday: { breakfast: "pancakes", lunch: "grilled-chicken-salad", dinner: "vegetable-sandwich" },
+    thursday: { breakfast: "cheese-omelette", lunch: "creamy-pasta", dinner: "rice" },
+    friday: { breakfast: "cereal-with-milk", lunch: "chicken-wrap", dinner: "noodles" },
+    saturday: { breakfast: "fruit-bowl", lunch: "vegetable-sandwich", dinner: "grilled-chicken" },
+    sunday: { breakfast: "boiled-eggs", lunch: "chicken-pulao", dinner: "macaroni" }
+  };
+
+  /* ------------------------------------------------------------------------
+     3. Application State & DOM Cache
+     ------------------------------------------------------------------------ */
+  var state = {
+    mealPlans: null,
+    lastFocusedTrigger: null,
+    storageWarningShown: false
+  };
+
+  var dom = {};
+
+  /* ------------------------------------------------------------------------
+     4. Utility & Data Helpers
+     ------------------------------------------------------------------------ */
+  function clampServings(value) {
+    var num = parseInt(value, 10);
+    if (isNaN(num) || num < 1) {
+      return 1;
+    }
+    if (num > 12) {
+      return 12;
+    }
+    return num;
+  }
+
+  function roundQuantity(value) {
+    var rounded = Math.round(value * 100) / 100;
+    return Number.isInteger(rounded) ? rounded : Number(rounded.toFixed(2));
+  }
+
+  function scaleIngredients(ingredients, baseServings, targetServings) {
+    var safeBase = baseServings > 0 ? baseServings : 1;
+    var factor = targetServings / safeBase;
+
+    return ingredients.map(function (item) {
+      return {
+        name: item.name,
+        quantity: roundQuantity((Number(item.quantity) || 1) * factor),
+        unit: item.unit || "",
+        category: item.category || "Pantry"
+      };
+    });
+  }
+
+  function findCatalogItem(recipeId) {
+    return MEAL_CATALOG.find(function (item) {
+      return item.id === recipeId;
+    }) || null;
+  }
+
+  function buildAssignedMealFromCatalog(item, targetServings, overrideSlot) {
+    var safeServings = clampServings(targetServings || item.baseServings || 2);
+    return {
+      recipeId: item.id,
+      title: item.title,
+      mealType: overrideSlot || item.mealType,
+      prepMinutes: item.prepMinutes,
+      cookMinutes: item.cookMinutes,
+      baseServings: item.baseServings,
+      servings: safeServings,
+      dietaryTags: item.dietaryTags.slice(),
+      image: item.image || FALLBACK_IMAGE,
+      imageAlt: item.imageAlt || ("Prepared dish: " + item.title),
+      description: item.description,
+      baseIngredients: item.ingredients.map(function (ing) {
+        return {
+          name: ing.name,
+          quantity: ing.quantity,
+          unit: ing.unit,
+          category: ing.category || "Pantry"
+        };
+      }),
+      ingredients: scaleIngredients(item.ingredients, item.baseServings, safeServings),
+      updatedAt: new Date().toISOString()
+    };
+  }
+
+  function createEmptyWeek(weekLabel) {
+    var daysObj = {};
+    DAYS.forEach(function (day) {
+      daysObj[day.id] = {
+        breakfast: null,
+        lunch: null,
+        dinner: null
+      };
+    });
+
+    return {
+      label: weekLabel,
+      days: daysObj
+    };
+  }
+
+  function populatePrototypeWeek(weekObj) {
+    DAYS.forEach(function (day) {
+      var template = PROTOTYPE_WEEK_SCHEDULE[day.id];
+      MEAL_SLOTS.forEach(function (slotKey) {
+        var item = findCatalogItem(template[slotKey]);
+        weekObj.days[day.id][slotKey] = item
+          ? buildAssignedMealFromCatalog(item, item.baseServings, slotKey)
+          : null;
+      });
+    });
+  }
+
+  function createDefaultMealPlans(seedWeekOne) {
+    var weeksObj = {};
+    WEEKS.forEach(function (week) {
+      weeksObj[week.id] = createEmptyWeek(week.label);
+    });
+
+    if (seedWeekOne) {
+      populatePrototypeWeek(weeksObj["week-1"]);
+    }
+
+    return {
+      activeWeek: "week-1",
+      activeDay: "monday",
+      weeks: weeksObj
+    };
+  }
+
+  function countPlannedMealsInWeek(weekObj) {
+    var count = 0;
+    DAYS.forEach(function (day) {
+      var dayData = weekObj.days[day.id];
+      MEAL_SLOTS.forEach(function (slotKey) {
+        if (dayData && dayData[slotKey]) {
+          count += 1;
+        }
+      });
+    });
+    return count;
+  }
+
+  function countAllPlannedMeals(plans) {
+    var total = 0;
+    WEEKS.forEach(function (week) {
+      if (plans.weeks[week.id]) {
+        total += countPlannedMealsInWeek(plans.weeks[week.id]);
+      }
+    });
+    return total;
+  }
+
+  function sanitizeMealObject(meal, slotKey) {
+    if (!meal || typeof meal !== "object" || typeof meal.title !== "string") {
+      return null;
+    }
+
+    var cleanTitle = meal.title.trim();
+    if (!cleanTitle) {
+      return null;
+    }
+
+    var catalogMatch = findCatalogItem(meal.recipeId);
+    var safeServings = clampServings(meal.servings || 2);
+
+    return {
+      recipeId: meal.recipeId || ("custom-" + Date.now()),
+      title: cleanTitle,
+      mealType: meal.mealType || slotKey,
+      prepMinutes: Math.max(0, Number(meal.prepMinutes) || 0),
+      cookMinutes: Math.max(0, Number(meal.cookMinutes) || 0),
+      baseServings: clampServings(meal.baseServings || safeServings),
+      servings: safeServings,
+      dietaryTags: Array.isArray(meal.dietaryTags) ? meal.dietaryTags : [],
+      image: typeof meal.image === "string" && meal.image.trim()
+        ? meal.image.trim()
+        : (catalogMatch ? catalogMatch.image : FALLBACK_IMAGE),
+      imageAlt: typeof meal.imageAlt === "string" && meal.imageAlt.trim()
+        ? meal.imageAlt.trim()
+        : (catalogMatch ? catalogMatch.imageAlt : ("Prepared dish: " + cleanTitle)),
+      description: typeof meal.description === "string" ? meal.description : "",
+      baseIngredients: Array.isArray(meal.baseIngredients) ? meal.baseIngredients : [],
+      ingredients: Array.isArray(meal.ingredients) ? meal.ingredients : [],
+      updatedAt: meal.updatedAt || new Date().toISOString()
+    };
+  }
+
+  /* ------------------------------------------------------------------------
+     5. LocalStorage Persistence & Shopping List Sync
+     ------------------------------------------------------------------------ */
+  function readSeedState() {
+    try {
+      return window.localStorage.getItem(STORAGE_KEYS.SCHEDULE_SEED_STATE);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeSeedState(value) {
+    try {
+      window.localStorage.setItem(STORAGE_KEYS.SCHEDULE_SEED_STATE, value);
+    } catch (error) {
+      // Ignore storage errors for optional metadata flag
+    }
+  }
+
+  function loadMealPlans() {
+    var seedState = readSeedState();
+
+    try {
+      var raw = window.localStorage.getItem(STORAGE_KEYS.MEAL_PLANS);
+      if (!raw) {
+        var initialPlans = createDefaultMealPlans(seedState !== "cleared");
+        if (seedState !== "cleared") {
+          writeSeedState("seeded");
+        }
+        return initialPlans;
+      }
+
+      var parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== "object" || !parsed.weeks || typeof parsed.weeks !== "object") {
+        showStatus(
+          "Saved schedule data had an invalid format, so the default weekly menu was restored.",
+          true,
+          false
+        );
+        return createDefaultMealPlans(true);
+      }
+
+      var hadInvalidSlots = false;
+
+      WEEKS.forEach(function (week) {
+        if (!parsed.weeks[week.id] || typeof parsed.weeks[week.id] !== "object") {
+          parsed.weeks[week.id] = createEmptyWeek(week.label);
+        } else {
+          parsed.weeks[week.id].label = week.label;
+          if (!parsed.weeks[week.id].days || typeof parsed.weeks[week.id].days !== "object") {
+            parsed.weeks[week.id].days = createEmptyWeek(week.label).days;
+          }
+
+          DAYS.forEach(function (day) {
+            var dayEntry = parsed.weeks[week.id].days[day.id];
+            if (!dayEntry || typeof dayEntry !== "object") {
+              parsed.weeks[week.id].days[day.id] = {
+                breakfast: null,
+                lunch: null,
+                dinner: null
+              };
+            } else {
+              MEAL_SLOTS.forEach(function (slotKey) {
+                var rawMeal = dayEntry[slotKey];
+                if (rawMeal !== null && rawMeal !== undefined) {
+                  var cleaned = sanitizeMealObject(rawMeal, slotKey);
+                  if (!cleaned) {
+                    hadInvalidSlots = true;
+                  }
+                  dayEntry[slotKey] = cleaned;
+                } else {
+                  dayEntry[slotKey] = null;
+                }
+              });
+            }
+          });
+        }
+      });
+
+      if (!parsed.weeks[parsed.activeWeek]) {
+        parsed.activeWeek = "week-1";
+      }
+      if (!DAYS.some(function (d) { return d.id === parsed.activeDay; })) {
+        parsed.activeDay = "monday";
+      }
+
+      // If Meal Planner initialized an empty structure and user hasn't cleared it, seed Week 1 prototype menu
+      if (countAllPlannedMeals(parsed) === 0 && seedState !== "cleared") {
+        populatePrototypeWeek(parsed.weeks["week-1"]);
+        writeSeedState("seeded");
+      }
+
+      if (hadInvalidSlots) {
+        showStatus(
+          "One or more invalid meal entries in saved browser data were cleaned up.",
+          true,
+          false
+        );
+      }
+
+      return parsed;
+    } catch (error) {
+      showStatus(
+        "Could not read saved browser schedule data. Loaded the default weekly menu.",
+        true,
+        false
+      );
+      return createDefaultMealPlans(true);
+    }
+  }
+
+  function saveMealPlans() {
+    try {
+      window.localStorage.setItem(
+        STORAGE_KEYS.MEAL_PLANS,
+        JSON.stringify(state.mealPlans)
+      );
+      return true;
+    } catch (error) {
+      if (!state.storageWarningShown) {
+        state.storageWarningShown = true;
+        showStatus(
+          "Browser storage is unavailable; changes apply for this visit only.",
+          true,
+          false
+        );
+      }
+      return false;
+    }
+  }
+
+  function generateShoppingListForWeek(weekId) {
+    var week = state.mealPlans.weeks[weekId];
+    var aggregatedMap = {};
+    var mealCount = 0;
+
+    var existingCheckedMap = {};
+    try {
+      var prevRaw = window.localStorage.getItem(STORAGE_KEYS.SHOPPING_LIST);
+      if (prevRaw) {
+        var prevData = JSON.parse(prevRaw);
+        if (prevData && prevData.weekId === weekId && Array.isArray(prevData.items)) {
+          prevData.items.forEach(function (item) {
+            existingCheckedMap[item.id] = Boolean(item.checked);
+          });
+        }
+      }
+    } catch (error) {
+      // Ignore malformed shopping list cache
+    }
+
+    DAYS.forEach(function (day) {
+      var dayMeals = week.days[day.id];
+      MEAL_SLOTS.forEach(function (slotKey) {
+        var meal = dayMeals[slotKey];
+        if (!meal) {
+          return;
+        }
+
+        mealCount += 1;
+        var items = Array.isArray(meal.ingredients) ? meal.ingredients : [];
+
+        items.forEach(function (ing) {
+          if (!ing || typeof ing.name !== "string" || !ing.name.trim()) {
+            return;
+          }
+          var normalizedName = ing.name.trim().toLowerCase();
+          var normalizedUnit = (ing.unit || "").trim().toLowerCase();
+          var mapKey = normalizedName + "__" + normalizedUnit;
+
+          if (!aggregatedMap[mapKey]) {
+            aggregatedMap[mapKey] = {
+              id: mapKey,
+              name: ing.name.trim(),
+              quantity: 0,
+              unit: ing.unit || "",
+              category: ing.category || "Pantry",
+              checked: Boolean(existingCheckedMap[mapKey]),
+              sources: []
+            };
+          }
+
+          aggregatedMap[mapKey].quantity = roundQuantity(
+            aggregatedMap[mapKey].quantity + (Number(ing.quantity) || 1)
+          );
+
+          var sourceLabel = day.shortLabel + " " + SLOT_TITLES[slotKey] + ": " + meal.title;
+          if (aggregatedMap[mapKey].sources.indexOf(sourceLabel) === -1) {
+            aggregatedMap[mapKey].sources.push(sourceLabel);
+          }
+        });
+      });
+    });
+
+    var itemsList = Object.keys(aggregatedMap)
+      .map(function (key) {
+        return aggregatedMap[key];
+      })
+      .sort(function (a, b) {
+        if (a.category !== b.category) {
+          return a.category.localeCompare(b.category);
+        }
+        return a.name.localeCompare(b.name);
+      });
+
+    var payload = {
+      weekId: weekId,
+      weekLabel: week.label,
+      mealCount: mealCount,
+      generatedAt: new Date().toISOString(),
+      items: itemsList
+    };
+
+    try {
+      window.localStorage.setItem(STORAGE_KEYS.SHOPPING_LIST, JSON.stringify(payload));
+      return payload;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  /* ------------------------------------------------------------------------
+     6. Image Creation with Clean Fallback Handling
+     ------------------------------------------------------------------------ */
+  function createMealImage(src, altText, className) {
+    var img = document.createElement("img");
+    img.className = className;
+    img.alt = altText;
+    img.loading = "lazy";
+
+    img.addEventListener("error", function () {
+      if (img.dataset.fallbackApplied === "true") {
+        return;
+      }
+      img.dataset.fallbackApplied = "true";
+      img.src = FALLBACK_IMAGE;
+      img.alt = altText + " (placeholder plate shown)";
+    });
+
+    img.src = src || FALLBACK_IMAGE;
+    return img;
+  }
+
+  /* ------------------------------------------------------------------------
+     7. UI Feedback & Rendering
+     ------------------------------------------------------------------------ */
+  function getActiveWeek() {
+    return state.mealPlans.weeks[state.mealPlans.activeWeek];
+  }
+
+  function getDayMeta(dayId) {
+    return DAYS.find(function (d) {
+      return d.id === dayId;
+    }) || DAYS[0];
+  }
+
+  function showStatus(message, isWarning, includeShoppingLink) {
+    if (!dom.statusBanner) {
+      return;
+    }
+
+    dom.statusBanner.textContent = "";
+    dom.statusBanner.classList.toggle("schedule-status--warning", Boolean(isWarning));
+
+    var textSpan = document.createElement("span");
+    textSpan.textContent = message;
+    dom.statusBanner.appendChild(textSpan);
+
+    if (includeShoppingLink) {
+      var link = document.createElement("a");
+      link.href = "shopping-list.html";
+      link.className = "schedule-status-link";
+      link.textContent = "Open Shopping List";
+      dom.statusBanner.appendChild(link);
+    }
+
+    dom.statusBanner.hidden = false;
+  }
+
+  function renderWeekControls() {
+    var activeWeekId = state.mealPlans.activeWeek;
+    var activeIndex = WEEKS.findIndex(function (w) {
+      return w.id === activeWeekId;
+    });
+
+    dom.weekSelect.value = activeWeekId;
+    dom.prevWeekBtn.disabled = activeIndex <= 0;
+    dom.nextWeekBtn.disabled = activeIndex >= WEEKS.length - 1;
+
+    var weekObj = getActiveWeek();
+    var plannedCount = countPlannedMealsInWeek(weekObj);
+    dom.weekSummaryText.textContent =
+      plannedCount + " of 21 meals scheduled in " + weekObj.label;
+
+    dom.clearWeekBtn.disabled = plannedCount === 0;
+    dom.emptyWeekBanner.hidden = plannedCount > 0;
+  }
+
+  function renderScheduleTable() {
+    var activeWeek = getActiveWeek();
+    dom.tableBody.textContent = "";
+
+    DAYS.forEach(function (day) {
+      var dayMeals = activeWeek.days[day.id];
+      var row = document.createElement("tr");
+      row.dataset.dayId = day.id;
+
+      // Day Header Cell (Monday - Sunday)
+      var dayTh = document.createElement("th");
+      dayTh.scope = "row";
+      dayTh.className = "day-cell";
+
+      var dayNameSpan = document.createElement("span");
+      dayNameSpan.textContent = day.label;
+      dayTh.appendChild(dayNameSpan);
+
+      var dayMealCount = MEAL_SLOTS.reduce(function (acc, slotKey) {
+        return acc + (dayMeals[slotKey] ? 1 : 0);
+      }, 0);
+
+      var countNote = document.createElement("span");
+      countNote.className = "day-count-note";
+      countNote.textContent = dayMealCount + "/3 meals";
+      dayTh.appendChild(countNote);
+
+      row.appendChild(dayTh);
+
+      // Meal Cells: BREAKFAST, LUNCH, DINNER
+      MEAL_SLOTS.forEach(function (slotKey) {
+        var meal = dayMeals[slotKey];
+        var td = document.createElement("td");
+        td.className = "meal-cell";
+        td.setAttribute("data-label", SLOT_LABELS[slotKey]);
+
+        if (!meal) {
+          var emptyBox = document.createElement("div");
+          emptyBox.className = "meal-cell-empty";
+
+          var emptyLabel = document.createElement("span");
+          emptyLabel.className = "meal-empty-label";
+          emptyLabel.textContent = "No meal planned";
+          emptyBox.appendChild(emptyLabel);
+
+          var addCellBtn = document.createElement("button");
+          addCellBtn.type = "button";
+          addCellBtn.className = "btn btn-outline btn-xs";
+          addCellBtn.textContent = "+ Add";
+          addCellBtn.setAttribute(
+            "aria-label",
+            "Add " + SLOT_TITLES[slotKey] + " for " + day.label
+          );
+          addCellBtn.dataset.action = "open-cell-modal";
+          addCellBtn.dataset.day = day.id;
+          addCellBtn.dataset.slot = slotKey;
+          emptyBox.appendChild(addCellBtn);
+
+          td.appendChild(emptyBox);
+          row.appendChild(td);
+          return;
+        }
+
+        var card = document.createElement("div");
+        card.className = "meal-cell-card";
+
+        // 1. Meal name element
+        var nameEl = document.createElement("h3");
+        nameEl.className = "meal-item-name";
+        nameEl.textContent = meal.title;
+        card.appendChild(nameEl);
+
+        // 2. <img> element placed IMMEDIATELY after the food item name
+        var imgAlt = meal.imageAlt || ("Meal photo of " + meal.title);
+        var imgEl = createMealImage(meal.image, imgAlt, "meal-item-img");
+        card.appendChild(imgEl);
+
+        // 3. Servings & Time metadata
+        var totalMinutes = (meal.prepMinutes || 0) + (meal.cookMinutes || 0);
+        var metaEl = document.createElement("p");
+        metaEl.className = "meal-item-meta";
+        metaEl.textContent =
+          (meal.servings || 2) + " servings" +
+          (totalMinutes > 0 ? " • " + totalMinutes + " min" : "");
+        card.appendChild(metaEl);
+
+        // 4. Compact Edit & Remove actions
+        var actionsEl = document.createElement("div");
+        actionsEl.className = "meal-cell-actions";
+
+        var editBtn = document.createElement("button");
+        editBtn.type = "button";
+        editBtn.className = "btn btn-outline btn-xs";
+        editBtn.textContent = "Edit";
+        editBtn.setAttribute(
+          "aria-label",
+          "Edit " + day.label + " " + SLOT_TITLES[slotKey] + ": " + meal.title
+        );
+        editBtn.dataset.action = "open-cell-modal";
+        editBtn.dataset.day = day.id;
+        editBtn.dataset.slot = slotKey;
+
+        var removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "btn btn-outline btn-xs";
+        removeBtn.textContent = "Remove";
+        removeBtn.setAttribute(
+          "aria-label",
+          "Remove " + day.label + " " + SLOT_TITLES[slotKey] + ": " + meal.title
+        );
+        removeBtn.dataset.action = "remove-cell-meal";
+        removeBtn.dataset.day = day.id;
+        removeBtn.dataset.slot = slotKey;
+
+        actionsEl.appendChild(editBtn);
+        actionsEl.appendChild(removeBtn);
+        card.appendChild(actionsEl);
+
+        td.appendChild(card);
+        row.appendChild(td);
+      });
+
+      dom.tableBody.appendChild(row);
+    });
+  }
+
+  function renderAll() {
+    renderWeekControls();
+    renderScheduleTable();
+  }
+
+  /* ------------------------------------------------------------------------
+     8. Modal: Add or Update Meal
+     ------------------------------------------------------------------------ */
+  function openMealModal(dayId, slotKey, triggerEl) {
+    state.lastFocusedTrigger = triggerEl || document.activeElement;
+
+    var selectedDay = dayId || "monday";
+    var selectedSlot = slotKey || "breakfast";
+
+    dom.modalDaySelect.value = selectedDay;
+    dom.modalSlotSelect.value = selectedSlot;
+
+    var existingMeal = getActiveWeek().days[selectedDay][selectedSlot];
+    dom.modalTitle.textContent = existingMeal
+      ? "Update Scheduled Meal"
+      : "Add Meal to Weekly Schedule";
+
+    dom.catalogSearchInput.value = "";
+    dom.catalogMealFilter.value = "recommended";
+    dom.catalogServingsInput.value = existingMeal ? String(existingMeal.servings || 2) : "2";
+    dom.catalogError.hidden = true;
+
+    dom.customForm.reset();
+    dom.customServingsInput.value = existingMeal ? String(existingMeal.servings || 2) : "2";
+    dom.customTimeInput.value = "25";
+    dom.customError.hidden = true;
+
+    switchModalMode("catalog");
+    renderCatalogList();
+
+    dom.modal.hidden = false;
+    document.body.style.overflow = "hidden";
+    dom.modalDaySelect.focus();
+  }
+
+  function closeMealModal() {
+    dom.modal.hidden = true;
+    document.body.style.overflow = "";
+
+    if (state.lastFocusedTrigger && typeof state.lastFocusedTrigger.focus === "function") {
+      state.lastFocusedTrigger.focus();
+    }
+  }
+
+  function switchModalMode(mode) {
+    var isCatalog = mode === "catalog";
+
+    dom.tabCatalog.classList.toggle("is-active", isCatalog);
+    dom.tabCatalog.setAttribute("aria-selected", String(isCatalog));
+    dom.panelCatalog.hidden = !isCatalog;
+
+    dom.tabCustom.classList.toggle("is-active", !isCatalog);
+    dom.tabCustom.setAttribute("aria-selected", String(!isCatalog));
+    dom.panelCustom.hidden = isCatalog;
+
+    if (!isCatalog) {
+      dom.customTitleInput.focus();
+    }
+  }
+
+  function getFilteredCatalogItems() {
+    var query = dom.catalogSearchInput.value.trim().toLowerCase();
+    var mealFilter = dom.catalogMealFilter.value;
+    var activeSlot = dom.modalSlotSelect.value;
+
+    var targetType = mealFilter === "recommended" ? activeSlot : mealFilter;
+
+    return MEAL_CATALOG.filter(function (item) {
+      if (targetType !== "all" && item.mealType !== targetType) {
+        return false;
+      }
+
+      if (query) {
+        var inTitle = item.title.toLowerCase().indexOf(query) !== -1;
+        var inDesc = item.description.toLowerCase().indexOf(query) !== -1;
+        var inIngredients = item.ingredients.some(function (ing) {
+          return ing.name.toLowerCase().indexOf(query) !== -1;
+        });
+
+        if (!inTitle && !inDesc && !inIngredients) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }
+
+  function renderCatalogList() {
+    var items = getFilteredCatalogItems();
+    var selectedSlot = dom.modalSlotSelect.value;
+    dom.catalogList.textContent = "";
+
+    if (items.length === 0) {
+      var emptyBox = document.createElement("div");
+      emptyBox.className = "empty-search-state";
+
+      var msg = document.createElement("p");
+      msg.textContent =
+        "No matching dishes found. Try clearing your search, switching Meal Filter to 'All meals', or adding a Custom Meal.";
+      emptyBox.appendChild(msg);
+
+      var resetBtn = document.createElement("button");
+      resetBtn.type = "button";
+      resetBtn.className = "btn btn-outline btn-sm";
+      resetBtn.textContent = "Show All Dishes";
+      resetBtn.addEventListener("click", function () {
+        dom.catalogSearchInput.value = "";
+        dom.catalogMealFilter.value = "all";
+        renderCatalogList();
+      });
+      emptyBox.appendChild(resetBtn);
+
+      dom.catalogList.appendChild(emptyBox);
+      return;
+    }
+
+    items.forEach(function (item) {
+      var card = document.createElement("article");
+      card.className = "catalog-meal-card";
+
+      var top = document.createElement("div");
+      top.className = "catalog-card-top";
+
+      var title = document.createElement("h3");
+      title.className = "catalog-card-title";
+      title.textContent = item.title;
+      top.appendChild(title);
+
+      // Place <img> immediately after the food item name in the picker as well
+      top.appendChild(
+        createMealImage(
+          item.image,
+          item.imageAlt || ("Meal photo of " + item.title),
+          "catalog-card-img"
+        )
+      );
+
+      var badge = document.createElement("span");
+      badge.className = "catalog-card-badge";
+      badge.textContent = item.mealType;
+      top.appendChild(badge);
+
+      var totalMin = item.prepMinutes + item.cookMinutes;
+      var meta = document.createElement("p");
+      meta.className = "catalog-card-meta";
+      meta.textContent =
+        totalMin + " min • Base " + item.baseServings + " servings • " +
+        item.dietaryTags.join(", ");
+      top.appendChild(meta);
+
+      var desc = document.createElement("p");
+      desc.className = "catalog-card-desc";
+      desc.textContent = item.description;
+      top.appendChild(desc);
+
+      card.appendChild(top);
+
+      var selectBtn = document.createElement("button");
+      selectBtn.type = "button";
+      selectBtn.className = "btn btn-primary btn-sm";
+      selectBtn.textContent = "Schedule for " + SLOT_TITLES[selectedSlot];
+      selectBtn.dataset.catalogId = item.id;
+      card.appendChild(selectBtn);
+
+      dom.catalogList.appendChild(card);
+    });
+  }
+
+  function assignCatalogMeal(catalogId) {
+    var rawServings = Number(dom.catalogServingsInput.value);
+    if (!Number.isInteger(rawServings) || rawServings < 1 || rawServings > 12) {
+      dom.catalogError.textContent =
+        "Please enter a valid whole number of servings between 1 and 12.";
+      dom.catalogError.hidden = false;
+      dom.catalogServingsInput.focus();
+      return;
+    }
+
+    dom.catalogError.hidden = true;
+
+    var item = findCatalogItem(catalogId);
+    if (!item) {
+      return;
+    }
+
+    var dayId = dom.modalDaySelect.value;
+    var slotKey = dom.modalSlotSelect.value;
+    var assigned = buildAssignedMealFromCatalog(item, rawServings, slotKey);
+
+    getActiveWeek().days[dayId][slotKey] = assigned;
+    writeSeedState("user-modified");
+    saveMealPlans();
+    generateShoppingListForWeek(state.mealPlans.activeWeek);
+    renderAll();
+
+    showStatus(
+      "Scheduled '" + assigned.title + "' (" + assigned.servings + " servings) for " +
+        getDayMeta(dayId).label + " " + SLOT_TITLES[slotKey] + " in " +
+        getActiveWeek().label + ".",
+      false,
+      true
+    );
+
+    closeMealModal();
+  }
+
+  function handleCustomMealSubmit(event) {
+    event.preventDefault();
+
+    var title = dom.customTitleInput.value.trim();
+    var servings = Number(dom.customServingsInput.value);
+    var totalMinutes = Number(dom.customTimeInput.value);
+    var rawIngredients = dom.customIngredientsInput.value
+      .split(",")
+      .map(function (entry) {
+        return entry.trim();
+      })
+      .filter(Boolean);
+
+    if (title.length < 2) {
+      dom.customError.textContent = "Please enter a meal name (at least 2 characters).";
+      dom.customError.hidden = false;
+      dom.customTitleInput.focus();
+      return;
+    }
+
+    if (!Number.isInteger(servings) || servings < 1 || servings > 12) {
+      dom.customError.textContent = "Servings must be a whole number between 1 and 12.";
+      dom.customError.hidden = false;
+      dom.customServingsInput.focus();
+      return;
+    }
+
+    if (!Number.isFinite(totalMinutes) || totalMinutes < 1 || totalMinutes > 240) {
+      dom.customError.textContent = "Total time must be between 1 and 240 minutes.";
+      dom.customError.hidden = false;
+      dom.customTimeInput.focus();
+      return;
+    }
+
+    if (rawIngredients.length === 0) {
+      dom.customError.textContent =
+        "Please enter at least one ingredient separated by commas.";
+      dom.customError.hidden = false;
+      dom.customIngredientsInput.focus();
+      return;
+    }
+
+    dom.customError.hidden = true;
+
+    var dayId = dom.modalDaySelect.value;
+    var slotKey = dom.modalSlotSelect.value;
+    var ingredients = rawIngredients.map(function (name) {
+      return {
+        name: name,
+        quantity: 1,
+        unit: "portion",
+        category: "Custom Items"
+      };
+    });
+
+    var customMeal = {
+      recipeId: "custom-" + Date.now(),
+      title: title,
+      mealType: slotKey,
+      prepMinutes: Math.round(totalMinutes * 0.4),
+      cookMinutes: Math.round(totalMinutes * 0.6),
+      baseServings: servings,
+      servings: servings,
+      dietaryTags: ["Custom"],
+      image: FALLBACK_IMAGE,
+      imageAlt: "Custom scheduled meal: " + title,
+      description: "Custom scheduled meal for " + SLOT_TITLES[slotKey] + ".",
+      baseIngredients: ingredients,
+      ingredients: ingredients,
+      updatedAt: new Date().toISOString()
+    };
+
+    getActiveWeek().days[dayId][slotKey] = customMeal;
+    writeSeedState("user-modified");
+    saveMealPlans();
+    generateShoppingListForWeek(state.mealPlans.activeWeek);
+    renderAll();
+
+    showStatus(
+      "Added custom meal '" + customMeal.title + "' to " + getDayMeta(dayId).label +
+        " " + SLOT_TITLES[slotKey] + ".",
+      false,
+      true
+    );
+
+    closeMealModal();
+  }
+
+  function removeCellMeal(dayId, slotKey) {
+    var dayMeals = getActiveWeek().days[dayId];
+    var existing = dayMeals[slotKey];
+    if (!existing) {
+      return;
+    }
+
+    dayMeals[slotKey] = null;
+    if (countAllPlannedMeals(state.mealPlans) === 0) {
+      writeSeedState("cleared");
+    } else {
+      writeSeedState("user-modified");
+    }
+
+    saveMealPlans();
+    generateShoppingListForWeek(state.mealPlans.activeWeek);
+    renderAll();
+
+    showStatus(
+      "Removed '" + existing.title + "' from " + getDayMeta(dayId).label + " " +
+        SLOT_TITLES[slotKey] + ".",
+      false,
+      false
+    );
+  }
+
+  function loadSampleMenuIntoActiveWeek() {
+    var activeWeek = getActiveWeek();
+    populatePrototypeWeek(activeWeek);
+    writeSeedState("seeded");
+    saveMealPlans();
+    generateShoppingListForWeek(state.mealPlans.activeWeek);
+    renderAll();
+
+    showStatus(
+      "Loaded the 7-day sample meal schedule into " + activeWeek.label + ".",
+      false,
+      true
+    );
+  }
+
+  function clearActiveWeek() {
+    var activeWeek = getActiveWeek();
+    DAYS.forEach(function (day) {
+      MEAL_SLOTS.forEach(function (slotKey) {
+        activeWeek.days[day.id][slotKey] = null;
+      });
+    });
+
+    writeSeedState("cleared");
+    saveMealPlans();
+    generateShoppingListForWeek(state.mealPlans.activeWeek);
+    renderAll();
+
+    showStatus(
+      "Cleared all meals in " + activeWeek.label + ". Use '+ Add Meal' or 'Load Sample Menu' to repopulate.",
+      false,
+      false
+    );
+  }
+
+  /* ------------------------------------------------------------------------
+     9. DOM Caching & Event Binding
+     ------------------------------------------------------------------------ */
+  function cacheDom() {
+    dom.weekSelect = document.getElementById("schedule-week-select");
+    dom.prevWeekBtn = document.getElementById("schedule-prev-week-btn");
+    dom.nextWeekBtn = document.getElementById("schedule-next-week-btn");
+    dom.weekSummaryText = document.getElementById("schedule-week-summary");
+    dom.loadSampleBtn = document.getElementById("load-sample-menu-btn");
+    dom.clearWeekBtn = document.getElementById("clear-week-btn");
+
+    dom.statusBanner = document.getElementById("schedule-status");
+    dom.emptyWeekBanner = document.getElementById("empty-week-banner");
+    dom.emptyAddMealBtn = document.getElementById("empty-add-meal-btn");
+    dom.emptyLoadSampleBtn = document.getElementById("empty-load-sample-btn");
+
+    dom.tableBody = document.getElementById("schedule-table-body");
+    dom.openAddMealBtn = document.getElementById("open-add-meal-btn");
+    dom.viewShoppingListBtn = document.getElementById("view-shopping-list-btn");
+
+    dom.modal = document.getElementById("schedule-meal-modal");
+    dom.modalTitle = document.getElementById("schedule-modal-title");
+    dom.closeModalBtn = document.getElementById("close-schedule-modal-btn");
+    dom.modalDaySelect = document.getElementById("modal-day-select");
+    dom.modalSlotSelect = document.getElementById("modal-slot-select");
+
+    dom.tabCatalog = document.getElementById("tab-catalog-meals");
+    dom.tabCustom = document.getElementById("tab-custom-schedule-meal");
+    dom.panelCatalog = document.getElementById("panel-catalog-meals");
+    dom.panelCustom = document.getElementById("panel-custom-schedule-meal");
+
+    dom.catalogSearchInput = document.getElementById("catalog-search-input");
+    dom.catalogMealFilter = document.getElementById("catalog-meal-filter");
+    dom.catalogServingsInput = document.getElementById("catalog-servings-input");
+    dom.catalogError = document.getElementById("catalog-validation-error");
+    dom.catalogList = document.getElementById("catalog-meal-list");
+
+    dom.customForm = document.getElementById("schedule-custom-form");
+    dom.customTitleInput = document.getElementById("custom-schedule-title");
+    dom.customServingsInput = document.getElementById("custom-schedule-servings");
+    dom.customTimeInput = document.getElementById("custom-schedule-time");
+    dom.customIngredientsInput = document.getElementById("custom-schedule-ingredients");
+    dom.customError = document.getElementById("custom-schedule-error");
+    dom.cancelCustomBtn = document.getElementById("cancel-schedule-custom-btn");
+  }
+
+  function bindEvents() {
+    dom.weekSelect.addEventListener("change", function () {
+      state.mealPlans.activeWeek = dom.weekSelect.value;
+      saveMealPlans();
+      renderAll();
+    });
+
+    dom.prevWeekBtn.addEventListener("click", function () {
+      var idx = WEEKS.findIndex(function (w) {
+        return w.id === state.mealPlans.activeWeek;
+      });
+      if (idx > 0) {
+        state.mealPlans.activeWeek = WEEKS[idx - 1].id;
+        saveMealPlans();
+        renderAll();
+      }
+    });
+
+    dom.nextWeekBtn.addEventListener("click", function () {
+      var idx = WEEKS.findIndex(function (w) {
+        return w.id === state.mealPlans.activeWeek;
+      });
+      if (idx < WEEKS.length - 1) {
+        state.mealPlans.activeWeek = WEEKS[idx + 1].id;
+        saveMealPlans();
+        renderAll();
+      }
+    });
+
+    dom.loadSampleBtn.addEventListener("click", loadSampleMenuIntoActiveWeek);
+    dom.emptyLoadSampleBtn.addEventListener("click", loadSampleMenuIntoActiveWeek);
+    dom.clearWeekBtn.addEventListener("click", clearActiveWeek);
+
+    dom.openAddMealBtn.addEventListener("click", function () {
+      openMealModal("monday", "breakfast", dom.openAddMealBtn);
+    });
+
+    dom.emptyAddMealBtn.addEventListener("click", function () {
+      openMealModal("monday", "breakfast", dom.emptyAddMealBtn);
+    });
+
+    // Ensure Shopping List in localStorage is synchronized right before navigating
+    dom.viewShoppingListBtn.addEventListener("click", function () {
+      generateShoppingListForWeek(state.mealPlans.activeWeek);
+    });
+
+    // Delegated Edit / Add / Remove inside the Weekly Schedule table
+    dom.tableBody.addEventListener("click", function (event) {
+      var actionBtn = event.target.closest("[data-action]");
+      if (!actionBtn) {
+        return;
+      }
+
+      var action = actionBtn.dataset.action;
+      var dayId = actionBtn.dataset.day;
+      var slotKey = actionBtn.dataset.slot;
+
+      if (action === "open-cell-modal") {
+        openMealModal(dayId, slotKey, actionBtn);
+      } else if (action === "remove-cell-meal") {
+        removeCellMeal(dayId, slotKey);
+      }
+    });
+
+    // Modal controls
+    dom.closeModalBtn.addEventListener("click", closeMealModal);
+    dom.cancelCustomBtn.addEventListener("click", closeMealModal);
+
+    dom.modal.addEventListener("click", function (event) {
+      if (event.target === dom.modal) {
+        closeMealModal();
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (dom.modal.hidden) {
+        return;
+      }
+
+      if (event.key === "Escape") {
+        closeMealModal();
+        return;
+      }
+
+      if (event.key === "Tab") {
+        var focusables = Array.prototype.slice.call(
+          dom.modal.querySelectorAll(
+            'button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter(function (el) {
+          return el.offsetParent !== null;
+        });
+
+        if (focusables.length === 0) {
+          return;
+        }
+
+        var firstEl = focusables[0];
+        var lastEl = focusables[focusables.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstEl) {
+          event.preventDefault();
+          lastEl.focus();
+        } else if (!event.shiftKey && document.activeElement === lastEl) {
+          event.preventDefault();
+          firstEl.focus();
+        }
+      }
+    });
+
+    dom.modalSlotSelect.addEventListener("change", renderCatalogList);
+    dom.modalDaySelect.addEventListener("change", function () {
+      var existing = getActiveWeek().days[dom.modalDaySelect.value][dom.modalSlotSelect.value];
+      dom.modalTitle.textContent = existing
+        ? "Update Scheduled Meal"
+        : "Add Meal to Weekly Schedule";
+    });
+
+    dom.tabCatalog.addEventListener("click", function () {
+      switchModalMode("catalog");
+    });
+
+    dom.tabCustom.addEventListener("click", function () {
+      switchModalMode("custom");
+    });
+
+    dom.catalogSearchInput.addEventListener("input", renderCatalogList);
+    dom.catalogMealFilter.addEventListener("change", renderCatalogList);
+
+    dom.catalogList.addEventListener("click", function (event) {
+      var btn = event.target.closest("[data-catalog-id]");
+      if (!btn) {
+        return;
+      }
+      assignCatalogMeal(btn.dataset.catalogId);
+    });
+
+    dom.customForm.addEventListener("submit", handleCustomMealSubmit);
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    cacheDom();
+    state.mealPlans = loadMealPlans();
+    saveMealPlans();
+    generateShoppingListForWeek(state.mealPlans.activeWeek);
+    bindEvents();
+    renderAll();
+  });
+})();
