@@ -1,0 +1,54 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1c1917"/>
+      <stop offset="100%" style="stop-color:#292524"/>
+    </linearGradient>
+    <linearGradient id="grill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#57534e"/>
+      <stop offset="100%" style="stop-color:#292524"/>
+    </linearGradient>
+    <linearGradient id="meat1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b45309"/>
+      <stop offset="100%" style="stop-color:#92400e"/>
+    </linearGradient>
+    <linearGradient id="meat2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c2410c"/>
+      <stop offset="100%" style="stop-color:#9a3412"/>
+    </linearGradient>
+  </defs>
+  <!-- Dark background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- Glow effects (charcoal embers) -->
+  <circle cx="200" cy="430" r="30" fill="#f97316" opacity="0.3"/>
+  <circle cx="400" cy="450" r="25" fill="#ef4444" opacity="0.25"/>
+  <circle cx="600" cy="435" r="30" fill="#f97316" opacity="0.3"/>
+  <!-- Grill bars -->
+  <rect x="80" y="380" width="640" height="18" rx="9" fill="url(#grill)"/>
+  <rect x="80" y="410" width="640" height="18" rx="9" fill="url(#grill)"/>
+  <rect x="80" y="440" width="640" height="18" rx="9" fill="url(#grill)"/>
+  <!-- Kebab skewer 1 (seekh kebab - long cylinder) -->
+  <rect x="100" y="200" width="600" height="10" rx="5" fill="#a16207"/>
+  <!-- Meat on skewer 1 -->
+  <rect x="150" y="183" width="120" height="44" rx="22" fill="url(#meat1)"/>
+  <rect x="150" y="183" width="120" height="44" rx="22" fill="none" stroke="#78350f" stroke-width="2"/>
+  <rect x="300" y="183" width="120" height="44" rx="22" fill="url(#meat2)"/>
+  <rect x="440" y="183" width="120" height="44" rx="22" fill="url(#meat1)"/>
+  <!-- Kebab skewer 2 -->
+  <rect x="100" y="295" width="600" height="10" rx="5" fill="#a16207"/>
+  <!-- Meat on skewer 2 -->
+  <rect x="170" y="278" width="110" height="44" rx="22" fill="url(#meat2)"/>
+  <rect x="310" y="278" width="110" height="44" rx="22" fill="url(#meat1)"/>
+  <rect x="460" y="278" width="110" height="44" rx="22" fill="url(#meat2)"/>
+  <!-- Char marks -->
+  <rect x="175" y="195" width="8" height="20" rx="4" fill="#292524" opacity="0.6"/>
+  <rect x="205" y="195" width="8" height="20" rx="4" fill="#292524" opacity="0.5"/>
+  <rect x="320" y="195" width="8" height="20" rx="4" fill="#292524" opacity="0.6"/>
+  <!-- Smoke / steam -->
+  <path d="M300 170 Q315 140 300 110 Q285 80 300 50" stroke="#9ca3af" stroke-width="4" fill="none" opacity="0.35" stroke-linecap="round"/>
+  <path d="M450 165 Q468 130 450 95 Q432 60 450 25" stroke="#9ca3af" stroke-width="3" fill="none" opacity="0.25" stroke-linecap="round"/>
+  <!-- Label bar -->
+  <rect x="0" y="510" width="800" height="90" fill="#1c1917" opacity="0.9"/>
+  <text x="400" y="566" font-size="52" font-family="Georgia,serif" font-weight="bold" fill="#fef2f2" text-anchor="middle">Kebabs</text>
+  <text x="400" y="596" font-size="22" font-family="Arial,sans-serif" fill="#f97316" text-anchor="middle" opacity="0.9">Seekh &amp; Chapli Kebab</text>
+</svg>

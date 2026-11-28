@@ -1,0 +1,49 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#713f12"/>
+      <stop offset="100%" style="stop-color:#451a03"/>
+    </linearGradient>
+    <linearGradient id="crust" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fbbf24"/>
+      <stop offset="100%" style="stop-color:#d97706"/>
+    </linearGradient>
+    <linearGradient id="crust2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b"/>
+      <stop offset="100%" style="stop-color:#b45309"/>
+    </linearGradient>
+    <radialGradient id="chutney1" cx="50%" cy="40%">
+      <stop offset="0%" style="stop-color:#4ade80"/>
+      <stop offset="100%" style="stop-color:#166534"/>
+    </radialGradient>
+    <radialGradient id="chutney2" cx="50%" cy="40%">
+      <stop offset="0%" style="stop-color:#a16207"/>
+      <stop offset="100%" style="stop-color:#451a03"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- Plate / board -->
+  <ellipse cx="400" cy="370" rx="310" ry="180" fill="#292524" opacity="0.8"/>
+  <!-- Green mint chutney bowl -->
+  <circle cx="620" cy="340" r="60" fill="#166534"/>
+  <circle cx="620" cy="335" r="52" fill="url(#chutney1)"/>
+  <!-- Tamarind chutney bowl -->
+  <circle cx="180" cy="360" r="55" fill="#451a03"/>
+  <circle cx="180" cy="355" r="47" fill="url(#chutney2)"/>
+  <!-- Samosa 1 (big, centre) -->
+  <polygon points="400,160 270,420 530,420" fill="url(#crust)"/>
+  <polygon points="400,160 270,420 530,420" fill="none" stroke="#92400e" stroke-width="4"/>
+  <!-- Seam lines on samosa -->
+  <line x1="400" y1="160" x2="400" y2="420" stroke="#d97706" stroke-width="3" opacity="0.5"/>
+  <path d="M335 290 Q400 270 465 290" stroke="#b45309" stroke-width="2" fill="none" opacity="0.6"/>
+  <!-- Samosa 2 (left, partly behind) -->
+  <polygon points="195,195 100,400 310,400" fill="url(#crust2)" opacity="0.9"/>
+  <polygon points="195,195 100,400 310,400" fill="none" stroke="#78350f" stroke-width="3"/>
+  <!-- Samosa 3 (right, partly behind) -->
+  <polygon points="605,195 490,400 700,400" fill="url(#crust)" opacity="0.85"/>
+  <polygon points="605,195 490,400 700,400" fill="none" stroke="#78350f" stroke-width="3"/>
+  <!-- Label bar -->
+  <rect x="0" y="510" width="800" height="90" fill="#451a03" opacity="0.9"/>
+  <text x="400" y="566" font-size="52" font-family="Georgia,serif" font-weight="bold" fill="#fef3c7" text-anchor="middle">Samosa</text>
+  <text x="400" y="596" font-size="22" font-family="Arial,sans-serif" fill="#fbbf24" text-anchor="middle" opacity="0.9">Crispy Fried Pastry</text>
+</svg>

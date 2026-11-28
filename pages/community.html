@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Page title shown in the browser tab -->
+  <title>Community Reviews &amp; Cooking Tips | FORK &amp; SHARE</title>
+  <meta name="description" content="Read community reviews, share your own cooking experience, and browse helpful cooking tips and FAQs on FORK &amp; SHARE.">
+
+  <!-- 1. Shared stylesheet (goes up one level from pages/ to the project root) -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- 2. Page-specific stylesheet for Community Reviews & Cooking Tips only -->
+  <link rel="stylesheet" href="../css/community.css">
+</head>
+<body>
+
+  <!-- =====================================================================
+       SHARED DESIGN 1 + 2: Brand Header & Responsive Primary Navigation
+       Copied from the shared design guide template (pages/ version).
+       "Community" link is marked as the active current page.
+       ===================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <!-- Brand logo — clicking it goes back to the home page -->
+      <a class="brand-logo" href="../index.html">
+        <span class="brand-name">FORK &amp; SHARE</span>
+        <span class="brand-tagline">Recipe Sharing Hub</span>
+      </a>
+
+      <!-- Mobile hamburger button — controlled by js/shared.js -->
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- Primary navigation — data-nav-menu attribute is required by shared.js -->
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <div class="container">
+        <ul id="primary-nav" class="nav-list" data-nav-menu>
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="explore.html">Explore</a></li>
+          <li><a class="nav-link" href="recipe-categories.html">Categories</a></li>
+          <li><a class="nav-link" href="meal-planner.html">Meal Planner</a></li>
+          <li><a class="nav-link" href="share-recipe.html">Share a Recipe</a></li>
+          <!-- "Community" is the current page — is-active and aria-current mark it -->
+          <li><a class="nav-link is-active" href="community.html" aria-current="page">Community</a></li>
+          <li><a class="nav-link" href="profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- =====================================================================
+       MAIN PAGE CONTENT
+       ===================================================================== -->
+  <main class="site-main">
+    <div class="container">
+
+      <!-- ------------------------------------------------------------------
+           SECTION A: Page Heading
+           Centred heading and subtitle as shown in the prototype.
+           ------------------------------------------------------------------ -->
+      <section class="section community-hero">
+        <h1 class="community-heading">Community Reviews &amp; Cooking Tips</h1>
+        <p class="community-subtitle">Share your experience. Help others cook better.</p>
+      </section>
+
+
+      <!-- ------------------------------------------------------------------
+           SECTION B: Main Two-Column Layout (matches desktop prototype)
+           Left column: Rating Summary + Write a Review Form
+           Right column: Recent Community Reviews + Cooking Tips / FAQs
+           ------------------------------------------------------------------ -->
+      <div id="community-workspace" class="community-layout" data-review-state="default">
+
+        <!-- LEFT COLUMN: Rating Summary & Review Submission Form -->
+        <div class="community-left">
+          <div class="review-input-row">
+
+            <!-- 1. Rating Summary Box -->
+            <aside class="card rating-summary" aria-label="Overall rating summary">
+              <h2 class="rating-summary__title">Rating Summary</h2>
+              <p class="rating-summary__score" id="rating-average">4.8 / 5</p>
+              <p
+                class="rating-summary__stars"
+                id="rating-stars"
+                aria-label="Rated 4.8 out of 5 stars"
+              >
+                <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              </p>
+              <p class="rating-summary__count" id="rating-count">24 Reviews</p>
+            </aside>
+
+            <!-- 2. Write a Review Form (States 2 & 3) -->
+            <section class="card review-form-card" id="write-review-section" aria-labelledby="write-review-heading">
+              <h2 class="review-form-card__title" id="write-review-heading">Write a Review</h2>
+
+              <!-- Form validation summary banner (shown in Invalid Review state) -->
+              <div
+                id="form-error-banner"
+                class="form-feedback form-feedback--error"
+                role="alert"
+                hidden
+              ></div>
+
+              <form id="review-form" class="review-form" novalidate>
+                <!-- Your Name -->
+                <div class="form-group">
+                  <label for="reviewer-name" class="form-label">Your Name</label>
+                  <input
+                    type="text"
+                    id="reviewer-name"
+                    name="reviewerName"
+                    class="form-input"
+                    placeholder="Enter your name"
+                    maxlength="50"
+                    autocomplete="name"
+                    aria-describedby="name-error"
+                    required
+                  >
+                  <p id="name-error" class="field-error" hidden></p>
+                </div>
+
+                <!-- Select Rating -->
+                <div class="form-group">
+                  <label for="review-rating" class="form-label">Select Rating</label>
+                  <select
+                    id="review-rating"
+                    name="reviewRating"
+                    class="form-select"
+                    aria-describedby="rating-error"
+                    required
+                  >
+                    <option value="">Choose a rating...</option>
+                    <option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; (5 / 5) — Excellent</option>
+                    <option value="4">&#9733;&#9733;&#9733;&#9733;&#9734; (4 / 5) — Very Good</option>
+                    <option value="3">&#9733;&#9733;&#9733;&#9734;&#9734; (3 / 5) — Good</option>
+                    <option value="2">&#9733;&#9733;&#9734;&#9734;&#9734; (2 / 5) — Fair</option>
+                    <option value="1">&#9733;&#9734;&#9734;&#9734;&#9734; (1 / 5) — Needs Work</option>
+                  </select>
+                  <p id="rating-error" class="field-error" hidden></p>
+                </div>
+
+                <!-- Your Review -->
+                <div class="form-group">
+                  <label for="review-text" class="form-label">Your Review</label>
+                  <textarea
+                    id="review-text"
+                    name="reviewText"
+                    class="form-textarea"
+                    rows="4"
+                    placeholder="Write your review here..."
+                    maxlength="300"
+                    aria-describedby="text-error"
+                    required
+                  ></textarea>
+                  <p id="text-error" class="field-error" hidden></p>
+                </div>
+
+                <button type="submit" id="submit-review-btn" class="btn btn-primary review-submit-btn">
+                  Submit
+                </button>
+              </form>
+            </section>
+
+          </div><!-- /.review-input-row -->
+        </div><!-- /.community-left -->
+
+
+        <!-- RIGHT COLUMN: Recent Community Reviews & Cooking Tips / FAQs -->
+        <div class="community-right">
+
+          <!-- 3. Recent Community Reviews (States 1 & 4) -->
+          <section class="section reviews-section" aria-labelledby="recent-reviews-heading">
+            <div class="reviews-header">
+              <h2 class="reviews-section__title" id="recent-reviews-heading">Recent Community Reviews</h2>
+              <div class="reviews-actions">
+                <button
+                  type="button"
+                  id="clear-reviews-btn"
+                  class="btn-text-action"
+                  aria-label="Clear reviews to view empty state"
+                >
+                  Clear Reviews
+                </button>
+                <button
+                  type="button"
+                  id="restore-reviews-btn"
+                  class="btn-text-action"
+                  hidden
+                >
+                  Restore Sample Reviews
+                </button>
+              </div>
+            </div>
+
+            <!-- State 4: Published confirmation banner -->
+            <div
+              id="published-banner"
+              class="published-banner"
+              role="status"
+              aria-live="polite"
+              hidden
+            >
+              <span class="published-banner__icon" aria-hidden="true">&#10003;</span>
+              <span class="published-banner__text">Review published! Your review is now visible below.</span>
+            </div>
+
+            <!-- State 1: No Reviews empty state -->
+            <div id="no-reviews-state" class="card no-reviews-card" hidden aria-live="polite">
+              <div class="no-reviews-card__content">
+                <h3 class="no-reviews-card__title">Community Reviews</h3>
+                <p class="no-reviews-card__message">No reviews yet</p>
+                <button type="button" id="empty-write-btn" class="btn btn-primary">
+                  Write a review
+                </button>
+              </div>
+              <div class="no-reviews-card__thumb">
+                <img
+                  src="../images/cat-maincourse.jpg"
+                  alt="Prepared home-cooked meal dish"
+                  loading="lazy"
+                >
+              </div>
+            </div>
+
+            <!-- Sample & Published Community Review Cards -->
+            <div id="reviews-list" class="reviews-grid">
+              <!-- Review cards are rendered by js/community.js -->
+            </div>
+          </section>
+
+
+          <!-- 4. Cooking Tips / FAQs Accordion -->
+          <section class="section faq-section" aria-labelledby="faq-heading">
+            <h2 class="faq-section__title" id="faq-heading">Cooking Tips / FAQs</h2>
+            <div id="faq-accordion" class="faq-accordion">
+              <!-- Accordion items are rendered by js/community.js -->
+            </div>
+          </section>
+
+        </div><!-- /.community-right -->
+
+      </div><!-- /.community-layout -->
+
+    </div><!-- /.container -->
+  </main>
+
+
+  <!-- =====================================================================
+       SHARED DESIGN 3: Community Footer
+       Copied from the shared design guide template (pages/ version).
+       ===================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">FORK &amp; SHARE</span>
+
+      <ul class="footer-links" aria-label="Footer Navigation">
+        <!-- Do not create separate About or Contact pages (per shared guide) -->
+        <li><a class="footer-link" href="../index.html#about">About</a></li>
+        <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
+        <li><a class="footer-link" href="community.html">Community</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
+    </div>
+  </footer>
+
+
+  <!-- =====================================================================
+       SCRIPTS
+       shared.js must come first (handles hamburger nav on all pages).
+       community.js comes after (handles this page only).
+       defer means both scripts run after the HTML is fully loaded.
+       ===================================================================== -->
+  <script src="../js/shared.js" defer></script>
+  <script src="../js/community.js" defer></script>
+
+</body>
+</html>

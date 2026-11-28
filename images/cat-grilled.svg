@@ -1,0 +1,53 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1c1917"/>
+      <stop offset="100%" style="stop-color:#0c0a09"/>
+    </linearGradient>
+    <linearGradient id="meat" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b45309"/>
+      <stop offset="100%" style="stop-color:#78350f"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#ef4444" stop-opacity="0.6"/>
+      <stop offset="100%" style="stop-color:#f97316" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <!-- Ember glow at bottom -->
+  <rect x="0" y="380" width="800" height="220" fill="url(#glow)"/>
+  <!-- Grill grate bars (vertical) -->
+  <rect x="160" y="200" width="20" height="300" rx="10" fill="#44403c"/>
+  <rect x="230" y="200" width="20" height="300" rx="10" fill="#44403c"/>
+  <rect x="300" y="200" width="20" height="300" rx="10" fill="#44403c"/>
+  <rect x="370" y="200" width="20" height="300" rx="10" fill="#44403c"/>
+  <rect x="440" y="200" width="20" height="300" rx="10" fill="#44403c"/>
+  <rect x="510" y="200" width="20" height="300" rx="10" fill="#44403c"/>
+  <rect x="580" y="200" width="20" height="300" rx="10" fill="#44403c"/>
+  <rect x="620" y="200" width="20" height="300" rx="10" fill="#44403c"/>
+  <!-- Steak / meat piece 1 -->
+  <ellipse cx="310" cy="300" rx="130" ry="80" fill="url(#meat)"/>
+  <ellipse cx="310" cy="300" rx="130" ry="80" fill="none" stroke="#92400e" stroke-width="3"/>
+  <!-- Char marks on steak -->
+  <path d="M210 270 Q230 300 210 330" stroke="#292524" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M270 265 Q290 300 270 335" stroke="#292524" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M330 263 Q350 300 330 337" stroke="#292524" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <!-- Meat piece 2 (chicken thigh) -->
+  <ellipse cx="530" cy="295" rx="110" ry="75" fill="#c2410c"/>
+  <ellipse cx="530" cy="295" rx="110" ry="75" fill="none" stroke="#9a3412" stroke-width="3"/>
+  <!-- Char marks -->
+  <path d="M455 265 Q475 295 455 325" stroke="#1c1917" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.65"/>
+  <path d="M510 260 Q530 295 510 330" stroke="#1c1917" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.65"/>
+  <!-- Smoke -->
+  <path d="M310 200 Q330 165 310 130 Q290 95 310 60" stroke="#78716c" stroke-width="5" fill="none" opacity="0.4" stroke-linecap="round"/>
+  <path d="M530 195 Q555 155 530 115" stroke="#78716c" stroke-width="4" fill="none" opacity="0.3" stroke-linecap="round"/>
+  <!-- Ember sparks -->
+  <circle cx="250" cy="440" r="5" fill="#f97316" opacity="0.8"/>
+  <circle cx="400" cy="460" r="4" fill="#ef4444" opacity="0.7"/>
+  <circle cx="560" cy="445" r="6" fill="#f97316" opacity="0.75"/>
+  <circle cx="330" cy="455" r="3" fill="#fbbf24" opacity="0.6"/>
+  <!-- Label bar -->
+  <rect x="0" y="510" width="800" height="90" fill="#0c0a09" opacity="0.95"/>
+  <text x="400" y="566" font-size="52" font-family="Georgia,serif" font-weight="bold" fill="#fef2f2" text-anchor="middle">Grilled</text>
+  <text x="400" y="596" font-size="22" font-family="Arial,sans-serif" fill="#f97316" text-anchor="middle" opacity="0.9">BBQ &amp; Char-Grilled</text>
+</svg>
