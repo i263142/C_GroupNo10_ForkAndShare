@@ -1,0 +1,521 @@
+/* ==========================================================================
+   FORK & SHARE — Home Page Stylesheet
+   Extends css/style.css using shared design tokens without modifying shared files.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Hero Section & Search Bar
+   -------------------------------------------------------------------------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-md);
+  background-color: var(--cream);
+  box-shadow: 0 8px 24px var(--border-subtle);
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--warm-peach);
+  color: var(--dark-brown);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: clamp(1.9rem, 3.2vw, 2.65rem);
+  margin-bottom: 0.85rem;
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  margin-bottom: 1.35rem;
+  max-width: 56ch;
+}
+
+.hero-search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 0.4rem;
+}
+
+.hero-search-input {
+  flex: 1 1 230px;
+  min-width: 0;
+  padding: 0.7rem 0.95rem;
+  border: 2px solid var(--sage-green);
+  border-radius: var(--radius-sm);
+  background-color: var(--cream);
+  color: var(--dark-brown);
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  transition: border-color var(--transition-fast);
+}
+
+.hero-search-input::placeholder {
+  color: var(--dark-brown);
+  opacity: 0.65;
+}
+
+.hero-search-input:focus {
+  border-color: var(--forest-green);
+}
+
+.search-feedback {
+  min-height: 1.3rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--forest-green);
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-tags-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark-brown);
+}
+
+.tag-chip {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--sage-green);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--forest-green);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.tag-chip:hover {
+  background-color: var(--warm-peach);
+  border-color: var(--warm-peach);
+  color: var(--dark-brown);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   2. Spotlight Card (Recipe of the Week)
+   -------------------------------------------------------------------------- */
+.spotlight-card {
+  padding: 0;
+  overflow: hidden;
+  border-width: 2px;
+  border-color: var(--warm-peach);
+}
+
+.spotlight-media {
+  position: relative;
+  border-bottom: 1px solid var(--sage-green);
+}
+
+.recipe-illustration {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 320 / 190;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.spotlight-badge {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--forest-green);
+  color: var(--cream);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.spotlight-body {
+  padding: 1.35rem;
+}
+
+.recipe-meta-line {
+  margin-bottom: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--forest-green);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.spotlight-title {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.spotlight-summary {
+  margin-bottom: 1.1rem;
+  font-size: 0.95rem;
+}
+
+.spotlight-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.recipe-author {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark-brown);
+}
+
+.btn-sm {
+  padding: 0.45rem 0.95rem;
+  font-size: 0.88rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. Section Header Row & Category Cards
+   -------------------------------------------------------------------------- */
+.section-header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--warm-peach);
+}
+
+.section-header-row .section-title {
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+.section-more-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding-bottom: 0.35rem;
+}
+
+.section-more-link:hover {
+  text-decoration: underline;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: var(--dark-brown);
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.category-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--forest-green);
+  box-shadow: 0 6px 16px var(--border-subtle);
+}
+
+.category-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--sage-green);
+  color: var(--forest-green);
+}
+
+.category-icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.category-title {
+  font-size: 1.15rem;
+  margin-bottom: 0;
+}
+
+.category-count {
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: var(--dark-brown);
+}
+
+/* --------------------------------------------------------------------------
+   4. Featured Recipes Filter Bar & Recipe Cards
+   -------------------------------------------------------------------------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.filter-btn {
+  padding: 0.45rem 0.95rem;
+  border: 1.5px solid var(--sage-green);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--forest-green);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.filter-btn:hover {
+  background-color: var(--warm-peach);
+  border-color: var(--warm-peach);
+  color: var(--dark-brown);
+}
+
+.filter-btn.is-selected,
+.filter-btn[aria-pressed="true"] {
+  background-color: var(--forest-green);
+  border-color: var(--forest-green);
+  color: var(--cream);
+}
+
+.filter-status {
+  margin-bottom: 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark-brown);
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.recipe-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--forest-green);
+  box-shadow: 0 6px 18px var(--border-subtle);
+}
+
+.recipe-card[hidden] {
+  display: none;
+}
+
+.recipe-card-banner {
+  position: relative;
+  border-bottom: 1px solid var(--sage-green);
+}
+
+.banner-sage {
+  background-color: var(--sage-green);
+}
+
+.banner-peach {
+  background-color: var(--warm-peach);
+}
+
+.banner-forest {
+  background-color: var(--forest-green);
+}
+
+.recipe-thumb-svg,
+.recipe-thumb-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.recipe-thumb-img {
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: center;
+}
+
+.recipe-badge {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--cream);
+  border: 1px solid var(--forest-green);
+  color: var(--forest-green);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.recipe-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+.recipe-category-label {
+  margin-bottom: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--forest-green);
+}
+
+.recipe-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.recipe-title a {
+  text-decoration: none;
+}
+
+.recipe-title a:hover {
+  text-decoration: underline;
+}
+
+.recipe-excerpt {
+  flex: 1;
+  font-size: 0.94rem;
+  margin-bottom: 1rem;
+}
+
+.recipe-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.recipe-meta-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dark-brown);
+}
+
+.recipe-card-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.save-btn {
+  padding: 0.3rem 0.7rem;
+  border: 1.5px solid var(--forest-green);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--forest-green);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.save-btn:hover {
+  background-color: var(--warm-peach);
+  color: var(--dark-brown);
+}
+
+.save-btn.is-saved,
+.save-btn[aria-pressed="true"] {
+  background-color: var(--forest-green);
+  color: var(--cream);
+}
+
+.recipe-read-link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.recipe-read-link:hover {
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   5. Kitchen Routine Hub Cards
+   -------------------------------------------------------------------------- */
+.hub-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-top: 4px solid var(--warm-peach);
+}
+
+.hub-card-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hub-card-text {
+  flex: 1;
+  font-size: 0.95rem;
+  margin-bottom: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Responsive Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 1.2rem;
+  }
+
+  .hero-search-btn,
+  .hero-actions .btn {
+    width: 100%;
+  }
+}

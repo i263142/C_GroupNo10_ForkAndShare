@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | FORK &amp; SHARE</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+  <!-- Design 1: Brand Header + Design 2: Responsive Primary Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-logo" href="index.html">
+        <span class="brand-name">FORK &amp; SHARE</span>
+        <span class="brand-tagline">Recipe Sharing Hub</span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <div class="container">
+        <ul id="primary-nav" class="nav-list" data-nav-menu>
+          <li><a class="nav-link is-active" href="index.html" aria-current="page">Home</a></li>
+          <li><a class="nav-link" href="pages/explore.html">Explore</a></li>
+          <li><a class="nav-link" href="pages/categories.html">Categories</a></li>
+          <li><a class="nav-link" href="pages/meal-planner.html">Meal Planner</a></li>
+          <li><a class="nav-link" href="pages/share-recipe.html">Share a Recipe</a></li>
+          <li><a class="nav-link" href="pages/community.html">Community</a></li>
+          <li><a class="nav-link" href="pages/profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <div class="container">
+      <!-- Hero Banner & Quick Recipe Search -->
+      <section class="section hero" aria-labelledby="hero-heading">
+        <div class="hero-content">
+          <p class="hero-eyebrow">Fresh from home kitchens</p>
+          <h1 id="hero-heading" class="hero-title">
+            Cook, Share, and Savour Together
+          </h1>
+          <p class="hero-description">
+            Discover dependable everyday meals, seasonal bakes, and treasured family
+            dishes shared by fellow home cooks across the Fork &amp; Share community.
+          </p>
+
+          <form id="home-search-form" class="hero-search" role="search" novalidate>
+            <label class="sr-only" for="home-search-input">Search recipes or ingredients</label>
+            <input
+              id="home-search-input"
+              class="hero-search-input"
+              type="search"
+              name="q"
+              placeholder="Search pasta, sourdough, chickpeas, lemon..."
+              autocomplete="off"
+            >
+            <button type="submit" class="btn btn-primary hero-search-btn">Search Recipes</button>
+          </form>
+          <p id="home-search-feedback" class="search-feedback" aria-live="polite"></p>
+
+          <div class="hero-tags" aria-label="Popular recipe searches">
+            <span class="hero-tags-label">Popular:</span>
+            <a class="tag-chip" href="pages/explore.html?q=pasta">Pasta</a>
+            <a class="tag-chip" href="pages/explore.html?q=vegetarian">Vegetarian</a>
+            <a class="tag-chip" href="pages/explore.html?q=30-min">Under 30 Mins</a>
+            <a class="tag-chip" href="pages/explore.html?q=baking">Baking</a>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="pages/explore.html">Explore All Recipes</a>
+            <a class="btn btn-secondary" href="pages/share-recipe.html">Share a Recipe</a>
+          </div>
+        </div>
+
+        <aside class="card spotlight-card" aria-labelledby="spotlight-heading">
+          <div class="spotlight-media">
+            <img
+              class="recipe-illustration"
+              src="images/home/spotlight-roast-chicken.jpg"
+              alt="Garlic herb and preserved lemon roast chicken in a cast-iron skillet"
+              width="320"
+              height="190"
+            >
+            <span class="spotlight-badge">Recipe of the Week</span>
+          </div>
+
+          <div class="spotlight-body">
+            <p class="recipe-meta-line">45 mins &middot; 4 servings &middot; Medium</p>
+            <h2 id="spotlight-heading" class="spotlight-title">
+              Garlic Herb &amp; Preserved Lemon Roast Chicken
+            </h2>
+            <p class="spotlight-summary">
+              Crisp golden skin, tender rosemary-infused meat, and a bright pan jus ready for Sunday supper.
+            </p>
+            <div class="spotlight-footer">
+              <span class="recipe-author">By Chef Maya Lin</span>
+              <a class="btn btn-outline btn-sm" href="pages/recipe-details.html?id=garlic-herb-roast-chicken">
+                View Recipe
+              </a>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- Browse by Category -->
+      <section class="section" aria-labelledby="categories-heading">
+        <div class="section-header-row">
+          <h2 id="categories-heading" class="section-title">Browse by Category</h2>
+          <a class="section-more-link" href="pages/categories.html">All Categories &rarr;</a>
+        </div>
+
+        <div class="grid grid-3 category-grid">
+          <a class="card category-card" href="pages/explore.html?category=breakfast">
+            <span class="category-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="22" r="12" fill="none" stroke="currentColor" stroke-width="2.2" />
+                <circle cx="20" cy="22" r="5" fill="#DDAA79" />
+                <path d="M14 9v4M20 7v5M26 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </span>
+            <h3 class="category-title">Breakfast &amp; Brunch</h3>
+            <p class="category-count">24 recipes &middot; Pancakes, oats &amp; eggs</p>
+          </a>
+
+          <a class="card category-card" href="pages/explore.html?category=quick">
+            <span class="category-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="20" cy="21" r="12" fill="none" stroke="currentColor" stroke-width="2.2" />
+                <path d="M20 14v8l5 3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" />
+                <path d="M16 6h8" stroke="#DDAA79" stroke-width="2.5" stroke-linecap="round" />
+              </svg>
+            </span>
+            <h3 class="category-title">Quick Weeknight</h3>
+            <p class="category-count">38 recipes &middot; Ready in 30 minutes</p>
+          </a>
+
+          <a class="card category-card" href="pages/explore.html?category=vegetarian">
+            <span class="category-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 29c0-11 8-18 19-18 0 11-7 18-19 18Z" fill="#DDAA79" fill-opacity="0.45" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" />
+                <path d="M11 29c5-5 10-10 15-14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </span>
+            <h3 class="category-title">Plant-Based</h3>
+            <p class="category-count">31 recipes &middot; Wholesome greens &amp; grains</p>
+          </a>
+
+          <a class="card category-card" href="pages/explore.html?category=comfort">
+            <span class="category-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 20h24v4a10 10 0 0 1-10 10h-4A10 10 0 0 1 8 24v-4Z" fill="#DDAA79" fill-opacity="0.4" stroke="currentColor" stroke-width="2.2" />
+                <path d="M6 20h28M15 11c0 2 2 2 2 4M23 11c0 2 2 2 2 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </span>
+            <h3 class="category-title">Comfort Classics</h3>
+            <p class="category-count">29 recipes &middot; Roasts, stews &amp; pastas</p>
+          </a>
+
+          <a class="card category-card" href="pages/explore.html?category=soups">
+            <span class="category-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 19h22c0 8-5 13-11 13S9 27 9 19Z" fill="none" stroke="currentColor" stroke-width="2.2" />
+                <path d="M25 19l6-8" stroke="#DDAA79" stroke-width="2.4" stroke-linecap="round" />
+              </svg>
+            </span>
+            <h3 class="category-title">Soups &amp; Salads</h3>
+            <p class="category-count">22 recipes &middot; Light &amp; seasonal bowls</p>
+          </a>
+
+          <a class="card category-card" href="pages/explore.html?category=dessert">
+            <span class="category-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 30h20l-2-12H12l-2 12Z" fill="#DDAA79" fill-opacity="0.45" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" />
+                <path d="M12 18c0-4 3-7 8-7s8 3 8 7" fill="none" stroke="currentColor" stroke-width="2.2" />
+                <circle cx="20" cy="9" r="2.2" fill="currentColor" />
+              </svg>
+            </span>
+            <h3 class="category-title">Baked Goods</h3>
+            <p class="category-count">27 recipes &middot; Breads, tarts &amp; crisps</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Featured Community Recipes with Quick Filter -->
+      <section class="section" aria-labelledby="featured-heading">
+        <div class="section-header-row">
+          <h2 id="featured-heading" class="section-title">Featured Recipes</h2>
+          <a class="section-more-link" href="pages/explore.html">Browse Full Library &rarr;</a>
+        </div>
+
+        <div class="filter-bar" role="group" aria-label="Filter featured recipes">
+          <button type="button" class="filter-btn is-selected" data-filter="all" aria-pressed="true">
+            All Featured
+          </button>
+          <button type="button" class="filter-btn" data-filter="quick" aria-pressed="false">
+            Under 30 Mins
+          </button>
+          <button type="button" class="filter-btn" data-filter="vegetarian" aria-pressed="false">
+            Vegetarian
+          </button>
+          <button type="button" class="filter-btn" data-filter="comfort" aria-pressed="false">
+            Comfort Food
+          </button>
+          <button type="button" class="filter-btn" data-filter="dessert" aria-pressed="false">
+            Sweet &amp; Baked
+          </button>
+        </div>
+
+        <p id="filter-status" class="filter-status" aria-live="polite">
+          Showing 6 featured recipes.
+        </p>
+
+        <div id="featured-grid" class="grid grid-3 recipe-grid">
+          <article class="card recipe-card" data-categories="quick vegetarian">
+            <div class="recipe-card-banner banner-sage">
+              <img
+                class="recipe-thumb-img"
+                src="images/home/lemon-asparagus-pasta.jpg"
+                alt="Creamy lemon asparagus pasta in a stoneware bowl"
+                width="240"
+                height="120"
+              >
+              <span class="recipe-badge">20 mins</span>
+            </div>
+            <div class="recipe-card-body">
+              <p class="recipe-category-label">Quick &middot; Vegetarian</p>
+              <h3 class="recipe-title">
+                <a href="pages/recipe-details.html?id=creamy-lemon-asparagus-pasta">
+                  Creamy Lemon Asparagus Pasta
+                </a>
+              </h3>
+              <p class="recipe-excerpt">
+                Bright lemon zest, crisp-tender spring asparagus, and silky parmesan sauce tossed with linguine.
+              </p>
+              <div class="recipe-card-footer">
+                <span class="recipe-meta-text">Easy &middot; 2 servings</span>
+                <div class="recipe-card-actions">
+                  <button
+                    type="button"
+                    class="save-btn"
+                    data-save-recipe="creamy-lemon-asparagus-pasta"
+                    aria-pressed="false"
+                  >
+                    Save
+                  </button>
+                  <a class="recipe-read-link" href="pages/recipe-details.html?id=creamy-lemon-asparagus-pasta">
+                    Cook &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card recipe-card" data-categories="quick vegetarian">
+            <div class="recipe-card-banner banner-peach">
+              <img
+                class="recipe-thumb-img"
+                src="images/home/chickpea-spinach-stew.jpg"
+                alt="Spiced chickpea and spinach stew with crusty bread"
+                width="240"
+                height="120"
+              >
+              <span class="recipe-badge">25 mins</span>
+            </div>
+            <div class="recipe-card-body">
+              <p class="recipe-category-label">Plant-Based &middot; One-Pot</p>
+              <h3 class="recipe-title">
+                <a href="pages/recipe-details.html?id=spiced-chickpea-spinach-stew">
+                  Spiced Chickpea &amp; Spinach Stew
+                </a>
+              </h3>
+              <p class="recipe-excerpt">
+                Warm cumin, smoked paprika, ripe tomatoes, and wilted greens simmered into a cozy weeknight bowl.
+              </p>
+              <div class="recipe-card-footer">
+                <span class="recipe-meta-text">Easy &middot; 4 servings</span>
+                <div class="recipe-card-actions">
+                  <button
+                    type="button"
+                    class="save-btn"
+                    data-save-recipe="spiced-chickpea-spinach-stew"
+                    aria-pressed="false"
+                  >
+                    Save
+                  </button>
+                  <a class="recipe-read-link" href="pages/recipe-details.html?id=spiced-chickpea-spinach-stew">
+                    Cook &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card recipe-card" data-categories="comfort">
+            <div class="recipe-card-banner banner-forest">
+              <img
+                class="recipe-thumb-img"
+                src="images/home/rosemary-focaccia.jpg"
+                alt="Golden rosemary and sea salt focaccia on parchment"
+                width="240"
+                height="120"
+              >
+              <span class="recipe-badge">35 mins</span>
+            </div>
+            <div class="recipe-card-body">
+              <p class="recipe-category-label">Comfort &middot; Artisan Bread</p>
+              <h3 class="recipe-title">
+                <a href="pages/recipe-details.html?id=rosemary-sea-salt-focaccia">
+                  Rosemary &amp; Sea Salt Focaccia
+                </a>
+              </h3>
+              <p class="recipe-excerpt">
+                Airy, olive-oil-rich focaccia topped with flaky sea salt and fresh garden rosemary sprigs.
+              </p>
+              <div class="recipe-card-footer">
+                <span class="recipe-meta-text">Medium &middot; 8 slices</span>
+                <div class="recipe-card-actions">
+                  <button
+                    type="button"
+                    class="save-btn"
+                    data-save-recipe="rosemary-sea-salt-focaccia"
+                    aria-pressed="false"
+                  >
+                    Save
+                  </button>
+                  <a class="recipe-read-link" href="pages/recipe-details.html?id=rosemary-sea-salt-focaccia">
+                    Cook &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card recipe-card" data-categories="vegetarian comfort">
+            <div class="recipe-card-banner banner-peach">
+              <img
+                class="recipe-thumb-img"
+                src="images/home/carrot-ginger-soup.jpg"
+                alt="Roasted carrot and ginger soup with coconut cream and pumpkin seeds"
+                width="240"
+                height="120"
+              >
+              <span class="recipe-badge">35 mins</span>
+            </div>
+            <div class="recipe-card-body">
+              <p class="recipe-category-label">Soups &middot; Vegetarian</p>
+              <h3 class="recipe-title">
+                <a href="pages/recipe-details.html?id=roasted-carrot-ginger-soup">
+                  Roasted Carrot &amp; Ginger Soup
+                </a>
+              </h3>
+              <p class="recipe-excerpt">
+                Caramelized sweet carrots blended with fresh ginger root, coconut milk, and toasted pumpkin seeds.
+              </p>
+              <div class="recipe-card-footer">
+                <span class="recipe-meta-text">Easy &middot; 4 servings</span>
+                <div class="recipe-card-actions">
+                  <button
+                    type="button"
+                    class="save-btn"
+                    data-save-recipe="roasted-carrot-ginger-soup"
+                    aria-pressed="false"
+                  >
+                    Save
+                  </button>
+                  <a class="recipe-read-link" href="pages/recipe-details.html?id=roasted-carrot-ginger-soup">
+                    Cook &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card recipe-card" data-categories="comfort">
+            <div class="recipe-card-banner banner-forest">
+              <img
+                class="recipe-thumb-img"
+                src="images/home/herb-roast-chicken-card.jpg"
+                alt="Carved garlic herb roast chicken on a ceramic platter"
+                width="240"
+                height="120"
+              >
+              <span class="recipe-badge">45 mins</span>
+            </div>
+            <div class="recipe-card-body">
+              <p class="recipe-category-label">Sunday Supper &middot; Comfort</p>
+              <h3 class="recipe-title">
+                <a href="pages/recipe-details.html?id=garlic-herb-roast-chicken">
+                  Garlic Herb Roast Chicken
+                </a>
+              </h3>
+              <p class="recipe-excerpt">
+                Golden roasted chicken rubbed with garlic butter, thyme, and preserved lemon for a comforting dinner.
+              </p>
+              <div class="recipe-card-footer">
+                <span class="recipe-meta-text">Medium &middot; 4 servings</span>
+                <div class="recipe-card-actions">
+                  <button
+                    type="button"
+                    class="save-btn"
+                    data-save-recipe="garlic-herb-roast-chicken"
+                    aria-pressed="false"
+                  >
+                    Save
+                  </button>
+                  <a class="recipe-read-link" href="pages/recipe-details.html?id=garlic-herb-roast-chicken">
+                    Cook &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card recipe-card" data-categories="dessert vegetarian">
+            <div class="recipe-card-banner banner-sage">
+              <img
+                class="recipe-thumb-img"
+                src="images/home/peach-oat-crisp.jpg"
+                alt="Warm spiced peach and oat crisp in a baking dish"
+                width="240"
+                height="120"
+              >
+              <span class="recipe-badge">40 mins</span>
+            </div>
+            <div class="recipe-card-body">
+              <p class="recipe-category-label">Baked Goods &middot; Dessert</p>
+              <h3 class="recipe-title">
+                <a href="pages/recipe-details.html?id=spiced-peach-oat-crisp">
+                  Warm Spiced Peach &amp; Oat Crisp
+                </a>
+              </h3>
+              <p class="recipe-excerpt">
+                Juicy cinnamon-kissed peaches baked beneath a golden brown-butter oat and pecan crumble.
+              </p>
+              <div class="recipe-card-footer">
+                <span class="recipe-meta-text">Easy &middot; 6 servings</span>
+                <div class="recipe-card-actions">
+                  <button
+                    type="button"
+                    class="save-btn"
+                    data-save-recipe="spiced-peach-oat-crisp"
+                    aria-pressed="false"
+                  >
+                    Save
+                  </button>
+                  <a class="recipe-read-link" href="pages/recipe-details.html?id=spiced-peach-oat-crisp">
+                    Cook &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Hub Highlights: Meal Planning, Sharing & Community -->
+      <section class="section" aria-labelledby="hub-heading">
+        <h2 id="hub-heading" class="section-title">Everything for Your Kitchen Routine</h2>
+        <div class="grid grid-3">
+          <div class="card hub-card">
+            <h3 class="hub-card-title">Plan Your Week</h3>
+            <p class="hub-card-text">
+              Organize breakfasts, lunches, and dinners into a balanced weekly menu with effortless recipe picks.
+            </p>
+            <a class="btn btn-outline btn-sm" href="pages/meal-planner.html">Open Meal Planner</a>
+          </div>
+
+          <div class="card hub-card">
+            <h3 class="hub-card-title">Publish Your Classics</h3>
+            <p class="hub-card-text">
+              Got a family favourite or a clever pantry creation? Write down the steps and inspire other home cooks.
+            </p>
+            <a class="btn btn-primary btn-sm" href="pages/share-recipe.html">Share a Recipe</a>
+          </div>
+
+          <div class="card hub-card">
+            <h3 class="hub-card-title">Cook Together</h3>
+            <p class="hub-card-text">
+              Swap kitchen tips, browse seasonal challenges, and celebrate dishes cooked by the Fork &amp; Share community.
+            </p>
+            <a class="btn btn-secondary btn-sm" href="pages/community.html">Visit Community</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Design 3: Community Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">FORK &amp; SHARE</span>
+
+      <ul class="footer-links" aria-label="Footer Navigation">
+        <!-- Do not create separate About or Contact pages -->
+        <li><a class="footer-link" href="#about">About</a></li>
+        <li><a class="footer-link" href="#contact">Contact</a></li>
+        <li><a class="footer-link" href="pages/community.html">Community</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
+    </div>
+  </footer>
+
+  <script src="js/shared.js" defer></script>
+  <script src="js/home.js" defer></script>
+</body>
+</html>
