@@ -246,7 +246,38 @@
 
 
 /* --------------------------------------------------------------------------
-   5. Mobile Responsive Rules
+   5. Seasonal Collection CTA
+   Small, attractive, centred prompt below the category cards.
+   -------------------------------------------------------------------------- */
+.categories-seasonal-cta {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background-color: #fff;
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-md);
+}
+
+.seasonal-cta-heading {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--forest-green);
+  margin: 0 0 0.35rem;
+}
+
+.seasonal-cta-text {
+  font-size: 1rem;
+  color: var(--sage-green);
+  margin: 0 0 1.1rem;
+}
+
+.seasonal-cta-btn {
+  /* Uses shared .btn .btn-primary — no extra overrides needed */
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Mobile Responsive Rules
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
 
