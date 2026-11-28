@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>c
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -13,7 +13,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
     }
     .week-banner-title {
       font-weight: 700;
@@ -21,28 +21,9 @@
       color: var(--forest-green);
       margin: 0;
     }
-    .week-switcher {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.25rem;
-    }
-    .week-tab-btn {
-      padding: 0.45rem 0.95rem;
-      border-radius: 6px;
-      border: 1.5px solid var(--forest-green);
-      background: #ffffff;
-      color: var(--forest-green);
-      font-weight: 700;
-      cursor: pointer;
-    }
-    .week-tab-btn.is-active {
-      background: var(--forest-green);
-      color: #F5EBDD;
-    }
     .day-heading-bold {
       font-weight: 700;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       color: var(--forest-green);
       border-bottom: 2px solid var(--warm-peach);
       padding-bottom: 0.35rem;
@@ -59,7 +40,7 @@
       padding-bottom: 0;
     }
     .meal-slot-tag {
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       color: var(--sage-green);
@@ -73,21 +54,11 @@
     }
     .meal-photo {
       width: 100%;
-      height: 135px;
+      height: 140px;
       object-fit: cover;
       border-radius: 8px;
       border: 1px solid var(--sage-green);
       display: block;
-      margin-bottom: 0.45rem;
-    }
-    .meal-change-select {
-      width: 100%;
-      padding: 0.4rem 0.55rem;
-      border-radius: 6px;
-      border: 1px solid var(--sage-green);
-      background: #ffffff;
-      color: var(--dark-brown);
-      font-size: 0.88rem;
     }
     .photo-credit-note {
       margin-top: 1.25rem;
@@ -129,25 +100,151 @@
       <section class="section">
         <div class="schedule-top-bar">
           <div>
-            <span id="week-subtitle-tag" class="meal-slot-tag">WEEK 1 OF 4</span>
-            <h1 id="week-main-title" class="week-banner-title">Week 1 Meal Schedule</h1>
+            <span class="meal-slot-tag">WEEK 1 SCHEDULE</span>
+            <h1 class="week-banner-title">Weekly Meal Schedule</h1>
           </div>
           <div>
-            <button type="button" id="reset-4weeks-btn" class="btn btn-outline">Reset All 4 Weeks</button>
+            <a href="meal-planner.html" class="btn btn-outline">+ Add Meal</a>
             <a href="shopping-list.html" class="btn btn-primary">View Shopping List</a>
           </div>
         </div>
 
-        <div class="week-switcher" role="tablist" aria-label="Select Week">
-          <button type="button" class="week-tab-btn is-active" data-week="1">Week 1</button>
-          <button type="button" class="week-tab-btn" data-week="2">Week 2</button>
-          <button type="button" class="week-tab-btn" data-week="3">Week 3</button>
-          <button type="button" class="week-tab-btn" data-week="4">Week 4</button>
+        <div id="weekly-schedule-container" class="grid grid-3">
+          <article class="card">
+            <h2 class="day-heading-bold">MONDAY</h2>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">BREAKFAST</span>
+              <span class="meal-dish-name">Oatmeal with Banana &amp; Berries</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&w=600&q=80" alt="Oatmeal with Banana &amp; Berries">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">LUNCH</span>
+              <span class="meal-dish-name">Herb Grilled Chicken Rice Bowl</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Herb Grilled Chicken Rice Bowl">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">DINNER</span>
+              <span class="meal-dish-name">Classic Basil Tomato Pasta</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80" alt="Classic Basil Tomato Pasta">
+            </div>
+          </article>
+
+          <article class="card">
+            <h2 class="day-heading-bold">TUESDAY</h2>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">BREAKFAST</span>
+              <span class="meal-dish-name">Scrambled Eggs on Sourdough Toast</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" alt="Scrambled Eggs on Sourdough Toast">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">LUNCH</span>
+              <span class="meal-dish-name">Spiced Vegetable Biryani</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80" alt="Spiced Vegetable Biryani">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">DINNER</span>
+              <span class="meal-dish-name">Hearty Chicken &amp; Sweetcorn Soup</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80" alt="Hearty Chicken &amp; Sweetcorn Soup">
+            </div>
+          </article>
+
+          <article class="card">
+            <h2 class="day-heading-bold">WEDNESDAY</h2>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">BREAKFAST</span>
+              <span class="meal-dish-name">Fluffy Blueberry Pancakes</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80" alt="Fluffy Blueberry Pancakes">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">LUNCH</span>
+              <span class="meal-dish-name">Mediterranean Grilled Chicken Salad</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Mediterranean Grilled Chicken Salad">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">DINNER</span>
+              <span class="meal-dish-name">Grilled Paneer &amp; Veggie Skewers</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="Grilled Paneer &amp; Veggie Skewers">
+            </div>
+          </article>
+
+          <article class="card">
+            <h2 class="day-heading-bold">THURSDAY</h2>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">BREAKFAST</span>
+              <span class="meal-dish-name">Spinach &amp; Cheese Omelette</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=600&q=80" alt="Spinach &amp; Cheese Omelette">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">LUNCH</span>
+              <span class="meal-dish-name">Creamy Garlic Mushroom Pasta</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=600&q=80" alt="Creamy Garlic Mushroom Pasta">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">DINNER</span>
+              <span class="meal-dish-name">Stir-Fried Garlic Herb Rice</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80" alt="Stir-Fried Garlic Herb Rice">
+            </div>
+          </article>
+
+          <article class="card">
+            <h2 class="day-heading-bold">FRIDAY</h2>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">BREAKFAST</span>
+              <span class="meal-dish-name">Granola &amp; Yogurt Parfait</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Granola &amp; Yogurt Parfait">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">LUNCH</span>
+              <span class="meal-dish-name">Crispy Chicken Tikka Wrap</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80" alt="Crispy Chicken Tikka Wrap">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">DINNER</span>
+              <span class="meal-dish-name">Sesame Vegetable Hakka Noodles</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Sesame Vegetable Hakka Noodles">
+            </div>
+          </article>
+
+          <article class="card">
+            <h2 class="day-heading-bold">SATURDAY</h2>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">BREAKFAST</span>
+              <span class="meal-dish-name">Fresh Tropical Fruit Bowl</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=600&q=80" alt="Fresh Tropical Fruit Bowl">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">LUNCH</span>
+              <span class="meal-dish-name">Roasted Veggie &amp; Hummus Sandwich</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80" alt="Roasted Veggie &amp; Hummus Sandwich">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">DINNER</span>
+              <span class="meal-dish-name">Lemon Herb Grilled Chicken</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&q=80" alt="Lemon Herb Grilled Chicken">
+            </div>
+          </article>
+
+          <article class="card">
+            <h2 class="day-heading-bold">SUNDAY</h2>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">BREAKFAST</span>
+              <span class="meal-dish-name">Avocado &amp; Boiled Egg Toast</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?auto=format&fit=crop&w=600&q=80" alt="Avocado &amp; Boiled Egg Toast">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">LUNCH</span>
+              <span class="meal-dish-name">Aromatic Chicken Pulao</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80" alt="Aromatic Chicken Pulao">
+            </div>
+            <div class="meal-row-item">
+              <span class="meal-slot-tag">DINNER</span>
+              <span class="meal-dish-name">Baked Cheese Macaroni</span>
+              <img class="meal-photo" src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80" alt="Baked Cheese Macaroni">
+            </div>
+          </article>
         </div>
 
-        <div id="weekly-schedule-container" class="grid grid-3"></div>
-
-        <p class="photo-credit-note">Select any week (1-4) and change any dish directly from the dropdown under each meal.</p>
+        <p class="photo-credit-note">Food images sourced from Unsplash for FORK &amp; SHARE.</p>
       </section>
     </div>
   </main>
@@ -165,221 +262,5 @@
   </footer>
 
   <script src="../js/shared.js" defer></script>
-  <script>
-    (function () {
-      const STORAGE_KEY = "forkAndShare4WeeksSchedule_i263138";
-      const DAYS = ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"];
-      const MEALS = ["BREAKFAST", "LUNCH", "DINNER"];
-
-      const DISH_CATALOG = {
-        // Week 1
-        "Oatmeal with Banana & Berries": "https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&w=600&q=80",
-        "Herb Grilled Chicken Rice Bowl": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
-        "Classic Basil Tomato Pasta": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=600&q=80",
-        "Scrambled Eggs on Sourdough Toast": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80",
-        "Spiced Vegetable Biryani": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=600&q=80",
-        "Hearty Chicken & Sweetcorn Soup": "https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&w=600&q=80",
-        "Fluffy Blueberry Pancakes": "https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=600&q=80",
-        "Mediterranean Grilled Chicken Salad": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80",
-        "Grilled Paneer & Veggie Skewers": "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80",
-        "Spinach & Cheese Omelette": "https://images.unsplash.com/photo-1510693206972-df098062cb71?auto=format&fit=crop&w=600&q=80",
-        "Creamy Garlic Mushroom Pasta": "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&w=600&q=80",
-        "Stir-Fried Garlic Herb Rice": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=80",
-        "Granola & Yogurt Parfait": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80",
-        "Crispy Chicken Tikka Wrap": "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=600&q=80",
-        "Sesame Vegetable Hakka Noodles": "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80",
-        "Fresh Tropical Fruit Bowl": "https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=600&q=80",
-        "Roasted Veggie & Hummus Sandwich": "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80",
-        "Lemon Herb Grilled Chicken": "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&q=80",
-        "Avocado & Boiled Egg Toast": "https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?auto=format&fit=crop&w=600&q=80",
-        "Aromatic Chicken Pulao": "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=80",
-        "Baked Cheese Macaroni": "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80",
-
-        // Additional distinct dishes for Weeks 2, 3, and 4
-        "Chia Seed Berry Pudding": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af?auto=format&fit=crop&w=600&q=80",
-        "Teriyaki Salmon & Quinoa Bowl": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80",
-        "Stuffed Bell Peppers with Herbs": "https://images.unsplash.com/photo-1529042410759-befb1204b468?auto=format&fit=crop&w=600&q=80",
-        "French Toast with Cinnamon": "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=600&q=80",
-        "Chickpea & Spinach Curry Bowl": "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=80",
-        "Roasted Tomato & Basil Soup": "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?auto=format&fit=crop&w=600&q=80",
-        "Banana Walnut Smoothie Bowl": "https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&w=600&q=80",
-        "Club Sandwich with Crispy Fries": "https://images.unsplash.com/photo-1553909489-cd47e0907980?auto=format&fit=crop&w=600&q=80",
-        "Garlic Butter Prawns & Rice": "https://images.unsplash.com/photo-1559737558-2bf22b72f2be?auto=format&fit=crop&w=600&q=80",
-        "Cottage Cheese & Peach Bowl": "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=80",
-        "Falafel & Tahini Grain Bowl": "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
-        "Margherita Wood-Fired Pizza": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80",
-        "Peanut Butter Toast & Apple": "https://images.unsplash.com/photo-1525351326368-cabb5099435f?auto=format&fit=crop&w=600&q=80",
-        "Beef Fajita Burrito Bowl": "https://images.unsplash.com/photo-1543826173-70651703c5a4?auto=format&fit=crop&w=600&q=80",
-        "Crispy Tofu & Broccoli Stir-Fry": "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=80",
-        "Strawberry Almond Waffles": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=600&q=80",
-        "Caesar Chicken Wrap": "https://images.unsplash.com/photo-1509722747041-616f39b57569?auto=format&fit=crop&w=600&q=80",
-        "Spaghetti Bolognese": "https://images.unsplash.com/photo-1622973536968-3ead9e780960?auto=format&fit=crop&w=600&q=80",
-        "Lemon Ricotta Pancakes": "https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&fit=crop&w=600&q=80",
-        "Thai Green Curry with Jasmine Rice": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?auto=format&fit=crop&w=600&q=80",
-        "Honey Mustard Chicken & Greens": "https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=600&q=80",
-        "Baked Egg Muffins & Greens": "https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=600&q=80",
-        "Pesto Chicken Penne": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=600&q=80",
-        "Lentil & Vegetable Stew": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80",
-        "Mango Coconut Overnight Oats": "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?auto=format&fit=crop&w=600&q=80",
-        "Grilled Halloumi & Veggie Plate": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80",
-        "BBQ Chicken Flatbread": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80"
-      };
-
-      const DEFAULT_4_WEEKS = {
-        "1": {
-          MONDAY: { BREAKFAST: "Oatmeal with Banana & Berries", LUNCH: "Herb Grilled Chicken Rice Bowl", DINNER: "Classic Basil Tomato Pasta" },
-          TUESDAY: { BREAKFAST: "Scrambled Eggs on Sourdough Toast", LUNCH: "Spiced Vegetable Biryani", DINNER: "Hearty Chicken & Sweetcorn Soup" },
-          WEDNESDAY: { BREAKFAST: "Fluffy Blueberry Pancakes", LUNCH: "Mediterranean Grilled Chicken Salad", DINNER: "Grilled Paneer & Veggie Skewers" },
-          THURSDAY: { BREAKFAST: "Spinach & Cheese Omelette", LUNCH: "Creamy Garlic Mushroom Pasta", DINNER: "Stir-Fried Garlic Herb Rice" },
-          FRIDAY: { BREAKFAST: "Granola & Yogurt Parfait", LUNCH: "Crispy Chicken Tikka Wrap", DINNER: "Sesame Vegetable Hakka Noodles" },
-          SATURDAY: { BREAKFAST: "Fresh Tropical Fruit Bowl", LUNCH: "Roasted Veggie & Hummus Sandwich", DINNER: "Lemon Herb Grilled Chicken" },
-          SUNDAY: { BREAKFAST: "Avocado & Boiled Egg Toast", LUNCH: "Aromatic Chicken Pulao", DINNER: "Baked Cheese Macaroni" }
-        },
-        "2": {
-          MONDAY: { BREAKFAST: "Chia Seed Berry Pudding", LUNCH: "Teriyaki Salmon & Quinoa Bowl", DINNER: "Stuffed Bell Peppers with Herbs" },
-          TUESDAY: { BREAKFAST: "French Toast with Cinnamon", LUNCH: "Chickpea & Spinach Curry Bowl", DINNER: "Roasted Tomato & Basil Soup" },
-          WEDNESDAY: { BREAKFAST: "Banana Walnut Smoothie Bowl", LUNCH: "Club Sandwich with Crispy Fries", DINNER: "Garlic Butter Prawns & Rice" },
-          THURSDAY: { BREAKFAST: "Cottage Cheese & Peach Bowl", LUNCH: "Falafel & Tahini Grain Bowl", DINNER: "Margherita Wood-Fired Pizza" },
-          FRIDAY: { BREAKFAST: "Peanut Butter Toast & Apple", LUNCH: "Beef Fajita Burrito Bowl", DINNER: "Crispy Tofu & Broccoli Stir-Fry" },
-          SATURDAY: { BREAKFAST: "Strawberry Almond Waffles", LUNCH: "Caesar Chicken Wrap", DINNER: "Spaghetti Bolognese" },
-          SUNDAY: { BREAKFAST: "Lemon Ricotta Pancakes", LUNCH: "Thai Green Curry with Jasmine Rice", DINNER: "Honey Mustard Chicken & Greens" }
-        },
-        "3": {
-          MONDAY: { BREAKFAST: "Baked Egg Muffins & Greens", LUNCH: "Pesto Chicken Penne", DINNER: "Lentil & Vegetable Stew" },
-          TUESDAY: { BREAKFAST: "Mango Coconut Overnight Oats", LUNCH: "Grilled Halloumi & Veggie Plate", DINNER: "BBQ Chicken Flatbread" },
-          WEDNESDAY: { BREAKFAST: "Avocado & Boiled Egg Toast", LUNCH: "Teriyaki Salmon & Quinoa Bowl", DINNER: "Classic Basil Tomato Pasta" },
-          THURSDAY: { BREAKFAST: "Fluffy Blueberry Pancakes", LUNCH: "Chickpea & Spinach Curry Bowl", DINNER: "Lemon Herb Grilled Chicken" },
-          FRIDAY: { BREAKFAST: "Granola & Yogurt Parfait", LUNCH: "Club Sandwich with Crispy Fries", DINNER: "Stir-Fried Garlic Herb Rice" },
-          SATURDAY: { BREAKFAST: "Chia Seed Berry Pudding", LUNCH: "Falafel & Tahini Grain Bowl", DINNER: "Baked Cheese Macaroni" },
-          SUNDAY: { BREAKFAST: "French Toast with Cinnamon", LUNCH: "Aromatic Chicken Pulao", DINNER: "Sesame Vegetable Hakka Noodles" }
-        },
-        "4": {
-          MONDAY: { BREAKFAST: "Strawberry Almond Waffles", LUNCH: "Beef Fajita Burrito Bowl", DINNER: "Hearty Chicken & Sweetcorn Soup" },
-          TUESDAY: { BREAKFAST: "Banana Walnut Smoothie Bowl", LUNCH: "Caesar Chicken Wrap", DINNER: "Grilled Paneer & Veggie Skewers" },
-          WEDNESDAY: { BREAKFAST: "Lemon Ricotta Pancakes", LUNCH: "Spiced Vegetable Biryani", DINNER: "Crispy Tofu & Broccoli Stir-Fry" },
-          THURSDAY: { BREAKFAST: "Cottage Cheese & Peach Bowl", LUNCH: "Herb Grilled Chicken Rice Bowl", DINNER: "Spaghetti Bolognese" },
-          FRIDAY: { BREAKFAST: "Peanut Butter Toast & Apple", LUNCH: "Thai Green Curry with Jasmine Rice", DINNER: "Stuffed Bell Peppers with Herbs" },
-          SATURDAY: { BREAKFAST: "Spinach & Cheese Omelette", LUNCH: "Mediterranean Grilled Chicken Salad", DINNER: "Honey Mustard Chicken & Greens" },
-          SUNDAY: { BREAKFAST: "Oatmeal with Banana & Berries", LUNCH: "Roasted Veggie & Hummus Sandwich", DINNER: "BBQ Chicken Flatbread" }
-        }
-      };
-
-      let activeWeek = "1";
-
-      function escapeHtml(str) {
-        return String(str)
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;");
-      }
-
-      function getSchedule() {
-        try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (raw) return JSON.parse(raw);
-        } catch (e) {}
-        return JSON.parse(JSON.stringify(DEFAULT_4_WEEKS));
-      }
-
-      function saveSchedule(data) {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-        } catch (e) {}
-      }
-
-      function render() {
-        const data = getSchedule();
-        const weekData = data[activeWeek] || DEFAULT_4_WEEKS[activeWeek];
-        const allDishNames = Object.keys(DISH_CATALOG);
-
-        document.getElementById("week-subtitle-tag").textContent = "WEEK " + activeWeek + " OF 4";
-        document.getElementById("week-main-title").textContent = "Week " + activeWeek + " Meal Schedule";
-
-        document.querySelectorAll(".week-tab-btn").forEach(function (btn) {
-          btn.classList.toggle("is-active", btn.getAttribute("data-week") === activeWeek);
-        });
-
-        const gridEl = document.getElementById("weekly-schedule-container");
-        gridEl.innerHTML = DAYS.map(function (day) {
-          const dayMeals = weekData[day] || {};
-          const mealsHtml = MEALS.map(function (mealType) {
-            const dishName = dayMeals[mealType] || allDishNames[0];
-            const imgSrc = DISH_CATALOG[dishName] || "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80";
-            const optionsHtml = allDishNames.map(function (d) {
-              const sel = d === dishName ? " selected" : "";
-              return '<option value="' + escapeHtml(d) + '"' + sel + '>' + escapeHtml(d) + '</option>';
-            }).join("");
-
-            return (
-              '<div class="meal-row-item">' +
-                '<span class="meal-slot-tag">' + mealType + '</span>' +
-                '<span class="meal-dish-name">' + escapeHtml(dishName) + '</span>' +
-                '<img class="meal-photo" src="' + imgSrc + '" alt="' + escapeHtml(dishName) + '">' +
-                '<select class="meal-change-select" data-day="' + day + '" data-meal="' + mealType + '" aria-label="Change ' + mealType + ' for ' + day + '">' +
-                  optionsHtml +
-                '</select>' +
-              '</div>'
-            );
-          }).join("");
-
-          return (
-            '<article class="card">' +
-              '<h2 class="day-heading-bold">' + day + '</h2>' +
-              mealsHtml +
-            '</article>'
-          );
-        }).join("");
-
-        gridEl.querySelectorAll("img.meal-photo").forEach(function (img) {
-          img.addEventListener("error", function () {
-            if (img.dataset.fallbackApplied) return;
-            img.dataset.fallbackApplied = "true";
-            var label = encodeURIComponent(img.alt || "FORK & SHARE");
-            var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180">' +
-              '<rect width="320" height="180" fill="#F5EBDD"/>' +
-              '<rect x="8" y="8" width="304" height="164" rx="10" fill="none" stroke="#87966D" stroke-width="2"/>' +
-              '<text x="160" y="86" text-anchor="middle" font-family="Georgia, serif" font-size="14" fill="#354C37">' + label + '</text>' +
-              '<text x="160" y="112" text-anchor="middle" font-family="Segoe UI, sans-serif" font-size="11" fill="#493A30">FORK &amp; SHARE</text>' +
-              '</svg>';
-            img.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-          });
-        });
-
-        gridEl.querySelectorAll(".meal-change-select").forEach(function (sel) {
-          sel.addEventListener("change", function () {
-            const d = this.getAttribute("data-day");
-            const m = this.getAttribute("data-meal");
-            const updated = getSchedule();
-            if (!updated[activeWeek]) updated[activeWeek] = {};
-            if (!updated[activeWeek][d]) updated[activeWeek][d] = {};
-            updated[activeWeek][d][m] = this.value;
-            saveSchedule(updated);
-            render();
-          });
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".week-tab-btn").forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            activeWeek = this.getAttribute("data-week");
-            render();
-          });
-        });
-
-        const resetBtn = document.getElementById("reset-4weeks-btn");
-        if (resetBtn) {
-          resetBtn.addEventListener("click", function () {
-            const fresh = JSON.parse(JSON.stringify(DEFAULT_4_WEEKS));
-            saveSchedule(fresh);
-            render();
-          });
-        }
-
-        render();
-      });
-    })();
-  </script>
 </body>
 </html>
