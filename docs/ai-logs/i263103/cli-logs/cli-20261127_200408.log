@@ -1,0 +1,443 @@
+I1127 20:04:08.215075       6 server.go:2787] Starting language server process with pid 16792
+I1127 20:04:08.463087       6 workflow_python.go:21] run_workflow Python: interpreter "", embedded true
+I1127 20:04:08.848951       6 server.go:2846] Language server version: 1.5.18
+I1127 20:04:08.848951       6 server.go:1328] Language server will attempt to listen on host localhost
+I1127 20:04:09.051494       6 server.go:1343] Language server listening on random port at 57615 for HTTPS (gRPC)
+I1127 20:04:09.057571       6 server.go:1351] Language server listening on random port at 57616 for HTTP
+W1127 20:04:09.610383       8 cache.go:169] Cache(loadCodeAssistResponse): Singleflight refresh failed: error getting token source: You are not logged into Antigravity.
+I1127 20:04:09.430473      30 model_configs.go:234] Auth mode is unspecified, skipping fetchAvailableModels and returning empty response
+W1127 20:04:09.617842       8 cache.go:169] Cache(userInfo): Singleflight refresh failed: failed to get load code assist response: error getting token source: You are not logged into Antigravity.
+E1127 20:04:09.701200      30 errorreport.go:282] Failed to poll ListExperiments: error getting token source: You are not logged into Antigravity.
+I1127 20:04:10.220812      43 store_client.go:714] summary store: starting background reconciliation (trigger=startup)
+I1127 20:04:10.489896      43 store_client.go:764] summary store: reconciliation complete, synced 2 records
+W1127 20:04:10.746393      70 cache.go:169] Cache(peopleInfo): Singleflight refresh failed: error getting token source: You are not logged into Antigravity.
+E1127 20:04:10.746393      70 errorreport.go:282] error getting token source: You are not logged into Antigravity.
+W1127 20:04:11.146054       6 defaults.go:712] failed to get cs path: cs path /usr/bin/cs invalid
+I1127 20:04:11.194912       6 manager.go:162] Creating trajectory store manager with proto store and SQLite store
+I1127 20:04:11.527030      99 manager.go:98] Migration [MIGRATION_ID_SANITY_CHECK_PROJECT_URIS] is enabled
+I1127 20:04:11.660220      99 manager.go:107] Migration [MIGRATION_ID_SANITY_CHECK_PROJECT_URIS] already has status MIGRATION_STATUS_COMPLETED, skipping
+I1127 20:04:11.660220      99 manager.go:98] Migration [MIGRATION_ID_PLUGIN_ENABLEMENT] is enabled
+I1127 20:04:11.660220      99 manager.go:107] Migration [MIGRATION_ID_PLUGIN_ENABLEMENT] already has status MIGRATION_STATUS_COMPLETED, skipping
+I1127 20:04:11.660220      99 manager.go:98] Migration [MIGRATION_ID_BUILTIN_SIDECARS_TO_PLUGINS] is enabled
+I1127 20:04:11.660220      99 manager.go:107] Migration [MIGRATION_ID_BUILTIN_SIDECARS_TO_PLUGINS] already has status MIGRATION_STATUS_COMPLETED, skipping
+I1127 20:04:11.660220      99 manager.go:95] Migration [MIGRATION_ID_LIN_BUILTIN_TO_MARKETPLACE] is disabled, skipping entirely
+I1127 20:04:11.660220      99 manager.go:95] Migration [MIGRATION_ID_ADOPT_BWG_INSTALLS] is disabled, skipping entirely
+I1127 20:04:11.660220      99 manager.go:95] Migration [MIGRATION_ID_GDRIVE_BUILTIN_PLUGIN] is disabled, skipping entirely
+I1127 20:04:11.660220      99 manager.go:98] Migration [MIGRATION_ID_RESET_MAGIC_WORKSPACE_VCS] is enabled
+I1127 20:04:11.660220      99 manager.go:107] Migration [MIGRATION_ID_RESET_MAGIC_WORKSPACE_VCS] already has status MIGRATION_STATUS_COMPLETED, skipping
+I1127 20:04:11.660220      99 manager.go:95] Migration [MIGRATION_ID_SPLIT_SCIENCE_PLUGIN] is disabled, skipping entirely
+I1127 20:04:12.468259      47 server.go:5202] Auth succeeded, refreshing features and managers
+I1127 20:04:12.468259       6 server.go:4243] initialized server successfully in 4.0722708s
+W1127 20:04:12.661262     115 rpcs_plugin_auth.go:110] Not reloading plugin MCP servers: cannot get the signed-in user: error getting token source: You are not logged into Antigravity.
+W1127 20:04:12.757821     116 cache.go:169] Cache(loadCodeAssistResponse): Singleflight refresh failed: error getting token source: You are not logged into Antigravity.
+E1127 20:04:12.757821     116 errorreport.go:282] error getting token source: You are not logged into Antigravity.
+E1127 20:04:12.758338      47 errorreport.go:282] Failed to poll ListExperiments: error getting token source: You are not logged into Antigravity.
+I1127 20:04:12.758338      47 server.go:5221] State refresh took 262ms
+I1127 20:04:12.760093      47 server.go:5237] [RemoteControl] Subscription callback triggered.
+I1127 20:04:12.761274      47 server.go:5240] [RemoteControl] RemoteControlEnabled value: false
+I1127 20:04:12.761274      47 server.go:6391] [RemoteControl] Session toggle is off, staying disconnected
+I1127 20:04:12.761274      47 server.go:6069] [RemoteControl] Resolved proxyServerURL: ""
+I1127 20:04:12.840980     122 reconcile_summaries.go:94] [Summaries] reconcile checked 2 conversations, restored 0, cached 2, skipped 0, dropped 0, cancelled false in 52ms (resident: 0 -> 0)
+I1127 20:04:12.883188     128 manager.go:98] Migration [MIGRATION_ID_SANITY_CHECK_PROJECT_URIS] is enabled
+I1127 20:04:12.939734       1 auto_updater.go:372] Spawned background update process with PID 5480
+I1127 20:04:12.893220      47 profiler.go:231] Continuous pprof profiling is disabled.
+I1127 20:04:12.955366       1 common.go:194] Launching CLI mode
+E1127 20:04:12.987167       1 launchsteps.go:108] Failed to resolve GeminiDir ".gemini": .gemini must be an absolute path: path is not absolute, falling back to default
+I1127 20:04:12.987167     128 manager.go:107] Migration [MIGRATION_ID_SANITY_CHECK_PROJECT_URIS] already has status MIGRATION_STATUS_COMPLETED, skipping
+I1127 20:04:12.987167     128 manager.go:98] Migration [MIGRATION_ID_PLUGIN_ENABLEMENT] is enabled
+I1127 20:04:12.987167     128 manager.go:107] Migration [MIGRATION_ID_PLUGIN_ENABLEMENT] already has status MIGRATION_STATUS_COMPLETED, skipping
+I1127 20:04:12.987167     128 manager.go:98] Migration [MIGRATION_ID_BUILTIN_SIDECARS_TO_PLUGINS] is enabled
+I1127 20:04:12.987167     128 manager.go:107] Migration [MIGRATION_ID_BUILTIN_SIDECARS_TO_PLUGINS] already has status MIGRATION_STATUS_COMPLETED, skipping
+I1127 20:04:12.987167     128 manager.go:95] Migration [MIGRATION_ID_LIN_BUILTIN_TO_MARKETPLACE] is disabled, skipping entirely
+I1127 20:04:12.987167     128 manager.go:95] Migration [MIGRATION_ID_ADOPT_BWG_INSTALLS] is disabled, skipping entirely
+I1127 20:04:12.987167     128 manager.go:95] Migration [MIGRATION_ID_GDRIVE_BUILTIN_PLUGIN] is disabled, skipping entirely
+I1127 20:04:12.987167     128 manager.go:98] Migration [MIGRATION_ID_RESET_MAGIC_WORKSPACE_VCS] is enabled
+I1127 20:04:12.987167     128 manager.go:107] Migration [MIGRATION_ID_RESET_MAGIC_WORKSPACE_VCS] already has status MIGRATION_STATUS_COMPLETED, skipping
+I1127 20:04:12.987167     128 manager.go:95] Migration [MIGRATION_ID_SPLIT_SCIENCE_PLUGIN] is disabled, skipping entirely
+I1127 20:04:12.987167       1 common.go:215] CLI app data directory: C:\Users\user\.gemini\antigravity-cli
+I1127 20:04:13.013662       1 server.go:315] Creating CLI server backend: product=antigravity workspaceDirs=[C:\Users\user\Documents\GitHub\C_GroupNo10_ForkAndShare] appDataDir=C:\Users\user\.gemini\antigravity-cli languageServer=true codeAssist=true
+I1127 20:04:13.291565       1 auth_provider.go:1146] [AuthProvider] SetEnableBusinessLogin called with enable: true
+I1127 20:04:13.506792       1 server.go:2366] Backend project ID updated dynamically to: default-cli-project
+I1127 20:04:13.527607       1 manager.go:610] Initializing CLI store manager for workspace C:\Users\user\Documents\GitHub\C_GroupNo10_ForkAndShare
+E1127 20:04:13.797916     105 server.go:3378] Failed to read conversations directory C:\Users\user\.gemini\antigravity\conversations: open C:/Users/user/.gemini/antigravity/conversations: The system cannot find the path specified.
+I1127 20:04:13.808356     105 server.go:3243] ListConversations: cache miss for 1 conversations, loading 1 in parallel, deferring 0
+I1127 20:04:13.932398       1 cli_setting_manager.go:98] CLI settings initialized: permissions=<nil>, toolPermission=request-review
+I1127 20:04:15.361632       1 hooks_manager.go:54] loaded 0 named hooks from 0 hooks.json file(s)
+I1127 20:04:15.415499       1 manager.go:794] CLI store manager initialized successfully
+I1127 20:04:15.415499       1 common.go:349] CLI store manager created successfully
+I1127 20:04:15.415499       1 cli_setting_manager.go:228] ApplyProjectPermissionGrants: no grants for project "CLI Project", cleared project permissions
+I1127 20:04:17.137970       1 terminal_info_manager.go:384] Terminal detection: TERM="" termName="vscode" altScreen=true ssh=false osc8=true osc52=true appleTerminalSSH=false
+I1127 20:04:17.199132       1 common.go:562] Starting CLI program
+CLI ready for user input
+I1127 20:04:17.289888     105 server.go:3264] ListConversations returning 2 summaries
+I1127 20:04:17.656390     233 manager.go:1745] Reloading system slash commands and skills
+I1127 20:04:17.656390     233 manager.go:1701] Reloading system slash commands
+I1127 20:04:17.853753       1 analytics.go:249] CLI startup completed (took 9.9206116s, phases [main_entered=64ms ls_start=222ms ls_ready=4649ms launch_cli=5054ms backend_created=5442ms project_resolved=5569ms manager_created=7479ms program_run=9260ms tui_init_start=9482ms tui_init_done=9588ms])
+I1127 20:04:17.790980     161 gemini_extensions.go:29] Detecting Gemini extensions in C:\Users\user\.gemini\extensions
+I1127 20:04:17.890335     232 hooks_manager.go:54] loaded 0 named hooks from 0 hooks.json file(s)
+I1127 20:04:17.967003     233 manager.go:1710] Slash commands unchanged, skipping update
+I1127 20:04:18.006746     161 gemini_extensions.go:50] No extensions found
+I1127 20:04:18.083233     241 manager.go:1190] Full redraw completed (RerenderAll) for conversation  (epoch 0, items 1) in 274ms
+I1127 20:04:18.361167     222 keyring.go:64] keyringAuth: loaded token, expiry=2026-11-27 19:56:59.8994901 +0500 PKT expired=true
+I1127 20:04:19.319189     222 browser.go:268] token refreshed, new expiry=2026-11-27 21:04:18.3191898 +0500 PKT m=+3623.272596801
+I1127 20:04:19.357721     235 auth.go:157] ChainedAuth: authenticated via keyring (effective: keyring)
+I1127 20:04:19.383545     235 server_oauth.go:221] applyAuthResult: email=i263103@isb.nu.edu.pk, authMethod=consumer, quotaProject=
+I1127 20:04:19.400353     235 server_oauth.go:226] OAuth: authenticated successfully as i263103@isb.nu.edu.pk
+I1127 20:04:19.400353     235 server_oauth.go:235] b.codeAssistClient.AuthProvider (0x39c4a2a9ad20) is same as b.cliAuth (0x39c4a2a9ad20)
+W1127 20:04:19.419121     394 cache.go:201] Failed to refresh cache in background: admin controls not applicable
+W1127 20:04:19.419121     423 cache.go:201] Failed to refresh cache in background: admin controls not applicable
+I1127 20:04:20.040236     390 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xfba9f4000c3878cb
+I1127 20:04:20.870184     390 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x3563c7693a21b9dd
+I1127 20:04:21.064309     235 model_config_manager.go:375] Propagating selected model override to backend: label="Gemini 4 Hydrogen (High)"
+I1127 20:04:21.072060     111 experiment_manager.go:66] Starting experiment refresh after login
+I1127 20:04:21.072060     110 quota_manager.go:68] doRefreshQuota: starting reload (force=true)
+I1127 20:04:21.302243     111 server.go:5910] [RemoteControl] Mendel flags changed (remote-control-setting-enabled=true, remote-control-proxy-server-url="jetski-webchannel.googleapis.com:443", enable-desktop-remote-control-federation=false, remote-control-webrtc-mesh=false), re-evaluating the connection
+I1127 20:04:21.308288     111 server.go:6391] [RemoteControl] Session toggle is off, staying disconnected
+I1127 20:04:21.308288     111 server.go:6069] [RemoteControl] Resolved proxyServerURL: ""
+I1127 20:04:21.308288     111 experiment_manager.go:70] Experiments refreshed after login
+I1127 20:04:21.309956     477 manager.go:1701] Reloading system slash commands
+I1127 20:04:21.309956     178 manager.go:1796] SetCycleMode called: auto
+I1127 20:04:21.351788     472 server.go:6391] [RemoteControl] Session toggle is off, staying disconnected
+I1127 20:04:21.351788     472 server.go:6069] [RemoteControl] Resolved proxyServerURL: ""
+I1127 20:04:21.401873     447 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xc459fe484f261384
+W1127 20:04:21.416059     178 store.go:31] Terminal sandbox unavailable: sandboxing on Windows requires Windows 11 24H2 or later with the August 2026 or later update: process security environments are not supported: The specified module could not be found.
+I1127 20:04:21.489202     178 manager.go:1800] auto mode is unavailable because the terminal sandbox is unavailable, falling back to default
+I1127 20:04:21.742244     447 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xfff366c4ebf5199b
+I1127 20:04:21.941323     447 model_config_manager.go:375] Propagating selected model override to backend: label="Gemini 4 Hydrogen (High)"
+I1127 20:04:21.941323     111 experiment_manager.go:66] Starting experiment refresh after login
+I1127 20:04:21.941323     110 quota_manager.go:68] doRefreshQuota: starting reload (force=true)
+I1127 20:04:21.941323     554 model_config_manager.go:375] Propagating selected model override to backend: label="Gemini 4 Hydrogen (High)"
+I1127 20:04:22.276790     553 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x968ef67a3441fdc8
+I1127 20:04:22.420641     110 quota_manager.go:68] doRefreshQuota: starting reload (force=true)
+I1127 20:04:22.519804     111 server.go:6391] [RemoteControl] Session toggle is off, staying disconnected
+I1127 20:04:22.519804     111 server.go:6069] [RemoteControl] Resolved proxyServerURL: ""
+I1127 20:04:22.519804     111 experiment_manager.go:70] Experiments refreshed after login
+I1127 20:04:22.519804     111 experiment_manager.go:66] Starting experiment refresh after login
+I1127 20:04:22.519804     603 manager.go:1701] Reloading system slash commands
+I1127 20:04:22.561667     603 manager.go:1710] Slash commands unchanged, skipping update
+I1127 20:04:22.786373     111 server.go:6391] [RemoteControl] Session toggle is off, staying disconnected
+I1127 20:04:22.786373     111 server.go:6069] [RemoteControl] Resolved proxyServerURL: ""
+I1127 20:04:22.786373     111 experiment_manager.go:70] Experiments refreshed after login
+I1127 20:04:22.786373     722 manager.go:1701] Reloading system slash commands
+I1127 20:04:22.810659     722 manager.go:1710] Slash commands unchanged, skipping update
+I1127 20:04:24.969450     794 input_loop.go:104] HandleUserInput called with text: "Read `docs/SHARED_DESIGN_GUIDE.md`, `index.html`, and the existing shared CSS and JavaScript files.\n\nCreate only my second page: Explore Recipes.\n\nFiles to create:\n- `pages/explore.html`\n- `css/explore.css`\n- `js/explore.js`\n\nFollow the exact same theme, colors, header, navigation and footer as the Home Page. Make the search bar, recipe filters and recipe cards functional.\n\nUse only HTML, CSS and Vanilla JavaScript. Do not modify any existing files, especially `index.html`, `css/style.css`, or `js/shared.js`. Do not create pages assigned to other group members."
+I1127 20:04:25.043138     796 conversation_manager.go:836] Starting new conversation (agent=false)
+I1127 20:04:25.066443     796 server.go:1225] Creating new cascade trajectory (agentScript=false)
+I1127 20:04:25.066443     796 server.go:1252] Conversation using project ID: default-cli-project
+I1127 20:04:26.017622     796 server.go:1269] Created conversation f96059fc-966c-4d17-892f-2174ac82dc32 (backend=BACKEND_TYPE_UNSPECIFIED)
+I1127 20:04:26.017622     796 server.go:3577] GetConversationDetail: found conversation f96059fc-966c-4d17-892f-2174ac82dc32 (active=true)
+I1127 20:04:26.033235     796 server.go:3577] GetConversationDetail: found conversation f96059fc-966c-4d17-892f-2174ac82dc32 (active=true)
+I1127 20:04:26.033235     796 conversation_manager.go:900] project: switching to conversation belonging to project ID: default-cli-project
+I1127 20:04:26.033235     796 server.go:2366] Backend project ID updated dynamically to: default-cli-project
+I1127 20:04:26.033235     796 cli_setting_manager.go:228] ApplyProjectPermissionGrants: no grants for project "CLI Project", cleared project permissions
+I1127 20:04:26.033235     796 conversation_manager.go:916] project: synced active project to "CLI Project" (id=default-cli-project) from conversation switch
+I1127 20:04:26.033235     796 conversation_manager.go:1282] Streaming conversation f96059fc-966c-4d17-892f-2174ac82dc32
+I1127 20:04:26.033235     810 manager.go:1745] Reloading system slash commands and skills
+I1127 20:04:26.033235     810 manager.go:1701] Reloading system slash commands
+I1127 20:04:26.033235     796 server.go:3577] GetConversationDetail: found conversation f96059fc-966c-4d17-892f-2174ac82dc32 (active=true)
+I1127 20:04:26.102845     810 manager.go:1710] Slash commands unchanged, skipping update
+I1127 20:04:26.111648     796 server.go:1287] Starting conversation update stream for f96059fc-966c-4d17-892f-2174ac82dc32
+I1127 20:04:26.245438     796 conversation_manager.go:1080] Forwarding user message to conversation f96059fc-966c-4d17-892f-2174ac82dc32 (items=1, media=0)
+I1127 20:04:26.245438     796 server.go:1883] Sending user message to conversation f96059fc-966c-4d17-892f-2174ac82dc32 (items=1, media=0)
+I1127 20:04:26.547726     796 latency_breakdown.go:168] SEND_USER_CASCADE_MESSAGE_LATENCY latency breakdown: map[active_user_state_latency_ms:27 blocking:false cascade_id:f96059fc-966c-4d17-892f-2174ac82dc32 cascade_send_latency_ms:200 hydrate_slash_commands_latency_ms:0 load_trajectory_latency_ms:0 media_count:0 media_summaries_latency_ms:0 message_origin:AGENT_MESSAGE_ORIGIN_UNSPECIFIED resolve_agent_config_latency_ms:34 save_media_latency_ms:0 saved_media_count:0 status:OK total_latency_ms:261 trajectory_id:9c9ca6a4-56db-4d4f-bb25-3ce30696abfb user_prompt_submit_hooks_latency_ms:0]
+I1127 20:04:27.812480     946 monitor_config_manager_external.go:53] externalMonitorConfigManager: initialized with embedded config (3 monitors)
+I1127 20:04:27.892924     784 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x82ffee2a426e314e ResponseID: _5sJa7jNO9KlkdUPsJ3EsAM
+I1127 20:04:27.906399     946 monitoring.go:476] [Sonar] Resolved active tags: [jetski_mode_default policy_guardian sonar_skip_tags] (detected surface: "")
+I1127 20:04:27.918578     946 monitoring.go:476] [Sonar] Resolved active tags: [jetski_mode_default policy_guardian sonar_skip_tags] (detected surface: "")
+I1127 20:04:30.550231     946 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xe368333c497a286b ResponseID: AZwJa5ihKLSo28oP963tsA4
+I1127 20:04:31.173313    1289 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=false, reason="allowed_tool", duration=73.7µs
+I1127 20:04:31.233651    1289 runner.go:507] Monitor sir_flash_lite SKIPPED
+I1127 20:04:31.233651    1289 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:04:31.462238    1311 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=false, reason="allowed_tool", duration=30.2µs
+I1127 20:04:31.462238    1311 runner.go:507] Monitor sir_flash_lite SKIPPED
+I1127 20:04:31.462238    1311 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:04:31.605569    1357 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=true, reason="unknown_command", duration=105.7471ms
+I1127 20:04:31.605569    1379 llm_monitor.go:349] LLM Monitor sir_flash_lite: Starting evaluation
+I1127 20:04:31.638892    1379 llm_monitor.go:636] LLM Monitor sir_flash_lite: Trajectory formatted, length: 41499
+I1127 20:04:31.638892    1379 llm_monitor.go:712] LLM Monitor sir_flash_lite: Calling LLM (model: MODEL_TIER_FLASH_LITE)
+I1127 20:04:32.745880    1379 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x43e3ee7725860fca ResponseID: BJwJa9jFMP_Yxs0Pw8zVgQ8
+I1127 20:04:32.861476    1379 llm_monitor.go:731] LLM Monitor sir_flash_lite: LLM response received, length: 55
+I1127 20:04:32.861476    1379 llm_monitor.go:769] LLM Monitor sir_flash_lite: LLM response parsed successfully
+I1127 20:04:32.861476    1379 llm_monitor.go:785] LLM Monitor sir_flash_lite: Evaluation complete. Triggered: false, Severity: 0, Confidence: 10
+I1127 20:04:32.861476    1365 runner.go:961] Monitor sir_flash_lite FINISHED: triggered=false, reason="", duration=1.263667s
+I1127 20:04:32.861476    1365 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:04:32.924748     782 tool_confirmation_manager.go:237] Surfacing tool confirmation: "Bash" at step 4
+I1127 20:04:35.749254     108 input_loop.go:821] Responding to tool confirmation: convID=f96059fc-966c-4d17-892f-2174ac82dc32, stepIdx=4, approved=true, sandboxOverride=false, scope=PERMISSION_SCOPE_UNSPECIFIED, persistGrants=[], denyGrants=[]
+I1127 20:04:35.817077    1376 server.go:2854] Tool confirmation for conversation f96059fc-966c-4d17-892f-2174ac82dc32 step 4 (type=*gemini_coder_go_proto.Step_Generic approved=true)
+I1127 20:04:41.154929     946 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x6e406edd8eca0bf ResponseID: C5wJa8-vM4nnnsEPuejn8AE
+I1127 20:04:41.819632    1570 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=false, reason="allowed_tool", duration=35.3µs
+I1127 20:04:41.819632    1570 runner.go:507] Monitor sir_flash_lite SKIPPED
+I1127 20:04:41.819632    1570 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:04:41.859972    1590 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=false, reason="allowed_tool", duration=47.8µs
+I1127 20:04:41.859972    1590 runner.go:507] Monitor sir_flash_lite SKIPPED
+I1127 20:04:41.859972    1590 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:04:41.895478    1607 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=false, reason="allowed_tool", duration=112.9µs
+I1127 20:04:41.895478    1607 runner.go:507] Monitor sir_flash_lite SKIPPED
+I1127 20:04:41.895478    1607 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:04:41.902348    1627 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=false, reason="allowed_tool", duration=31.7µs
+I1127 20:04:41.902348    1627 runner.go:507] Monitor sir_flash_lite SKIPPED
+I1127 20:04:41.902348    1627 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:04:41.925039    1550 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=false, reason="allowed_tool", duration=23.4µs
+I1127 20:04:41.925039    1550 runner.go:507] Monitor sir_flash_lite SKIPPED
+I1127 20:04:41.925039    1550 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:04:44.939209     946 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xcf3531ae45c173dd ResponseID: D5wJa6TVFZ6D3boPsrWcsQI
+I1127 20:05:35.928283     110 quota_manager.go:68] doRefreshQuota: starting reload (force=false)
+I1127 20:06:14.952417    3104 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=true, reason="unsupported_tool: write_file", duration=37.8µs
+I1127 20:06:14.952417    3084 llm_monitor.go:349] LLM Monitor sir_flash_lite: Starting evaluation
+I1127 20:06:14.954479    3084 llm_monitor.go:636] LLM Monitor sir_flash_lite: Trajectory formatted, length: 3690
+I1127 20:06:14.954479    3084 llm_monitor.go:712] LLM Monitor sir_flash_lite: Calling LLM (model: MODEL_TIER_FLASH_LITE)
+I1127 20:06:15.517082    3084 llm_monitor.go:701] LLM_MONITOR_LLM_CALL_FAILED_CODE_UNKNOWN
+I1127 20:06:15.517082    3080 runner.go:961] Monitor sir_flash_lite FINISHED: triggered=false, reason="Failed: LLM call failed: modelAPI.Generate failed: transport error (Unavailable, HTTP 503): No capacity available for model gemini-3.5-flash-lite on the server: UNAVAILABLE (code 503): No capacity available for model gemini-3.5-flash-lite on the server", duration=568.1634ms
+I1127 20:06:15.517082    3080 runner.go:704] Monitor severe_internal_risks_agy: parent sir_flash_lite failed, running it anyway
+I1127 20:06:15.517082    3146 llm_monitor.go:349] LLM Monitor severe_internal_risks_agy: Starting evaluation
+I1127 20:06:15.544681    3146 llm_monitor.go:636] LLM Monitor severe_internal_risks_agy: Trajectory formatted, length: 81332
+I1127 20:06:15.544681    3146 llm_monitor.go:712] LLM Monitor severe_internal_risks_agy: Calling LLM (model: gemini-4-hydrogen-sonar)
+I1127 20:06:19.641979    3146 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xc266aebf78c9cc56 ResponseID: bJwJa6DxNZeN28oPufjdCQ
+I1127 20:06:19.793551    3146 llm_monitor.go:731] LLM Monitor severe_internal_risks_agy: LLM response received, length: 41
+I1127 20:06:19.793551    3146 llm_monitor.go:769] LLM Monitor severe_internal_risks_agy: LLM response parsed successfully
+I1127 20:06:19.793551    3146 llm_monitor.go:785] LLM Monitor severe_internal_risks_agy: Evaluation complete. Triggered: false, Severity: 0, Confidence: 0
+I1127 20:06:19.793551    3144 runner.go:961] Monitor severe_internal_risks_agy FINISHED: triggered=false, reason="", duration=4.272666s
+I1127 20:06:21.269304     782 tool_confirmation_manager.go:237] Surfacing tool confirmation: "Edit" at step 12
+I1127 20:06:37.671488     108 input_loop.go:821] Responding to tool confirmation: convID=f96059fc-966c-4d17-892f-2174ac82dc32, stepIdx=12, approved=true, sandboxOverride=false, scope=PERMISSION_SCOPE_UNSPECIFIED, persistGrants=[], denyGrants=[]
+I1127 20:06:37.672012    3275 server.go:2854] Tool confirmation for conversation f96059fc-966c-4d17-892f-2174ac82dc32 step 12 (type=*gemini_coder_go_proto.Step_Generic approved=true)
+I1127 20:06:37.679505     110 quota_manager.go:68] doRefreshQuota: starting reload (force=false)
+I1127 20:06:37.772835    3320 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=true, reason="unsupported_tool: write_file", duration=35.6µs
+I1127 20:06:37.772835    3328 llm_monitor.go:349] LLM Monitor sir_flash_lite: Starting evaluation
+I1127 20:06:37.791426    3328 llm_monitor.go:636] LLM Monitor sir_flash_lite: Trajectory formatted, length: 31833
+I1127 20:06:37.791426    3328 llm_monitor.go:712] LLM Monitor sir_flash_lite: Calling LLM (model: MODEL_TIER_FLASH_LITE)
+I1127 20:06:38.831468    3328 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x29c17ce766ff112d ResponseID: gpwJa6K_Ncia3boP0aWQwQI
+I1127 20:06:39.109467    3328 llm_monitor.go:731] LLM Monitor sir_flash_lite: LLM response received, length: 323
+I1127 20:06:39.109467    3328 llm_monitor.go:769] LLM Monitor sir_flash_lite: LLM response parsed successfully
+I1127 20:06:39.109467    3328 llm_monitor.go:785] LLM Monitor sir_flash_lite: Evaluation complete. Triggered: false, Severity: 0, Confidence: 10
+I1127 20:06:39.109467    3325 runner.go:961] Monitor sir_flash_lite FINISHED: triggered=false, reason="The agent is writing a CSS file (`explore.css`) within the local workspace repository as part of building a recipe sharing web app. This falls under routine editing of ordinary source/stylesheet files in the workspace, with no risk signals present.", duration=1.3361548s
+I1127 20:06:39.109467    3325 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:06:39.126088     782 tool_confirmation_manager.go:237] Surfacing tool confirmation: "Edit" at step 13
+I1127 20:07:42.733459     108 input_loop.go:821] Responding to tool confirmation: convID=f96059fc-966c-4d17-892f-2174ac82dc32, stepIdx=13, approved=true, sandboxOverride=false, scope=PERMISSION_SCOPE_UNSPECIFIED, persistGrants=[], denyGrants=[]
+I1127 20:07:42.733459    3428 server.go:2854] Tool confirmation for conversation f96059fc-966c-4d17-892f-2174ac82dc32 step 13 (type=*gemini_coder_go_proto.Step_Generic approved=true)
+I1127 20:07:42.933590     110 quota_manager.go:68] doRefreshQuota: starting reload (force=false)
+I1127 20:07:42.955044    3425 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=true, reason="unsupported_tool: write_file", duration=41µs
+I1127 20:07:42.955044    3440 llm_monitor.go:349] LLM Monitor sir_flash_lite: Starting evaluation
+I1127 20:07:43.003818    3440 llm_monitor.go:636] LLM Monitor sir_flash_lite: Trajectory formatted, length: 44785
+I1127 20:07:43.003818    3440 llm_monitor.go:712] LLM Monitor sir_flash_lite: Calling LLM (model: MODEL_TIER_FLASH_LITE)
+I1127 20:07:44.188770    3440 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x2de430b9f6353f4e ResponseID: xJwJa4ySA7bonsEPiuijwAU
+I1127 20:07:44.347026    3440 llm_monitor.go:731] LLM Monitor sir_flash_lite: LLM response received, length: 47
+I1127 20:07:44.347026    3440 llm_monitor.go:769] LLM Monitor sir_flash_lite: LLM response parsed successfully
+I1127 20:07:44.347026    3440 llm_monitor.go:785] LLM Monitor sir_flash_lite: Evaluation complete. Triggered: false, Severity: 0, Confidence: 10
+I1127 20:07:44.347026    3436 runner.go:961] Monitor sir_flash_lite FINISHED: triggered=false, reason="", duration=1.3916576s
+I1127 20:07:44.347026    3436 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:07:45.034536     782 tool_confirmation_manager.go:237] Surfacing tool confirmation: "Edit" at step 14
+I1127 20:07:50.892881     108 input_loop.go:821] Responding to tool confirmation: convID=f96059fc-966c-4d17-892f-2174ac82dc32, stepIdx=14, approved=true, sandboxOverride=false, scope=PERMISSION_SCOPE_UNSPECIFIED, persistGrants=[], denyGrants=[]
+I1127 20:07:50.892881    3499 server.go:2854] Tool confirmation for conversation f96059fc-966c-4d17-892f-2174ac82dc32 step 14 (type=*gemini_coder_go_proto.Step_Generic approved=true)
+I1127 20:07:54.520434     946 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x641b90b9cdb0784 ResponseID: zJwJa5mKL-fZxs0P7P7MaA
+I1127 20:07:54.665469    3625 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=true, reason="unquoted_shell_operators", duration=1.7036ms
+I1127 20:07:54.665978    3568 llm_monitor.go:349] LLM Monitor sir_flash_lite: Starting evaluation
+I1127 20:07:54.765890    3568 llm_monitor.go:636] LLM Monitor sir_flash_lite: Trajectory formatted, length: 45064
+I1127 20:07:54.765890    3568 llm_monitor.go:712] LLM Monitor sir_flash_lite: Calling LLM (model: MODEL_TIER_FLASH_LITE)
+I1127 20:07:55.855387    3568 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x8c1a772890d5ba5b ResponseID: z5wJa-iyPMnjnsEP8c2DUQ
+I1127 20:07:56.116981    3568 llm_monitor.go:731] LLM Monitor sir_flash_lite: LLM response received, length: 55
+I1127 20:07:56.116981    3568 llm_monitor.go:769] LLM Monitor sir_flash_lite: LLM response parsed successfully
+I1127 20:07:56.116981    3568 llm_monitor.go:785] LLM Monitor sir_flash_lite: Evaluation complete. Triggered: false, Severity: 0, Confidence: 10
+I1127 20:07:56.116981    3564 runner.go:961] Monitor sir_flash_lite FINISHED: triggered=false, reason="", duration=1.4508126s
+I1127 20:07:56.116981    3564 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:07:56.131902     782 tool_confirmation_manager.go:237] Surfacing tool confirmation: "Bash" at step 16
+I1127 20:08:04.199566     108 input_loop.go:821] Responding to tool confirmation: convID=f96059fc-966c-4d17-892f-2174ac82dc32, stepIdx=16, approved=true, sandboxOverride=false, scope=PERMISSION_SCOPE_UNSPECIFIED, persistGrants=[], denyGrants=[]
+I1127 20:08:04.200087    3654 server.go:2854] Tool confirmation for conversation f96059fc-966c-4d17-892f-2174ac82dc32 step 16 (type=*gemini_coder_go_proto.Step_Generic approved=true)
+I1127 20:08:09.461234     946 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x7413c8b18f0fb327 ResponseID: 25wJa6uWLufZxs0P7P7MaA
+I1127 20:08:09.589762    3810 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=true, reason="unquoted_shell_operators", duration=86.6µs
+I1127 20:08:09.589772    3819 llm_monitor.go:349] LLM Monitor sir_flash_lite: Starting evaluation
+I1127 20:08:09.591791    3819 llm_monitor.go:636] LLM Monitor sir_flash_lite: Trajectory formatted, length: 1571
+I1127 20:08:09.591791    3819 llm_monitor.go:712] LLM Monitor sir_flash_lite: Calling LLM (model: MODEL_TIER_FLASH_LITE)
+I1127 20:08:10.403518    3819 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x19946a40d8f4a9c0 ResponseID: 3pwJa829I5z8vdIP2YHgsAE
+I1127 20:08:10.614644    3819 llm_monitor.go:731] LLM Monitor sir_flash_lite: LLM response received, length: 311
+I1127 20:08:10.615457    3819 llm_monitor.go:769] LLM Monitor sir_flash_lite: LLM response parsed successfully
+I1127 20:08:10.615457    3819 llm_monitor.go:785] LLM Monitor sir_flash_lite: Evaluation complete. Triggered: false, Severity: 0, Confidence: 10
+I1127 20:08:10.615457    3816 runner.go:961] Monitor sir_flash_lite FINISHED: triggered=false, reason="In Step 16, the agent checks the python version and queries installed commands (msedge, chrome). This is a routine diagnostic check to see what browsers or runtimes are available in the local environment, falling under the ROUTINE list.", duration=1.0256799s
+I1127 20:08:10.615457    3816 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:08:10.632940     782 tool_confirmation_manager.go:237] Surfacing tool confirmation: "Bash" at step 18
+I1127 20:08:21.305160     108 input_loop.go:821] Responding to tool confirmation: convID=f96059fc-966c-4d17-892f-2174ac82dc32, stepIdx=18, approved=true, sandboxOverride=false, scope=PERMISSION_SCOPE_UNSPECIFIED, persistGrants=[], denyGrants=[]
+I1127 20:08:21.305684    3869 server.go:2854] Tool confirmation for conversation f96059fc-966c-4d17-892f-2174ac82dc32 step 18 (type=*gemini_coder_go_proto.Step_Generic approved=true)
+I1127 20:08:28.759292     946 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xb47bf8b97170538e ResponseID: 7JwJa_KdKO65kdUPkM-MoAY
+I1127 20:08:28.819656    4032 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=true, reason="unquoted_shell_operators", duration=221.3µs
+I1127 20:08:28.820179    3983 llm_monitor.go:349] LLM Monitor sir_flash_lite: Starting evaluation
+I1127 20:08:28.845359    3983 llm_monitor.go:636] LLM Monitor sir_flash_lite: Trajectory formatted, length: 1224
+I1127 20:08:28.845359    3983 llm_monitor.go:712] LLM Monitor sir_flash_lite: Calling LLM (model: MODEL_TIER_FLASH_LITE)
+I1127 20:08:29.542548    3983 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x4684faad2755fb ResponseID: 8ZwJa-HbKOOG28oPkd-r-Aw
+I1127 20:08:29.947802    3983 llm_monitor.go:731] LLM Monitor sir_flash_lite: LLM response received, length: 474
+I1127 20:08:29.947802    3983 llm_monitor.go:769] LLM Monitor sir_flash_lite: LLM response parsed successfully
+I1127 20:08:29.947802    3983 llm_monitor.go:785] LLM Monitor sir_flash_lite: Evaluation complete. Triggered: false, Severity: 0, Confidence: 9
+I1127 20:08:29.947802    4016 runner.go:961] Monitor sir_flash_lite FINISHED: triggered=false, reason="In Step 18, the agent attempted to check available tools and found that python and default browsers were not installed/found. In the pending tool call, the agent attempts to run a local executable of Microsoft Edge in headless mode to inspect a local HTML file ('explore.html'). This is a routine local diagnostic/testing action reading a local file within the workspace, with no risk signals present.", duration=1.1323847s
+I1127 20:08:29.947802    4016 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:08:29.989139     782 tool_confirmation_manager.go:237] Surfacing tool confirmation: "Bash" at step 21
+I1127 20:08:49.755256     108 input_loop.go:821] Responding to tool confirmation: convID=f96059fc-966c-4d17-892f-2174ac82dc32, stepIdx=21, approved=true, sandboxOverride=false, scope=PERMISSION_SCOPE_UNSPECIFIED, persistGrants=[], denyGrants=[]
+I1127 20:08:49.755256    4047 server.go:2854] Tool confirmation for conversation f96059fc-966c-4d17-892f-2174ac82dc32 step 21 (type=*gemini_coder_go_proto.Step_Generic approved=true)
+I1127 20:08:49.759815     110 quota_manager.go:68] doRefreshQuota: starting reload (force=false)
+I1127 20:09:03.033275     946 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xf15c7f64ea62148d ResponseID: Ep0Ja66GHd3dxs0P7cHh2AU
+I1127 20:09:19.658126    4639 monitoring.go:476] [Sonar] Resolved active tags: [jetski_mode_default policy_guardian sonar_skip_tags] (detected surface: "")
+I1127 20:09:19.658126    4639 monitoring.go:476] [Sonar] Resolved active tags: [jetski_mode_default policy_guardian sonar_skip_tags] (detected surface: "")
+I1127 20:09:24.787026    4639 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x1036fbafbd8249be ResponseID: JZ0Ja8LvJJeN28oPufjdCQ
+I1127 20:09:25.061799    5051 runner.go:961] Monitor agy_tool_safety FINISHED: triggered=true, reason="unquoted_shell_operators", duration=167.9µs
+I1127 20:09:25.106643    5065 llm_monitor.go:349] LLM Monitor sir_flash_lite: Starting evaluation
+I1127 20:09:25.151486    5065 llm_monitor.go:636] LLM Monitor sir_flash_lite: Trajectory formatted, length: 307
+I1127 20:09:25.151486    5065 llm_monitor.go:712] LLM Monitor sir_flash_lite: Calling LLM (model: MODEL_TIER_FLASH_LITE)
+I1127 20:09:25.341233    5027 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xba8b5f68bee06713
+I1127 20:09:25.726276    4992 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xbabb8b8c8f481ffe
+I1127 20:09:26.223827    5065 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xf6f71adbfac41ad4 ResponseID: Kp0Ja4fzFf3CvdIPiu-w6Q4
+I1127 20:09:26.432507    5065 llm_monitor.go:731] LLM Monitor sir_flash_lite: LLM response received, length: 55
+I1127 20:09:26.432507    5065 llm_monitor.go:769] LLM Monitor sir_flash_lite: LLM response parsed successfully
+I1127 20:09:26.432507    5065 llm_monitor.go:785] LLM Monitor sir_flash_lite: Evaluation complete. Triggered: false, Severity: 0, Confidence: 10
+I1127 20:09:26.432507    5060 runner.go:961] Monitor sir_flash_lite FINISHED: triggered=false, reason="", duration=1.3233479s
+I1127 20:09:26.432507    5060 runner.go:507] Monitor severe_internal_risks_agy SKIPPED
+I1127 20:09:26.435170     782 tool_confirmation_manager.go:237] Surfacing tool confirmation: "Bash" at step 25
+I1127 20:09:49.020293     108 input_loop.go:821] Responding to tool confirmation: convID=f96059fc-966c-4d17-892f-2174ac82dc32, stepIdx=25, approved=true, sandboxOverride=false, scope=PERMISSION_SCOPE_UNSPECIFIED, persistGrants=[], denyGrants=[]
+I1127 20:09:49.020817    5143 server.go:2854] Tool confirmation for conversation f96059fc-966c-4d17-892f-2174ac82dc32 step 25 (type=*gemini_coder_go_proto.Step_Generic approved=true)
+I1127 20:10:12.600629    4639 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0x16a8d5ce596838d0 ResponseID: TJ0Ja-XuL9Le28oP_Z_M2Ag
+I1127 20:10:15.171715    4639 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:streamGenerateContent?alt=sse Trace: 0xc32daa6edb4d417e ResponseID: Wp0Ja5edE9OZ3boP5vnewAI
+I1127 20:10:18.697207     110 quota_manager.go:68] doRefreshQuota: starting reload (force=false)
+I1127 20:15:09.734818    6152 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5bd4b47aa3df1094
+I1127 20:15:09.915907    6153 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x90f71a2cf71afdc7
+I1127 20:21:09.910306    6589 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xc163e2fca96db1ef
+I1127 20:21:10.162371    6560 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xc776ac797a5df9e6
+I1127 20:27:09.865542    7014 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xedf3aa1631e1380a
+I1127 20:27:10.185959    7001 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x735fb0464ab1ca74
+I1127 20:33:09.881659    7445 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6b07dd31654ee04c
+I1127 20:33:09.980584    7415 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xcca1a785d0ecd826
+I1127 20:39:09.754524    7834 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7dc234d903b3363b
+I1127 20:39:09.931453    7803 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xd45568c3043b2744
+I1127 20:45:09.753823    8250 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x107e7eb5d6ad9bf9
+I1127 20:45:10.022660    8251 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x3826b27ac7df625b
+I1127 23:50:59.690471    8640 browser.go:268] token refreshed, new expiry=2026-11-28 00:50:58.6904717 +0500 PKT m=+17223.643953201
+I1127 23:51:04.027585    8649 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x26e5bee27a1da20e
+I1127 23:51:04.413707    8640 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xf95b9646c876e15e
+I1128 06:28:19.429071    8777 browser.go:268] token refreshed, new expiry=2026-11-28 07:28:18.4290713 +0500 PKT m=+41063.397111401
+I1128 06:28:21.524358    8777 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xcba4d065fc318205
+I1128 06:28:21.784465    8778 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x2232980180689a99
+I1128 06:34:14.666404    9170 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xc3834551a9de49f8
+I1128 06:34:15.198690    9090 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xe14359da7a2686d
+I1128 06:40:14.642045    9607 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x50d8b0e99dc417c0
+I1128 06:40:14.663849    9582 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x2e93e998d6f0a30b
+I1128 06:46:14.896761   10025 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x40fb6a0120b81adc
+I1128 06:46:14.956934    9998 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6ee85661538ab183
+I1128 06:52:14.870928   10415 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x2c8e81307b9f9d01
+I1128 06:52:14.933224   10380 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x8bc0a4d691128bac
+I1128 06:58:14.562341   10851 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5e245320523da065
+I1128 06:58:15.164570   10852 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xf639d93c3f170cff
+I1128 07:04:14.784052   11245 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x4804e7e10a854a0c
+I1128 07:04:15.140739   11261 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9da9b70fd097878b
+I1128 07:10:14.436094   11618 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x962413b780a08046
+I1128 07:10:15.205444   11672 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xd53b489f8bfcd3b8
+I1128 07:16:14.680701   12046 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xf18ddf78170d3d68
+I1128 07:16:14.933641   12085 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x41024a4e10aed251
+I1128 07:22:14.654539   12505 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x805840e02871b9de
+I1128 07:22:14.702235   12515 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7e2121cddee9a389
+I1128 07:24:14.676110   12641 browser.go:268] token refreshed, new expiry=2026-11-28 08:24:13.6710979 +0500 PKT m=+44413.873731701
+I1128 07:25:53.956910   12749 manager.go:1190] Full redraw completed (RerenderAll) for conversation f96059fc-966c-4d17-892f-2174ac82dc32 (epoch 1, items 10) in 42ms
+I1128 07:25:53.998161   12749 manager.go:1190] Full redraw completed (RerenderAll) for conversation f96059fc-966c-4d17-892f-2174ac82dc32 (epoch 1, items 10) in 22ms
+I1128 07:25:54.072034   12750 manager.go:1190] Full redraw completed (RerenderAll) for conversation f96059fc-966c-4d17-892f-2174ac82dc32 (epoch 1, items 10) in 11ms
+I1128 07:25:54.593753   12769 manager.go:1190] Full redraw completed (RerenderAll) for conversation f96059fc-966c-4d17-892f-2174ac82dc32 (epoch 1, items 10) in 24ms
+I1128 07:28:14.433319   12947 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xa96cdccf4a7f10f9
+I1128 07:28:14.907473   12945 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x27010b38a0fbb7a8
+I1128 07:34:14.430464   13375 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x5e2713499ad4f317
+I1128 07:34:14.947943   13380 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x215e38c66f22bed7
+I1128 07:40:14.440623   13791 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6ed6a1c690dd380b
+I1128 07:40:14.958726   13790 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x9de6222688a47ad0
+I1128 07:46:14.683071   14189 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xfc22f439e2626c4e
+I1128 07:46:14.707061   14188 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7c8761cb8003c69f
+I1128 07:52:14.789503   14620 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x38b6f325886a88ab
+I1128 07:52:14.982955   14621 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xed749294d8d86fc4
+I1128 07:58:14.638985   15039 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x8089dde1943e01a9
+I1128 07:58:14.679430   15038 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x8f491403964f434f
+I1128 08:04:14.416045   15446 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x3bc4c11926659d33
+I1128 08:04:14.927181   15459 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xadb180f3761b7567
+I1128 08:10:14.666856   15762 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xafd222c70c8b0ca9
+I1128 08:10:14.892717   15855 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x8ee8e7a6c5481bdf
+I1128 08:16:14.431930   16294 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x7fe4270830f385e0
+I1128 08:16:14.722119   16266 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xdc5a11651934d460
+I1128 08:19:14.797443   16484 browser.go:268] token refreshed, new expiry=2026-11-28 09:19:13.7924883 +0500 PKT m=+47713.999027301
+I1128 08:22:14.610802   16688 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x4695afc8fa1278da
+I1128 08:22:14.674822   16687 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xace2606747434254
+I1128 08:28:14.419457   17104 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xb10979f06d8380ed
+I1128 08:28:14.932164   17103 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x3290b6e0d5cfca6c
+I1128 08:34:14.441079   17527 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x420a3833643bc38d
+I1128 08:34:14.898101   17512 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x37957fc65cb701f
+I1128 08:40:14.691651   17957 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9fbd9f5c438e2328
+I1128 08:40:14.692676   17851 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x9263ddd91ee33c3a
+I1128 08:46:14.650781   18320 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x3fb26fbb7befa49
+I1128 08:46:14.673738   18345 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xad61cbdf2be38c52
+I1128 08:52:14.423030   18758 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x8d7724818c4ccf77
+I1128 08:52:14.940818   18773 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xf457b86b268e8393
+I1128 08:58:14.664666   19191 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xf8b80afcbbb8a381
+I1128 08:58:14.693275   19164 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xfa0628a44812d420
+I1128 09:04:14.651804   19579 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6aa1de4be3a34f8
+I1128 09:04:15.744241   19594 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x143b34d3a406266c
+I1128 09:06:12.316436   19693 manager.go:1190] Full redraw completed (RerenderAll) for conversation f96059fc-966c-4d17-892f-2174ac82dc32 (epoch 1, items 10) in 709ms
+I1128 09:06:26.039338   19740 manager.go:1190] Full redraw completed (RerenderAll) for conversation f96059fc-966c-4d17-892f-2174ac82dc32 (epoch 1, items 10) in 71ms
+I1128 09:07:48.020602   19852 manager.go:1190] Full redraw completed (RerenderAll) for conversation f96059fc-966c-4d17-892f-2174ac82dc32 (epoch 1, items 10) in 146ms
+I1128 09:10:14.715385   20014 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6a43fb3beb2ff95d
+I1128 09:10:14.720669   20013 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x3dde2d070846230a
+I1128 09:14:14.730609   20293 browser.go:268] token refreshed, new expiry=2026-11-28 10:14:13.730338 +0500 PKT m=+51013.932704701
+I1128 09:16:14.652896   20432 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x1b811a1ac5d6d244
+I1128 09:16:14.683671   20433 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x32a12f3e0efe7a35
+I1128 09:22:14.762646   20847 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x9e383f8e195c0b96
+I1128 09:22:14.927786   20859 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xf221bd8ebb942c2a
+I1128 09:28:14.657057   21231 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x1b79d60422fb2f9e
+I1128 09:28:14.902167   21283 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xf001238d353262ae
+I1128 09:34:14.446444   21705 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xa4a06726390a22e1
+I1128 09:34:14.907575   21624 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x7ee1c0bbc9ec86c9
+I1128 09:40:14.440692   22075 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x17d6c520de6d99a4
+I1128 09:40:14.956248   22091 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5b47439a57b2871f
+I1128 09:46:14.443946   22488 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x47a88f181f05574a
+I1128 09:46:14.913812   22523 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x9fca236d6e7c4147
+I1128 09:52:14.668606   22896 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x89e5bb5429f9ca67
+I1128 09:52:14.923320   22862 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x3168988329e6b455
+I1128 09:58:14.690271   23342 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x394a0af191d830e2
+I1128 09:58:14.904815   23355 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x8c0781feda72a5d7
+I1128 10:04:14.656512   23780 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xdf6235f5f27655ee
+I1128 10:04:14.707351   23754 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x64f5018b1581fbfc
+I1128 10:09:14.942183   24090 browser.go:268] token refreshed, new expiry=2026-11-28 11:09:13.9117454 +0500 PKT m=+54314.116240201
+I1128 10:10:14.425282   24162 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x6b82f0ee189aff99
+I1128 10:10:15.164267   24178 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xc2bba02a00b30b28
+I1128 10:16:14.438659   24629 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x392c3e4bff753cd1
+I1128 10:16:14.963190   24568 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x4199ae6734110a1b
+I1128 10:22:14.688545   25027 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xb8142974bf6c5f9f
+I1128 10:22:14.699876   25043 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xbf8bf1ae3dfa8892
+E1128 12:04:58.148674      30 errorreport.go:282] Failed to poll ListExperiments: Post "https://daily-cloudcode-pa.googleapis.com/v1internal:listExperiments": read tcp 192.168.100.181:61220->172.217.119.4:443: wsarecv: An existing connection was forcibly closed by the remote host.
+I1128 12:05:24.661845   25424 browser.go:268] token refreshed, new expiry=2026-11-28 13:05:23.6618456 +0500 PKT m=+61283.865655101
+W1128 12:05:32.826059   25424 composite_token_storage.go:589] Keyring SaveToken timed out after 5s
+I1128 12:05:37.738171   25424 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x205cf8a361d25866
+I1128 12:05:37.957610   25375 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x70b7de8af3e64381
+I1128 12:11:15.090846   25840 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x6793ecefbb822ad2
+I1128 12:11:15.102674   25861 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x8a1412b4d94463ad
+I1128 12:17:14.673505   26251 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xa7a764bf041d829b
+I1128 12:17:14.690021   26291 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xeedb8e8a891e5ae8
+I1128 12:22:20.001386   26587 input_loop.go:104] HandleUserInput called with text: "git status"
+I1128 12:22:21.554993   26610 conversation_manager.go:1080] Forwarding user message to conversation f96059fc-966c-4d17-892f-2174ac82dc32 (items=1, media=0)
+I1128 12:22:21.622035   26610 server.go:1883] Sending user message to conversation f96059fc-966c-4d17-892f-2174ac82dc32 (items=1, media=0)
+I1128 12:22:22.278583   26625 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xb34164d98884f0c0
+I1128 12:22:22.330733   26590 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xf5c936d979fbbfc3
+I1128 12:22:26.584376   26610 latency_breakdown.go:168] SEND_USER_CASCADE_MESSAGE_LATENCY latency breakdown: map[active_user_state_latency_ms:91 blocking:false cascade_id:f96059fc-966c-4d17-892f-2174ac82dc32 cascade_send_latency_ms:1090 hydrate_slash_commands_latency_ms:27 load_trajectory_latency_ms:0 media_count:0 media_summaries_latency_ms:0 message_origin:AGENT_MESSAGE_ORIGIN_UNSPECIFIED resolve_agent_config_latency_ms:1242 save_media_latency_ms:0 saved_media_count:0 status:OK total_latency_ms:3295 trajectory_id:9c9ca6a4-56db-4d4f-bb25-3ce30696abfb user_prompt_submit_hooks_latency_ms:24]
+I1128 12:22:34.453569   26710 monitoring.go:476] [Sonar] Resolved active tags: [jetski_mode_default policy_guardian sonar_skip_tags] (detected surface: "")
+I1128 12:22:34.521193   26710 monitoring.go:476] [Sonar] Resolved active tags: [jetski_mode_default policy_guardian sonar_skip_tags] (detected surface: "")
+E1128 12:22:43.194454   26710 errorreport.go:282] agent executor error: generating and executing: transport error (ResourceExhausted, HTTP 429): Individual quota reached. Please upgrade your subscription to increase your limits. Resets in 148h48m8s.: RESOURCE_EXHAUSTED (code 429): Individual quota reached. Please upgrade your subscription to increase your limits. Resets in 148h48m8s.
+E1128 12:22:43.362608   26710 errorreport.go:282] generating and executing: transport error (ResourceExhausted, HTTP 429): Individual quota reached. Please upgrade your subscription to increase your limits. Resets in 148h48m8s.: RESOURCE_EXHAUSTED (code 429): Individual quota reached. Please upgrade your subscription to increase your limits. Resets in 148h48m8s.
+I1128 12:22:43.381989     110 quota_manager.go:68] doRefreshQuota: starting reload (force=false)
+I1128 12:28:14.630227   27655 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xedf28288fcae2c0d
+I1128 12:28:14.931470   27648 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x6fefebce17167608
+I1128 12:34:14.660882   28049 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x20bc24a9fed732b2
+I1128 12:34:15.212521   28060 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xc19795fac79ae8b2
+I1128 12:40:14.425182   28481 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x5cba4f91b4d13adb
+I1128 12:40:14.858365   28499 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x3b951c4e3e822a
+I1128 12:46:14.680021   28909 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0xc564b98cfda0a917
+I1128 12:46:14.696297   28920 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xe25bf34b2294dc63
+I1128 12:52:14.436629   29332 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xe48c8c864c91bb6d
+I1128 12:52:14.964650   29347 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x4d0c44cf094e0c3
+I1128 12:58:14.460674   29741 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x53a51bb985c10e51
+I1128 12:58:14.899995   29740 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x79f84482fa36efe8
+I1128 13:01:14.654558   29841 browser.go:268] token refreshed, new expiry=2026-11-28 14:01:13.654558 +0500 PKT m=+64633.856843201
+I1128 13:04:14.445416   30128 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x3f4e2d57a77c6346
+I1128 13:04:14.907512   30170 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x5c6c4cc5b684adcd
+I1128 13:10:14.721907   30560 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x86d40081d25559ae
+I1128 13:10:14.734675   30561 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xe5bb9fa91c1e838e
+I1128 13:16:14.731975   31027 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0x19de93de786e184e
+I1128 13:16:15.216372   30994 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x632c3ed7092a3988
+I1128 13:22:14.675683   31427 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:fetchAvailableModels Trace: 0x6d99edb930d4dcd8
+I1128 13:22:14.713549   31393 http_helpers.go:787] URL: https://daily-cloudcode-pa.googleapis.com/v1internal:loadCodeAssist Trace: 0xf8ca0129aa83aece
