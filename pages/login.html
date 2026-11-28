@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up &amp; Login | FORK &amp; SHARE</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/account.css">
+</head>
+<body data-account-page="login">
+  <!-- Design 1: Brand Header + Design 2: Responsive Primary Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-logo" href="../index.html">
+        <span class="brand-name">FORK &amp; SHARE</span>
+        <span class="brand-tagline">Recipe Sharing Hub</span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <div class="container">
+        <ul id="primary-nav" class="nav-list" data-nav-menu>
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="explore.html">Explore</a></li>
+          <li><a class="nav-link" href="categories.html">Categories</a></li>
+          <li><a class="nav-link" href="meal-planner.html">Meal Planner</a></li>
+          <li><a class="nav-link" href="share-recipe.html">Share a Recipe</a></li>
+          <li><a class="nav-link" href="community.html">Community</a></li>
+          <li><a class="nav-link is-active" href="profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <div class="container">
+      <div id="already-signed-banner" class="status-banner status-banner--info" hidden>
+        You are currently signed in as <strong id="already-signed-name"></strong>.
+        <a href="profile.html">Go to My Profile</a> or <a href="saved-recipes.html">View Saved Recipes</a>.
+      </div>
+
+      <section class="auth-layout" aria-label="Account Authentication">
+        <aside class="auth-showcase">
+          <span class="auth-showcase-kicker">Cook &bull; Share &bull; Enjoy</span>
+          <h1 class="auth-showcase-title">Join the Fork &amp; Share Kitchen</h1>
+          <p class="auth-showcase-lead">
+            Create your free home-cook account to save favourite recipes, personalize dietary
+            preferences, and build your personal cookbook.
+          </p>
+
+          <ul class="auth-benefits">
+            <li>
+              <span class="auth-benefit-icon" aria-hidden="true">1</span>
+              <span>Bookmark dishes like Chicken Biryani, Pizza, and Pasta into your Saved Recipes.</span>
+            </li>
+            <li>
+              <span class="auth-benefit-icon" aria-hidden="true">2</span>
+              <span>Set dietary tags (Halal, Vegetarian, High-Protein, Gluten-Free) on your profile.</span>
+            </li>
+            <li>
+              <span class="auth-benefit-icon" aria-hidden="true">3</span>
+              <span>Keep your profile details and cooking stats synced across every visit.</span>
+            </li>
+          </ul>
+
+          <div class="auth-demo-box">
+            <p>
+              <strong>Quick Preview:</strong> Want to test Login right away? Use the sample account
+              <code>ibrar47@example.com</code> (password: <code>ForkShare1</code>).
+            </p>
+            <button type="button" id="fill-demo-login-btn" class="btn btn-secondary btn-sm">
+              Fill Demo Credentials
+            </button>
+          </div>
+        </aside>
+
+        <div class="auth-card">
+          <div class="auth-tabs" role="tablist" aria-label="Authentication Mode">
+            <button
+              type="button"
+              id="tab-signup"
+              class="auth-tab is-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="panel-signup"
+            >
+              Create Account
+            </button>
+            <button
+              type="button"
+              id="tab-login"
+              class="auth-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="panel-login"
+            >
+              Log In
+            </button>
+          </div>
+
+          <!-- Sign Up Panel -->
+          <section id="panel-signup" class="auth-panel" role="tabpanel" aria-labelledby="tab-signup">
+            <h2 class="auth-panel-title">Create Your Account</h2>
+            <p class="auth-panel-subtitle">Fill in your details below to register on Fork &amp; Share.</p>
+
+            <div id="signup-status-banner" class="status-banner" role="alert" aria-live="polite" hidden></div>
+
+            <form id="signup-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="signup-name">Full Name</label>
+                <input
+                  id="signup-name"
+                  name="fullName"
+                  type="text"
+                  class="form-input"
+                  placeholder="e.g., Ibrar ul haq"
+                  autocomplete="name"
+                  aria-describedby="signup-name-feedback"
+                  required
+                >
+                <span id="signup-name-feedback" class="field-feedback is-hint">
+                  Enter your full name (e.g., Ibrar ul haq).
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-email">Email Address</label>
+                <input
+                  id="signup-email"
+                  name="email"
+                  type="email"
+                  class="form-input"
+                  placeholder="e.g., Ibrar@gmail.com"
+                  autocomplete="email"
+                  aria-describedby="signup-email-feedback"
+                  required
+                >
+                <span id="signup-email-feedback" class="field-feedback is-hint">
+                  We will use this for your Fork &amp; Share login.
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-password">Password</label>
+                <div class="input-wrapper">
+                  <input
+                    id="signup-password"
+                    name="password"
+                    type="password"
+                    class="form-input form-input--with-action"
+                    placeholder="Create a strong password"
+                    autocomplete="new-password"
+                    aria-describedby="signup-password-feedback"
+                    required
+                  >
+                  <button
+                    type="button"
+                    class="input-toggle-btn"
+                    data-toggle-password="signup-password"
+                    aria-label="Show password"
+                  >
+                    Show
+                  </button>
+                </div>
+                <span id="signup-password-feedback" class="field-feedback is-hint">
+                  Minimum 8 characters with an uppercase letter and a number.
+                </span>
+
+                <div class="password-strength" aria-live="polite">
+                  <div class="strength-bar-track">
+                    <div id="strength-bar-fill" class="strength-bar-fill" data-strength="weak"></div>
+                  </div>
+                  <div id="strength-label" class="strength-label">Strength: Enter a password</div>
+                  <ul class="password-rules">
+                    <li id="rule-length" class="password-rule">8+ characters</li>
+                    <li id="rule-upper" class="password-rule">1 uppercase letter</li>
+                    <li id="rule-number" class="password-rule">1 number (0-9)</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="signup-confirm">Confirm Password</label>
+                <div class="input-wrapper">
+                  <input
+                    id="signup-confirm"
+                    name="confirmPassword"
+                    type="password"
+                    class="form-input form-input--with-action"
+                    placeholder="Re-enter your password"
+                    autocomplete="new-password"
+                    aria-describedby="signup-confirm-feedback"
+                    required
+                  >
+                  <button
+                    type="button"
+                    class="input-toggle-btn"
+                    data-toggle-password="signup-confirm"
+                    aria-label="Show password"
+                  >
+                    Show
+                  </button>
+                </div>
+                <span id="signup-confirm-feedback" class="field-feedback is-hint">
+                  Re-enter your password to confirm.
+                </span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+            </form>
+
+            <p class="auth-switch-note">
+              Already have an account?
+              <button type="button" class="text-link-btn" data-switch-auth="login">Log in here</button>
+            </p>
+          </section>
+
+          <!-- Login Panel -->
+          <section id="panel-login" class="auth-panel" role="tabpanel" aria-labelledby="tab-login" hidden>
+            <h2 class="auth-panel-title">Welcome Back</h2>
+            <p class="auth-panel-subtitle">Sign in to view your profile and saved recipes.</p>
+
+            <div id="login-status-banner" class="status-banner" role="alert" aria-live="polite" hidden></div>
+
+            <form id="login-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="login-email">Email Address</label>
+                <input
+                  id="login-email"
+                  name="email"
+                  type="email"
+                  class="form-input"
+                  placeholder="Enter your email address"
+                  autocomplete="email"
+                  aria-describedby="login-email-feedback"
+                  required
+                >
+                <span id="login-email-feedback" class="field-feedback is-hint"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="login-password">Password</label>
+                <div class="input-wrapper">
+                  <input
+                    id="login-password"
+                    name="password"
+                    type="password"
+                    class="form-input form-input--with-action"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    aria-describedby="login-password-feedback"
+                    required
+                  >
+                  <button
+                    type="button"
+                    class="input-toggle-btn"
+                    data-toggle-password="login-password"
+                    aria-label="Show password"
+                  >
+                    Show
+                  </button>
+                </div>
+                <span id="login-password-feedback" class="field-feedback is-hint"></span>
+              </div>
+
+              <div class="auth-form-row">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="login-remember" checked>
+                  <span>Keep me signed in on this device</span>
+                </label>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">Log In</button>
+            </form>
+
+            <p class="auth-switch-note">
+              New to Fork &amp; Share?
+              <button type="button" class="text-link-btn" data-switch-auth="signup">Create an account</button>
+            </p>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Design 3: Community Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">FORK &amp; SHARE</span>
+
+      <ul class="footer-links" aria-label="Footer Navigation">
+        <li><a class="footer-link" href="../index.html#about">About</a></li>
+        <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
+        <li><a class="footer-link" href="community.html">Community</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
+    </div>
+  </footer>
+
+  <script src="../js/shared.js" defer></script>
+  <script src="../js/account.js" defer></script>
+</body>
+</html>
