@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile | FORK &amp; SHARE</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/account.css">
+</head>
+<body data-account-page="profile">
+  <!-- Design 1: Brand Header + Design 2: Responsive Primary Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand-logo" href="../index.html">
+        <span class="brand-name">FORK &amp; SHARE</span>
+        <span class="brand-tagline">Recipe Sharing Hub</span>
+      </a>
+
+      <button
+        type="button"
+        class="nav-toggle"
+        data-nav-toggle
+        aria-controls="primary-nav"
+        aria-expanded="false"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+        <span class="hamburger-line" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <nav class="site-nav" aria-label="Primary Navigation">
+      <div class="container">
+        <ul id="primary-nav" class="nav-list" data-nav-menu>
+          <li><a class="nav-link" href="../index.html">Home</a></li>
+          <li><a class="nav-link" href="explore.html">Explore</a></li>
+          <li><a class="nav-link" href="categories.html">Categories</a></li>
+          <li><a class="nav-link" href="meal-planner.html">Meal Planner</a></li>
+          <li><a class="nav-link" href="share-recipe.html">Share a Recipe</a></li>
+          <li><a class="nav-link" href="community.html">Community</a></li>
+          <li><a class="nav-link is-active" href="profile.html" aria-current="page">Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <div class="container">
+      <div class="page-intro">
+        <span class="page-intro-eyebrow">Account &amp; Personalization</span>
+        <h1 class="section-title">User Profile</h1>
+        <p>Manage your Fork &amp; Share identity, dietary tags, and account preferences.</p>
+      </div>
+
+      <!-- Signed-Out / Guest Fallback -->
+      <section id="guest-fallback-card" class="guest-fallback-card" aria-label="Sign in prompt" hidden>
+        <h2>Sign In to Access Your Profile</h2>
+        <p>
+          You are currently viewing Fork &amp; Share as a guest. Create an account or log in to
+          personalize your avatar, dietary preferences, and saved recipe collection.
+        </p>
+        <div class="guest-fallback-actions">
+          <a href="login.html" class="btn btn-primary">Create Account / Log In</a>
+          <button type="button" id="use-demo-profile-btn" class="btn btn-secondary">
+            Load Demo Profile (Ibrar ul haq)
+          </button>
+          <a href="saved-recipes.html" class="btn btn-outline">Browse Saved Recipes</a>
+        </div>
+      </section>
+
+      <!-- Authenticated Profile Workspace -->
+      <div id="profile-workspace" class="account-shell profile-workspace" hidden>
+        <aside class="account-sidebar" aria-label="Account Navigation">
+          <h2 class="account-sidebar-title">My Account</h2>
+          <ul class="account-nav">
+            <li>
+              <button
+                type="button"
+                class="account-nav-item is-active"
+                data-profile-tab-trigger="details"
+              >
+                <span>My Profile</span>
+              </button>
+            </li>
+            <li>
+              <a class="account-nav-item" href="saved-recipes.html">
+                <span>Saved Recipes</span>
+                <span id="sidebar-saved-count" class="account-nav-badge">0</span>
+              </a>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="account-nav-item"
+                data-profile-tab-trigger="dietary"
+              >
+                <span>Dietary Tags</span>
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="account-nav-item"
+                data-profile-tab-trigger="settings"
+              >
+                <span>Settings</span>
+              </button>
+            </li>
+            <li>
+              <button
+                type="button"
+                class="account-nav-item account-nav-item--logout"
+                data-logout-btn
+              >
+                <span>Log Out</span>
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        <div class="account-content">
+          <!-- User Summary Card -->
+          <section class="profile-summary-card" aria-label="Profile Summary">
+            <div class="profile-summary-top">
+              <div class="profile-identity">
+                <div id="profile-avatar-frame" class="avatar-frame" aria-hidden="true"></div>
+                <div>
+                  <h2 id="profile-summary-name" class="profile-name">Ibrar ul haq</h2>
+                  <p id="profile-summary-email" class="profile-email">ibrar47@example.com</p>
+                  <div class="profile-meta-row">
+                    <span id="profile-summary-member" class="pill-tag pill-tag--peach">
+                      Member since 22 Nov, 2026
+                    </span>
+                    <span id="profile-summary-skill" class="pill-tag">Home Chef</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="profile-actions">
+                <button type="button" class="btn btn-secondary btn-sm" data-open-edit-modal>
+                  Edit Profile
+                </button>
+                <button type="button" class="btn btn-outline btn-sm" data-logout-btn>
+                  Log Out
+                </button>
+              </div>
+            </div>
+
+            <p id="profile-summary-bio" class="profile-bio"></p>
+
+            <div id="profile-dietary-tags" class="profile-tags" aria-label="Active dietary tags"></div>
+
+            <div class="profile-stats">
+              <a href="saved-recipes.html" class="stat-box">
+                <span id="stat-saved-count" class="stat-value">0</span>
+                <span class="stat-label">Saved Recipes</span>
+              </a>
+              <div class="stat-box">
+                <span id="stat-submitted-count" class="stat-value">0</span>
+                <span class="stat-label">Submitted Recipes</span>
+              </div>
+              <div class="stat-box">
+                <span id="stat-dietary-count" class="stat-value">0</span>
+                <span class="stat-label">Dietary Tags</span>
+              </div>
+            </div>
+
+            <div class="avatar-picker-bar">
+              <span class="avatar-picker-label">Choose Avatar:</span>
+              <div id="avatar-picker-options" class="avatar-options" role="group" aria-label="Avatar selector"></div>
+            </div>
+          </section>
+
+          <!-- Interactive Profile Tabs -->
+          <section class="profile-tabs-card" aria-label="Profile Management">
+            <div class="profile-tab-bar" role="tablist" aria-label="Profile Sections">
+              <button
+                type="button"
+                id="tab-btn-details"
+                class="profile-tab-btn is-active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="panel-details"
+                data-profile-tab="details"
+              >
+                Profile Details
+              </button>
+              <button
+                type="button"
+                id="tab-btn-dietary"
+                class="profile-tab-btn"
+                role="tab"
+                aria-selected="false"
+                aria-controls="panel-dietary"
+                data-profile-tab="dietary"
+              >
+                Dietary Preferences
+              </button>
+              <button
+                type="button"
+                id="tab-btn-settings"
+                class="profile-tab-btn"
+                role="tab"
+                aria-selected="false"
+                aria-controls="panel-settings"
+                data-profile-tab="settings"
+              >
+                Account Settings
+              </button>
+            </div>
+
+            <!-- Tab 1: Profile Details -->
+            <div
+              id="panel-details"
+              class="tab-panel"
+              role="tabpanel"
+              aria-labelledby="tab-btn-details"
+              data-profile-panel="details"
+            >
+              <div class="detail-grid">
+                <div class="detail-item">
+                  <span class="detail-item-label">Full Name</span>
+                  <span id="detail-full-name" class="detail-item-value"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-item-label">Email Address</span>
+                  <span id="detail-email" class="detail-item-value"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-item-label">Member Since</span>
+                  <span id="detail-member-since" class="detail-item-value"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-item-label">Location</span>
+                  <span id="detail-location" class="detail-item-value"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-item-label">Cooking Level</span>
+                  <span id="detail-skill" class="detail-item-value"></span>
+                </div>
+                <div class="detail-item">
+                  <span class="detail-item-label">Profile Visibility</span>
+                  <span id="detail-visibility" class="detail-item-value"></span>
+                </div>
+              </div>
+
+              <div class="profile-actions" style="margin-top: 1.25rem;">
+                <button type="button" class="btn btn-primary btn-sm" data-open-edit-modal>
+                  Edit Profile Details
+                </button>
+                <a href="saved-recipes.html" class="btn btn-outline btn-sm">Open Saved Recipes</a>
+              </div>
+            </div>
+
+            <!-- Tab 2: Dietary Preferences -->
+            <div
+              id="panel-dietary"
+              class="tab-panel"
+              role="tabpanel"
+              aria-labelledby="tab-btn-dietary"
+              data-profile-panel="dietary"
+              hidden
+            >
+              <p>
+                Select the dietary tags that match your kitchen. Changes are saved automatically and
+                shown on your profile summary card.
+              </p>
+              <div id="dietary-status-banner" class="status-banner" aria-live="polite" hidden></div>
+              <div id="dietary-options-grid" class="dietary-grid"></div>
+            </div>
+
+            <!-- Tab 3: Account Settings -->
+            <div
+              id="panel-settings"
+              class="tab-panel"
+              role="tabpanel"
+              aria-labelledby="tab-btn-settings"
+              data-profile-panel="settings"
+              hidden
+            >
+              <div class="settings-section">
+                <h3>Privacy &amp; Notifications</h3>
+                <label class="settings-toggle-row">
+                  <span>
+                    <strong>Weekly Recipe Digest</strong><br>
+                    <small>Receive curated Fork &amp; Share seasonal picks.</small>
+                  </span>
+                  <input type="checkbox" id="setting-newsletter">
+                </label>
+
+                <label class="settings-toggle-row">
+                  <span>
+                    <strong>Public Community Profile</strong><br>
+                    <small>Allow other cooks to see your bio and cooking level.</small>
+                  </span>
+                  <input type="checkbox" id="setting-public-profile">
+                </label>
+              </div>
+
+              <div class="settings-section">
+                <h3>Update Password</h3>
+                <div id="settings-password-banner" class="status-banner" role="alert" aria-live="polite" hidden></div>
+                <form id="change-password-form" novalidate>
+                  <div class="form-group">
+                    <label class="form-label" for="settings-current-password">Current Password</label>
+                    <div class="input-wrapper">
+                      <input
+                        id="settings-current-password"
+                        type="password"
+                        class="form-input form-input--with-action"
+                        placeholder="Enter current password"
+                        required
+                      >
+                      <button
+                        type="button"
+                        class="input-toggle-btn"
+                        data-toggle-password="settings-current-password"
+                        aria-label="Show password"
+                      >
+                        Show
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-2">
+                    <div class="form-group">
+                      <label class="form-label" for="settings-new-password">New Password</label>
+                      <div class="input-wrapper">
+                        <input
+                          id="settings-new-password"
+                          type="password"
+                          class="form-input form-input--with-action"
+                          placeholder="8+ chars, uppercase &amp; number"
+                          required
+                        >
+                        <button
+                          type="button"
+                          class="input-toggle-btn"
+                          data-toggle-password="settings-new-password"
+                          aria-label="Show password"
+                        >
+                          Show
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="settings-confirm-password">Confirm New Password</label>
+                      <div class="input-wrapper">
+                        <input
+                          id="settings-confirm-password"
+                          type="password"
+                          class="form-input form-input--with-action"
+                          placeholder="Repeat new password"
+                          required
+                        >
+                        <button
+                          type="button"
+                          class="input-toggle-btn"
+                          data-toggle-password="settings-confirm-password"
+                          aria-label="Show password"
+                        >
+                          Show
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-sm">Update Password</button>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Edit Profile Modal -->
+  <div
+    id="edit-profile-modal"
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="edit-modal-title"
+    hidden
+  >
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="edit-modal-title">Edit Profile</h2>
+        <button
+          type="button"
+          class="modal-close-btn"
+          data-close-edit-modal
+          aria-label="Close edit profile modal"
+        >
+          &times;
+        </button>
+      </div>
+
+      <form id="edit-profile-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="edit-full-name">Full Name</label>
+          <input id="edit-full-name" type="text" class="form-input" required>
+          <span id="edit-name-feedback" class="field-feedback is-hint"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="edit-email">Email Address</label>
+          <input id="edit-email" type="email" class="form-input" required>
+          <span id="edit-email-feedback" class="field-feedback is-hint"></span>
+        </div>
+
+        <div class="grid grid-2">
+          <div class="form-group">
+            <label class="form-label" for="edit-location">Location</label>
+            <input id="edit-location" type="text" class="form-input" placeholder="e.g., Islamabad, Pakistan">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="edit-skill">Cooking Level</label>
+            <select id="edit-skill" class="form-select">
+              <option value="Beginner Cook">Beginner Cook</option>
+              <option value="Home Cook">Home Cook</option>
+              <option value="Home Chef">Home Chef</option>
+              <option value="Pastry Enthusiast">Pastry Enthusiast</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="edit-bio">Short Bio</label>
+          <textarea
+            id="edit-bio"
+            class="form-textarea"
+            maxlength="240"
+            placeholder="Share your favourite cuisines and cooking style..."
+          ></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline btn-sm" data-close-edit-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Live Toast Feedback -->
+  <div class="toast-region" aria-live="polite">
+    <div id="profile-toast" class="toast-banner" hidden>
+      <span id="profile-toast-msg"></span>
+    </div>
+  </div>
+
+  <!-- Design 3: Community Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">FORK &amp; SHARE</span>
+
+      <ul class="footer-links" aria-label="Footer Navigation">
+        <li><a class="footer-link" href="../index.html#about">About</a></li>
+        <li><a class="footer-link" href="../index.html#contact">Contact</a></li>
+        <li><a class="footer-link" href="community.html">Community</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2026 FORK &amp; SHARE</p>
+    </div>
+  </footer>
+
+  <script src="../js/shared.js" defer></script>
+  <script src="../js/account.js" defer></script>
+</body>
+</html>
