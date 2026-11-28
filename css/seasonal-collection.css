@@ -1,0 +1,331 @@
+/* ==========================================================================
+   Seasonal Collection — Page-Specific Stylesheet
+   File: css/seasonal-collection.css
+   
+   This file styles ONLY the Seasonal Collection page.
+   It does NOT override or replace css/style.css.
+   It uses the same CSS colour variables defined in style.css:
+     --cream, --forest-green, --sage-green, --warm-peach, --dark-brown
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Page Hero (Heading & Subtitle)
+   Centred layout matching the prototype.
+   -------------------------------------------------------------------------- */
+.seasonal-hero {
+  text-align: center;
+  padding-block: 2rem 1rem;
+}
+
+.seasonal-heading {
+  font-size: 2.4rem;
+  font-family: var(--font-heading);
+  color: var(--forest-green);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+
+.seasonal-subtitle {
+  font-size: 1.1rem;
+  color: var(--sage-green);
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Winter Warmers Feature Banner
+   Wide banner: text + button on the left, image on the right.
+   -------------------------------------------------------------------------- */
+.seasonal-banner {
+  display: flex;
+  align-items: stretch;
+  background-color: var(--forest-green);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  min-height: 260px;
+}
+
+.banner-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.5rem 2rem;
+  gap: 0.75rem;
+}
+
+.banner-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.banner-description {
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin: 0;
+  opacity: 0.9;
+}
+
+.banner-btn {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  background-color: var(--warm-peach);
+  color: var(--dark-brown);
+  border-color: var(--warm-peach);
+}
+
+.banner-btn:hover {
+  background-color: var(--cream);
+  color: var(--forest-green);
+  border-color: var(--cream);
+}
+
+.banner-image-wrapper {
+  flex: 0 0 40%;
+  max-width: 40%;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Six Seasonal Collection Cards Grid
+   Desktop: 3 columns | Mobile: stacked
+   -------------------------------------------------------------------------- */
+.seasonal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* exactly 3 columns on desktop */
+  gap: 1.75rem;
+}
+
+/* Each individual seasonal card */
+.seasonal-card {
+  background-color: #fff;
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+/* Lift the card slightly when the user hovers over it */
+.seasonal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 28px rgba(53, 76, 55, 0.14);
+}
+
+/* Seasonal image at the top of each card */
+.seasonal-card__image-wrapper {
+  width: 100%;
+  height: 190px;
+  overflow: hidden;
+  background-color: var(--cream);  /* fallback colour while image loads */
+}
+
+.seasonal-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+/* Zoom the image slightly on hover for a nice effect */
+.seasonal-card:hover .seasonal-card__image {
+  transform: scale(1.06);
+}
+
+/* Text below the image */
+.seasonal-card__body {
+  padding: 1.1rem 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  text-align: center;
+}
+
+/* Collection name, e.g. "Winter" */
+.seasonal-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--forest-green);
+  margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Featured Recipes Section
+   -------------------------------------------------------------------------- */
+.seasonal-featured {
+  padding-top: 0.5rem;
+}
+
+.featured-recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+/* Each featured recipe card */
+.featured-card {
+  background-color: #fff;
+  border: 1px solid var(--sage-green);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.featured-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 28px rgba(53, 76, 55, 0.14);
+}
+
+.featured-card__image-wrapper {
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+  background-color: var(--cream);
+}
+
+.featured-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.featured-card:hover .featured-card__image {
+  transform: scale(1.06);
+}
+
+.featured-card__body {
+  padding: 1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  text-align: center;
+}
+
+.featured-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--forest-green);
+  margin: 0;
+}
+
+.featured-card__season {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sage-green);
+  margin: 0;
+}
+
+.featured-card__btn {
+  align-self: stretch;
+  margin-top: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Mobile Responsive Rules
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Stack banner vertically on mobile */
+  .seasonal-banner {
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .banner-content {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .banner-title {
+    font-size: 1.5rem;
+  }
+
+  .banner-image-wrapper {
+    flex: none;
+    max-width: 100%;
+    height: 200px;
+  }
+
+  /* 2 columns on mobile for seasonal cards */
+  .seasonal-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  /* Slightly smaller heading on mobile */
+  .seasonal-heading {
+    font-size: 1.9rem;
+  }
+
+  /* Shorter image height on small screens */
+  .seasonal-card__image-wrapper {
+    height: 140px;
+  }
+
+  /* Tighter card body padding on mobile */
+  .seasonal-card__body {
+    padding: 0.85rem 0.9rem 1.1rem;
+    gap: 0.4rem;
+  }
+
+  .seasonal-card__name {
+    font-size: 1.05rem;
+  }
+
+  /* Featured recipes: 2 columns on mobile */
+  .featured-recipes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .featured-card__image-wrapper {
+    height: 130px;
+  }
+
+  .featured-card__body {
+    padding: 0.75rem 0.85rem 1rem;
+  }
+}
+
+/* On very small screens (e.g. 360px phones), single column */
+@media (max-width: 400px) {
+  .seasonal-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .seasonal-card__image-wrapper {
+    height: 160px;
+  }
+
+  .featured-recipes-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
